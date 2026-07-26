@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "setup": "node scripts/setup.mjs",
+    "setup:sheets": "node --env-file=.env.local scripts/setup-sheets.mjs",
+    "admin:hash": "node scripts/hash-password.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",

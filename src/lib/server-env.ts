@@ -2,9 +2,25 @@ import "server-only";
 
 import { z } from "zod";
 
-const optionalString = z.string().trim().min(1).optional();
+const emptyStringToUndefined = (value: unknown) =>
+  typeof value === "string" && value.trim() === "" ? undefined : value;
+
+const optionalString = z.preprocess(
+  emptyStringToUndefined,
+  z.string().trim().min(1).optional(),
+);
+
+const optionalUrl = z.preprocess(
+  emptyStringToUndefined,
+  z.url().optional(),
+);
 
 const serverEnvSchema = z.object({
+  SITE_URL: optionalUrl,
+  REGISTRATION_ENABLED: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((value) => value === "true"),
   OPENREVIEW_API_URL: z
     .url()
     .default("https://api2.openreview.net"),
@@ -12,18 +28,31 @@ const serverEnvSchema = z.object({
   OPENREVIEW_SUBMISSION_INVITATION: optionalString,
   GOOGLE_SHEETS_SPREADSHEET_ID: optionalString,
   GOOGLE_SHEETS_RANGE: z.string().trim().min(1).default("Registrations!A:J"),
+  VOLUNTEER_ENABLED: z
+    .enum(["true", "false"])
+    .default("true")
+    .transform((value) => value === "true"),
+  GOOGLE_SHEETS_VOLUNTEERS_RANGE: z
+    .string()
+    .trim()
+    .min(1)
+    .default("Volunteers!A:I"),
   GOOGLE_SERVICE_ACCOUNT_EMAIL: optionalString,
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: optionalString,
   GOOGLE_SERVICE_ACCOUNT_CREDENTIALS_FILE: optionalString,
 });
 
 export const serverEnv = serverEnvSchema.parse({
+  SITE_URL: process.env.SITE_URL,
+  REGISTRATION_ENABLED: process.env.REGISTRATION_ENABLED,
   OPENREVIEW_API_URL: process.env.OPENREVIEW_API_URL,
   OPENREVIEW_VENUE_ID: process.env.OPENREVIEW_VENUE_ID,
   OPENREVIEW_SUBMISSION_INVITATION:
     process.env.OPENREVIEW_SUBMISSION_INVITATION,
   GOOGLE_SHEETS_SPREADSHEET_ID: process.env.GOOGLE_SHEETS_SPREADSHEET_ID,
   GOOGLE_SHEETS_RANGE: process.env.GOOGLE_SHEETS_RANGE,
+  VOLUNTEER_ENABLED: process.env.VOLUNTEER_ENABLED,
+  GOOGLE_SHEETS_VOLUNTEERS_RANGE: process.env.GOOGLE_SHEETS_VOLUNTEERS_RANGE,
   GOOGLE_SERVICE_ACCOUNT_EMAIL: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY:
     process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,

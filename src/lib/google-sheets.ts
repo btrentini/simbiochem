@@ -3,6 +3,7 @@ import "server-only";
 import { google } from "googleapis";
 
 import type { Registration } from "@/lib/registration";
+import type { Volunteer } from "@/lib/volunteer";
 import { serverEnv } from "@/lib/server-env";
 
 function getAuth() {
@@ -44,8 +45,10 @@ export async function appendRegistration(
   await sheets.spreadsheets.values.append({
     spreadsheetId: serverEnv.GOOGLE_SHEETS_SPREADSHEET_ID,
     range: serverEnv.GOOGLE_SHEETS_RANGE,
-    valueInputOption: "USER_ENTERED",
+    // User-controlled strings must never be interpreted as spreadsheet formulae.
+    valueInputOption: "RAW",
     insertDataOption: "INSERT_ROWS",
+    includeValuesInResponse: false,
     requestBody: {
       values: [
         [
@@ -59,6 +62,44 @@ export async function appendRegistration(
           registration.dietaryRequirements,
           "Yes",
           registration.submissionId,
+        ],
+      ],
+    },
+  });
+}
+
+/**
+ * Appends a Programme Committee volunteer to the same spreadsheet, on a
+ * dedicated tab (GOOGLE_SHEETS_VOLUNTEERS_RANGE). Columns A–I:
+ * Timestamp | Full name | Affiliation | Email | Level | Tracks | Expertise | Profile | Agreement
+ */
+export async function appendVolunteer(
+  volunteer: Volunteer,
+  timestamp = new Date(),
+) {
+  if (!serverEnv.GOOGLE_SHEETS_SPREADSHEET_ID) {
+    throw new Error("Google Sheets spreadsheet ID is missing.");
+  }
+
+  const sheets = google.sheets({ version: "v4", auth: getAuth() });
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: serverEnv.GOOGLE_SHEETS_SPREADSHEET_ID,
+    range: serverEnv.GOOGLE_SHEETS_VOLUNTEERS_RANGE,
+    valueInputOption: "RAW",
+    insertDataOption: "INSERT_ROWS",
+    includeValuesInResponse: false,
+    requestBody: {
+      values: [
+        [
+          timestamp.toISOString(),
+          volunteer.fullName,
+          volunteer.affiliation,
+          volunteer.email,
+          volunteer.level,
+          volunteer.tracks.join(", "),
+          volunteer.expertise,
+          volunteer.profileUrl,
+          "Yes",
         ],
       ],
     },

@@ -1,0 +1,146 @@
+# SIMBIOCHEM
+The 1st Workshop on Machine Learning for Simulations in Biology and Chemistry
+
+# Location
+Copenhagen, Denmark;
+December 6th 2025, Copenhagen - DK
+ITU, Aud. 0, Rued Langgaards Vej 7, 2300 København, Denmark
+
+## Mission
+
+Machine learning has revolutionised biology and chemistry, yet many models lack physical rigour, relying on static structures that miss essential dynamics. First-principles methods like molecular dynamics offer accuracy and physical grounding, but remain too costly for large or complex systems.
+
+Simbiochem seeks to bridge that divide by bringing together researchers across machine learning, computational chemistry, biophysics, life and materials science. Our goal is to integrate scalable ML with rigorous physical simulation — making methods not only faster, but also more accurate, reliable, and grounded in science.
+
+
+## Community
+ML Researchers
+Chemistry
+Biology
+Materials Science
+Biophysics
+Life Sciences
+
+## Topics & Themes
+  ML-based potentials & force fields
+  Multiscale modelling
+  Benchmarks & reproducibility
+  Generative & inverse design
+  Differentiable simulation
+
+
+## Prizes
+DGX Spark
+2000 GPU Hours
+at GEFION B300
+PRIZE WINNERS WILL BE REVEALED AT THE END
+
+
+## Organizers
+Organization Committee
+
+
+Bruno Trentini
+University of Oxford & NVIDIA
+
+
+Constance Ferragu
+Cradle.bio
+
+
+Hassan Sirelkhatim
+NVIDIA
+
+
+Kristine Deibler
+Novo Nordisk
+
+
+Marwin Segler
+Microsoft Research - AI for Science
+
+
+Runzhong Wang
+MIT
+
+## Steering Committee
+Steering Committee
+
+
+Michael Bronstein
+University of Oxford & AITHYRA
+
+
+Pranam Chatterjee
+University of Pennsylvania
+
+
+Tejs Vegge
+Technical University of Denmark
+
+
+Piero Altoe
+NVIDIA
+
+
+Pia Hardy
+NVIDIA
+
+## Sponsors
+NVIDIA, Novo Nordisk, IQC, Cradle.bio, DCAI
+
+
+
+## DCAI Best Paper Award
+
+THE “2000 GPU HOURS” PRIZE GOES TO…
+Submission #16 – [Chemistry] 
+Shoot from the HIP: Hessian Interatomic Potentials without derivatives
+
+Authors: Andreas Burger, Luca Thiede, Nikolaj Rønne, Nandita Vijaykumar, Tejs Vegge, Arghya Bhowmik, Alan Aspuru-Guzi
+
+## Workshop Spotlights
+Shoot from the HIP: Hessian Interatomic Potentials without derivatives
+
+Equivariant Modelling for Catalysis on 2D MXenes
+
+Learning from the Electronic Structure of Molecules Across the Periodic Table
+
+Discovering Chemical Space from First Principles with Reinforcement Learning
+
+Sparse Data Diffusion for Scientific Simulations in Biology and Physics
+
+MDAgent: A Modular Multi-Agent Framework for Autonomous Protein–Ligand Molecular Dynamics Simulations
+
+Improving protein–ligand complex generation with force field guidance
+
+DoRIAT: A Bayesian Framework for Interpreting and Annotating TCR-pHLA Docking Runs
+
+
+
+## NATURE SPOTLIGHTS
+
+Improving protein-ligand complex generation with force field guidance
+Helen Lai, Tingyu Wang, Hassan Sirekhaltim   S. Joe Eaton, Howard Huang, Brad Rees, Ola Engkvist, Jon Paul Janet, Xiaoyun Wang, Alessandro Tibo
+
+DoRIAT: A Bayesian Framework for Interpreting and Annotating TCR-pHLA Docking Runs
+Christos Maniatis, Zahra Ouaray, Chengkai Xiao, Thomas P.E. Dixon, Charlie Naylor, James R. Snowden, Dr. Michelle Teng, Dr. Jacob Hurst
+
+Learning from the Electronic Structure of Molecules Across the Periodic Table
+Authors: Manasa Kaniselvan, Benjamin Kurt Miller, Meng Gao, Juno Nam, Daniel S. Levine
+
+Shoot from the HIP: Hessian Interatomic Potentials without derivatives
+Authors: Andreas Burger, Luca Thiede, Nikolaj Rønne, Nandita Vijaykumar, Tejs Vegge, Arghya Bhowmik, Alan Aspuru-Guzik
+
+MDAgent: A Modular Multi-Agent Framework for Autonomous Protein–Ligand Molecular Dynamics Simulations
+Authors: Salomé Guilbert, Cassandra Masschelein, Jeremy Goumaz, Bohdan Naida, Philippe Schwaller
+
+
+## BEST PAPER AWARD (NVIDIA)
+
+THE DGX SPARK GOES TO….
+
+Sparse Data Diffusion for Scientific Simulations in Biology and Physics
+
+Phil Ostheimer, Mayank Nagda, Andriy Balinskyy, Jean Radig, Carl Herrmann, Stephan Mandt, Marius Kloft, Sophie Fellenz
+

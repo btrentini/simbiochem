@@ -38,6 +38,9 @@ yarn-error.log*
 # local credentials and service-account files
 .secrets/
 
+# runtime agenda store (written by the admin console)
+/data/
+
 # vercel
 .vercel
 

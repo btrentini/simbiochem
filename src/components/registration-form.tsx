@@ -15,7 +15,9 @@ export function RegistrationForm() {
     setStatus("sending");
     setMessage("");
 
-    const form = new FormData(event.currentTarget);
+    // Capture synchronously: React nulls currentTarget after the first await.
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     const payload: Record<string, FormDataEntryValue | boolean> =
       Object.fromEntries(form.entries());
     payload.consent = form.get("consent") === "on";
@@ -33,7 +35,7 @@ export function RegistrationForm() {
       return;
     }
 
-    event.currentTarget.reset();
+    formEl.reset();
     setStatus("sent");
     setMessage("Thank you. Your registration has been recorded.");
   }
