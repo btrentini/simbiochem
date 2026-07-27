@@ -41,8 +41,11 @@ const community = [
 const keynotes = speakers.filter((s) => s.role === "Keynote");
 const invited = speakers.filter((s) => s.role === "Invited Speaker");
 
-// The public agenda reflects live admin edits, so render on each request.
-export const dynamic = "force-dynamic";
+// The agenda is the only live input on this page, and it changes rarely. Cache
+// the rendered page and let the admin save path call revalidatePath("/"), so
+// edits still appear immediately without re-rendering for every visitor.
+// The interval is only a safety net if an out-of-band write bypasses the API.
+export const revalidate = 300;
 
 export default async function Home() {
   const agenda = await readAgenda();

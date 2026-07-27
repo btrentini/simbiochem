@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 import { readAgenda, writeAgenda } from "@/lib/agenda-store";
@@ -76,6 +77,9 @@ export async function PUT(request: NextRequest) {
 
   try {
     const agenda = await writeAgenda(payload);
+    // The public page is cached (revalidate = 300). Drop that cache now so an
+    // admin edit is visible immediately rather than up to 5 minutes later.
+    revalidatePath("/");
     return noStore({ ok: true, agenda }, 200);
   } catch (error) {
     console.error("Unable to save agenda", error);
