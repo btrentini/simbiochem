@@ -1,9 +1,38 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
 import { MotionProvider } from "@/components/motion-provider";
 import { site } from "@/content/site";
+
+/**
+ * Self-hosted via next/font rather than a <link> to fonts.googleapis.com.
+ * The third-party stylesheet was render-blocking on two extra origins, so text
+ * painted in a fallback face and then reflowed once the real fonts arrived.
+ * next/font serves the files same-origin, preloads them, and emits a
+ * size-adjusted fallback so the swap causes no visible layout shift.
+ */
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "G-VWS9V4TY11";
 const SITE_URL = process.env.SITE_URL ?? site.website;
@@ -51,20 +80,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font -- root layout applies globally */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      className={`h-full antialiased ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
       <body className="min-h-full">
         <MotionProvider>{children}</MotionProvider>
         {GA_ID ? (
