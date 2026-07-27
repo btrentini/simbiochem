@@ -141,10 +141,23 @@ const EMIT_SPACING = 5; // emit a speck per this many px travelled
 const ATOM_TRAIL_LEN = 100; // per-point trail while shattered (~1.6s)
 const ATOM_TRAIL_ALPHA = 0.09; // thinner + more transparent
 
-// Narrow viewports run the full cast too, but scaled to the pane and with
-// dragging off. Matches Tailwind's `sm` breakpoint so it agrees with the CSS
-// around it.
+// Narrow viewports run a reduced cast: 4 of the 5 structures, drawn at random
+// per load, scaled to the pane and with dragging off. Matches Tailwind's `sm`
+// breakpoint so it agrees with the CSS around it.
 const COMPACT_QUERY = "(max-width: 639px)";
+const COMPACT_BODIES = 4;
+// Shattering is the expensive part on a phone: every point runs its own spring,
+// Brownian wobble and a 100-frame trail. Capping the cloud keeps a smash cheap.
+const COMPACT_ATOMS = 5;
+
+function pickRandom<T>(items: T[], n: number): T[] {
+  const pool = [...items];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, n);
+}
 
 function makeAtoms(radius: number, palette: string[], n: number): Atom[] {
   const atoms: Atom[] = [];
@@ -197,7 +210,9 @@ export function HeroPhysics() {
     let mvx = 0;
     let mvy = 0;
 
-    const imgs = SPECS.map((s) => {
+    const specs = compact ? pickRandom(SPECS, COMPACT_BODIES) : SPECS;
+
+    const imgs = specs.map((s) => {
       const im = new Image();
       im.onload = () => {
         if (reduce) draw();
@@ -225,11 +240,10 @@ export function HeroPhysics() {
       // below the fold and reads as a missing structure.
       const layout = compact
         ? [
-            [0.74, 0.14],
-            [0.22, 0.30],
-            [0.78, 0.45],
-            [0.28, 0.60],
-            [0.60, 0.72],
+            [0.74, 0.15],
+            [0.22, 0.32],
+            [0.76, 0.50],
+            [0.28, 0.66],
           ]
         : [
             [0.74, 0.5],
@@ -241,7 +255,7 @@ export function HeroPhysics() {
       // The protein is 340px, wider than a phone. Scale the cast to the pane so
       // bodies stay whole and have somewhere to travel.
       const sizeScale = compact ? Math.max(0.45, Math.min(1, w / 900)) : 1;
-      bodies = SPECS.map((s, i) => {
+      bodies = specs.map((s, i) => {
         const size = s.size * sizeScale;
         const radius = size * s.radiusF;
         const b: Body = {
@@ -278,7 +292,11 @@ export function HeroPhysics() {
           pulse: 0,
           dust: [],
           emitAcc: 0,
-          atoms: makeAtoms(radius, s.palette, s.atoms),
+          atoms: makeAtoms(
+            radius,
+            s.palette,
+            compact ? Math.min(COMPACT_ATOMS, s.atoms) : s.atoms,
+          ),
         };
         updateMatrix(b);
         return b;
