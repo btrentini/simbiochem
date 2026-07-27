@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 
 /**
@@ -141,6 +141,22 @@ const EMIT_SPACING = 5; // emit a speck per this many px travelled
 const ATOM_TRAIL_LEN = 100; // per-point trail while shattered (~1.6s)
 const ATOM_TRAIL_ALPHA = 0.09; // thinner + more transparent
 
+// Narrow viewports run a reduced cast: 2 of the 5 structures, chosen at random
+// per load. Matches Tailwind's `sm` breakpoint so it agrees with the CSS around
+// it. Only the chosen sprites are ever requested, so phones don't pay for the
+// three they will not see.
+const COMPACT_QUERY = "(max-width: 639px)";
+const COMPACT_BODIES = 2;
+
+function pickRandom<T>(items: T[], n: number): T[] {
+  const pool = [...items];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, n);
+}
+
 function makeAtoms(radius: number, palette: string[], n: number): Atom[] {
   const atoms: Atom[] = [];
   for (let i = 0; i < n; i++) {
@@ -155,8 +171,20 @@ function makeAtoms(radius: number, palette: string[], n: number): Atom[] {
 export function HeroPhysics() {
   const reduce = useReducedMotion();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // null until measured on the client, so we never pick a cast (or load a
+  // sprite) before we know which viewport we are on.
+  const [compact, setCompact] = useState<boolean | null>(null);
 
   useEffect(() => {
+    const mq = window.matchMedia(COMPACT_QUERY);
+    const apply = () => setCompact(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  useEffect(() => {
+    if (compact === null) return;
     const canvas = canvasRef.current;
     const parent = canvas?.parentElement;
     if (!canvas || !parent) return;
@@ -180,7 +208,9 @@ export function HeroPhysics() {
     let mvx = 0;
     let mvy = 0;
 
-    const imgs = SPECS.map((s) => {
+    const specs = compact ? pickRandom(SPECS, COMPACT_BODIES) : SPECS;
+
+    const imgs = specs.map((s) => {
       const im = new Image();
       im.onload = () => {
         if (reduce) draw();
@@ -203,15 +233,26 @@ export function HeroPhysics() {
     }
 
     function initBodies() {
-      const layout = [
-        [0.74, 0.5],
-        [0.14, 0.24],
-        [0.2, 0.74],
-        [0.56, 0.28],
-        [0.5, 0.72],
-      ];
-      bodies = SPECS.map((s, i) => {
-        const size = s.size;
+      // On phones the hero pane is taller than the viewport, so keep both
+      // starting points inside the first screenful — anything past ~0.6 begins
+      // below the fold and reads as "only one structure".
+      const layout = compact
+        ? [
+            [0.74, 0.18],
+            [0.24, 0.55],
+          ]
+        : [
+            [0.74, 0.5],
+            [0.14, 0.24],
+            [0.2, 0.74],
+            [0.56, 0.28],
+            [0.5, 0.72],
+          ];
+      // The protein is 340px, wider than a phone. Scale the cast to the pane so
+      // bodies stay whole and have somewhere to travel.
+      const sizeScale = compact ? Math.max(0.45, Math.min(1, w / 900)) : 1;
+      bodies = specs.map((s, i) => {
+        const size = s.size * sizeScale;
         const radius = size * s.radiusF;
         const b: Body = {
           spec: s,
@@ -295,6 +336,9 @@ export function HeroPhysics() {
       }
     }
     function onPointerDown(e: PointerEvent) {
+      // Grabbing calls preventDefault(), which on touch would swallow the
+      // scroll gesture and trap the page. Phones get the drift, not the drag.
+      if (compact) return;
       const el = e.target as HTMLElement | null;
       if (el && typeof el.closest === "function" && el.closest("a,button,input,select,textarea,label")) return;
       const rect = canvas!.getBoundingClientRect();
@@ -807,7 +851,7 @@ export function HeroPhysics() {
       ro.disconnect();
       io.disconnect();
     };
-  }, [reduce]);
+  }, [reduce, compact]);
 
   return <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />;
 }

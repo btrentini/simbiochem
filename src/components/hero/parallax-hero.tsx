@@ -62,8 +62,9 @@ export function ParallaxHero() {
       />
       <div className="absolute inset-0 -z-30 opacity-20 grid-faint" aria-hidden="true" />
 
-      {/* Interactive molecular physics playground */}
-      <div className="pointer-events-none absolute inset-0 -z-20 hidden sm:block">
+      {/* Interactive molecular physics playground. Shown on phones too, where
+          HeroPhysics runs a random pair scaled to the pane. */}
+      <div className="pointer-events-none absolute inset-0 -z-20">
         <HeroPhysics />
       </div>
 
