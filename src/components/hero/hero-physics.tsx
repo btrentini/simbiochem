@@ -87,6 +87,9 @@ type Body = {
   m11: number;
   wander: number;
   state: "assembled" | "expanded" | "contract";
+  introDelay: number; // frames left before this body enters; frozen until then
+  introT: number; // 0..1 entrance progress
+  pop: boolean; // true = pop in, false = fade in (the protein)
   hold: number;
   vib: number;
   jux: boolean;
@@ -146,6 +149,14 @@ const ATOM_TRAIL_ALPHA = 0.09; // thinner + more transparent
 // breakpoint so it agrees with the CSS around it.
 const COMPACT_QUERY = "(max-width: 639px)";
 const COMPACT_BODIES = 4;
+
+// Entrance. The protein fades in alone, then the molecules pop in one after
+// another. Values are frames at 60fps; `step` scales them by dt.
+const PROTEIN_SRC = "/hero/protein.png";
+const INTRO_LEAD_DELAY = 8;
+const INTRO_FADE_FRAMES = 40;
+const INTRO_POP_FRAMES = 24;
+const INTRO_STAGGER = 11;
 // Shattering is the expensive part on a phone: every point runs its own spring,
 // Brownian wobble and a 100-frame trail. Capping the cloud keeps a smash cheap.
 const COMPACT_ATOMS = 5;
@@ -210,7 +221,13 @@ export function HeroPhysics() {
     let mvx = 0;
     let mvy = 0;
 
-    const specs = compact ? pickRandom(SPECS, COMPACT_BODIES) : SPECS;
+    // The protein always leads the entrance, so it is always in the cast and
+    // always first. On phones the remaining slots are the random ones.
+    const lead = SPECS.find((s) => s.src === PROTEIN_SRC) ?? SPECS[0];
+    const rest = SPECS.filter((s) => s !== lead);
+    const specs = compact
+      ? [lead, ...pickRandom(rest, COMPACT_BODIES - 1)]
+      : [lead, ...rest];
 
     const imgs = specs.map((s) => {
       const im = new Image();
@@ -285,6 +302,17 @@ export function HeroPhysics() {
           m11: 1,
           wander: Math.random() * TAU,
           state: "assembled",
+          // i === 0 is the protein: it fades in first, alone. Everything else
+          // waits for that to finish, then pops in one after another.
+          // Under reduced motion `step` never runs, so the entrance must start
+          // already finished or nothing would ever be drawn.
+          introDelay: reduce
+            ? 0
+            : i === 0
+              ? INTRO_LEAD_DELAY
+              : INTRO_LEAD_DELAY + INTRO_FADE_FRAMES + (i - 1) * INTRO_STAGGER,
+          introT: reduce ? 1 : 0,
+          pop: i !== 0,
           hold: 0,
           vib: 0,
           jux: false,
@@ -487,6 +515,18 @@ export function HeroPhysics() {
         b.jux = false;
         b.prevX = b.x;
         b.prevY = b.y;
+        // Held still and undrawn until its turn, so it enters where it was
+        // placed rather than wherever it had drifted to while invisible.
+        if (b.introDelay > 0) {
+          b.introDelay -= dt;
+          continue;
+        }
+        if (b.introT < 1) {
+          b.introT = Math.min(
+            1,
+            b.introT + dt / (b.pop ? INTRO_POP_FRAMES : INTRO_FADE_FRAMES),
+          );
+        }
         if (b.cooldown > 0) b.cooldown -= dt;
         if (b.pulse > 0) b.pulse = Math.max(0, b.pulse - 0.035 * dt);
         if (b.vib > 0) b.vib *= VIB_DECAY;
@@ -596,6 +636,7 @@ export function HeroPhysics() {
         for (let j = i + 1; j < bodies.length; j++) {
           const a = bodies[i];
           const b = bodies[j];
+          if (a.introDelay > 0 || b.introDelay > 0) continue; // not on stage yet
           const dx = b.x - a.x;
           const dy = b.y - a.y;
           const dist = Math.hypot(dx, dy) || 0.001;
@@ -774,6 +815,27 @@ export function HeroPhysics() {
       ctx!.restore();
     }
 
+    /**
+     * Entrance multipliers. null means "not on stage yet — draw nothing".
+     * The protein eases in on opacity with a barely-there scale; the molecules
+     * use a back-out curve that overshoots past 1 and settles, which is what
+     * reads as a pop.
+     */
+    function intro(b: Body): { alpha: number; scale: number } | null {
+      if (b.introDelay > 0) return null;
+      if (b.introT >= 1) return { alpha: 1, scale: 1 };
+      const t = b.introT;
+      if (!b.pop) {
+        const e = 1 - Math.pow(1 - t, 3); // easeOutCubic
+        return { alpha: e, scale: 0.94 + 0.06 * e };
+      }
+      const c1 = 1.70158;
+      const c3 = c1 + 1;
+      const back = 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+      // Fade faster than the scale so the overshoot is visible, not a blur.
+      return { alpha: Math.min(1, t * 2.5), scale: back };
+    }
+
     function draw() {
       ctx!.clearRect(0, 0, w, h);
 
@@ -799,13 +861,21 @@ export function HeroPhysics() {
       }
 
       for (const b of bodies) {
+        const enter = intro(b);
+        if (!enter) continue; // still waiting its turn
         if (b.state !== "assembled") {
           for (const a of b.atoms) drawAtom(a, 1);
         } else if (b.pulse > 0) {
           for (const a of b.atoms) drawAtom(a, b.pulse * 0.6);
-          drawImageBody(b, b.spec.opacity * (1 - b.pulse), 1 + 0.05 * b.pulse, b.pulse, 0);
+          drawImageBody(
+            b,
+            b.spec.opacity * (1 - b.pulse) * enter.alpha,
+            (1 + 0.05 * b.pulse) * enter.scale,
+            b.pulse,
+            0,
+          );
         } else {
-          drawImageBody(b, b.spec.opacity, 1, 0, b.vib);
+          drawImageBody(b, b.spec.opacity * enter.alpha, enter.scale, 0, b.vib);
         }
       }
     }
