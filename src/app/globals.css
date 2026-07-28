@@ -226,3 +226,30 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Scroll reveal — see components/reveal.tsx.
+   Content is visible by default so it never depends on JavaScript; the
+   animation is layered on only where scroll-driven timelines exist. The
+   reduce-motion block above already neutralises it for those who ask. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-y, 18px));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      /* --reveal-delay stands in for the old stagger: a later start offset
+         rather than a time delay, since timelines advance with scroll. */
+      animation-range: entry calc(var(--reveal-delay, 0) * 60%) cover 30%;
+    }
+  }
+}
