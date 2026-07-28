@@ -36,16 +36,18 @@ const HEADERS = {
     "Consent",
     "OpenReview submission ID",
   ],
+  // Verbatim copy of the Google Form response tab's header row, so rows from
+  // the site and rows from the form can be merged without remapping columns.
   [tabOf(VOL_RANGE)]: [
     "Timestamp",
-    "Full name",
-    "Affiliation",
-    "Email",
-    "Level",
-    "Tracks",
-    "Expertise",
-    "Profile",
-    "Agreement",
+    "Full Name",
+    "Institution, Department, Role",
+    "Institutional Email Address",
+    "Current Level",
+    "Preferred Tracks (Select all that apply)",
+    "Tags of Expertise",
+    "Link to your professional profile ",
+    "Acknowledgement and Agreement",
   ],
 };
 

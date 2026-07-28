@@ -6,6 +6,26 @@ import type { Registration } from "@/lib/registration";
 import type { Volunteer } from "@/lib/volunteer";
 import { serverEnv } from "@/lib/server-env";
 
+/**
+ * Google Forms writes its Timestamp column as M/D/YYYY H:MM:SS (no leading
+ * zeroes on month/day/hour, 24-hour clock). Match it exactly so rows written by
+ * this site and rows written by the form read the same and sort together.
+ *
+ * Formatted in UTC, which is the VPS clock. Values are sent with
+ * valueInputOption RAW, so this lands as text rather than a date cell — that is
+ * deliberate, since RAW is what stops user input becoming a formula.
+ */
+function sheetTimestamp(date: Date): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return (
+    `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${date.getUTCFullYear()} ` +
+    `${date.getUTCHours()}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`
+  );
+}
+
+/** The exact string the Google Form records for the agreement checkbox. */
+const AGREEMENT_VALUE = "I understand and agree to the terms above.";
+
 function getAuth() {
   if (serverEnv.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS_FILE) {
     return new google.auth.GoogleAuth({
@@ -52,7 +72,7 @@ export async function appendRegistration(
     requestBody: {
       values: [
         [
-          timestamp.toISOString(),
+          sheetTimestamp(timestamp),
           registration.fullName,
           registration.email,
           registration.institution,
@@ -89,9 +109,11 @@ export async function appendVolunteer(
     insertDataOption: "INSERT_ROWS",
     includeValuesInResponse: false,
     requestBody: {
+      // Column order mirrors the Google Form's response tab exactly (A-I), so
+      // the two sets of rows can be merged without remapping.
       values: [
         [
-          timestamp.toISOString(),
+          sheetTimestamp(timestamp),
           volunteer.fullName,
           volunteer.affiliation,
           volunteer.email,
@@ -99,7 +121,7 @@ export async function appendVolunteer(
           volunteer.tracks.join(", "),
           volunteer.expertise,
           volunteer.profileUrl,
-          "Yes",
+          AGREEMENT_VALUE,
         ],
       ],
     },
