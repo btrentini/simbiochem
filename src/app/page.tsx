@@ -3,13 +3,29 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
+  Award,
   CalendarDays,
+  Coffee,
+  Globe,
   Handshake,
   MapPin,
   Megaphone,
+  PartyPopper,
+  PlaneTakeoff,
+  Presentation,
   ShieldAlert,
   Users,
 } from "lucide-react";
+
+/** Maps the icon name stored in content/sponsors.ts to the component. */
+const SPONSOR_ICONS = {
+  PartyPopper,
+  Coffee,
+  PlaneTakeoff,
+  Presentation,
+  Award,
+  Globe,
+} as const;
 
 import { AgendaView } from "@/components/agenda-view";
 import { Avatar } from "@/components/avatar";
@@ -24,7 +40,13 @@ import { SponsorTile } from "@/components/sponsor-tile";
 import { announcements } from "@/content/announcements";
 import { advisors, organizers } from "@/content/people";
 import { panel, speakers } from "@/content/speakers";
-import { confirmedSponsors, pastSponsors, sponsorSupports } from "@/content/sponsors";
+import {
+  confirmedSponsors,
+  pastSponsors,
+  sponsorBenefits,
+  sponsorPrinciples,
+  sponsorWays,
+} from "@/content/sponsors";
 import { firstEdition } from "@/content/previous-edition";
 import { importantDates, site, themes } from "@/content/site";
 import { readAgenda } from "@/lib/agenda-store";
@@ -191,30 +213,69 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Sponsorship supports — at the very bottom, with a call to action */}
-            <div className="mt-12 rounded-2xl border border-mist bg-white p-7">
-              <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            {/* Ways to support */}
+            <div className="mt-14">
+              <h3 className="display text-2xl font-semibold text-ink">Ways to support</h3>
+              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-1">
+                SIMBIOCHEM is community-driven and independent, and sponsorship is what makes
+                the day possible — getting students and speakers into the room, catering the
+                breaks and poster sessions, prizes for the best work, and a Sydney social event
+                where the real conversations happen. Our current priorities are catering, the
+                social event, and travel support.
+              </p>
+              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {sponsorWays.map(({ title, body, icon }) => {
+                  const Icon = SPONSOR_ICONS[icon];
+                  return (
+                    <div key={title} className="rounded-2xl border border-mist bg-white p-5">
+                      <Icon className="size-5 text-teal-600" />
+                      <p className="mt-3 text-sm font-semibold text-ink">{title}</p>
+                      <p className="mt-1.5 text-sm leading-6 text-slate-2">{body}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* What sponsors receive + invitation to get in touch */}
+            <div className="mt-8 rounded-2xl border border-mist bg-white p-7">
+              <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
                 <div>
                   <div className="flex items-center gap-2">
                     <Handshake className="size-5 text-teal-600" />
-                    <p className="text-sm font-semibold text-ink">Sponsorship supports</p>
+                    <p className="text-sm font-semibold text-ink">What sponsors receive</p>
                   </div>
-                  <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                    {sponsorSupports.map((s) => (
-                      <li key={s} className="flex gap-2 text-sm leading-6 text-slate-1">
+                  <ul className="mt-4 grid gap-2">
+                    {sponsorBenefits.map((b) => (
+                      <li key={b} className="flex gap-2 text-sm leading-6 text-slate-1">
                         <span className="mt-2 size-1 shrink-0 rounded-full bg-teal-500" />
-                        {s}
+                        {b}
                       </li>
                     ))}
                   </ul>
                 </div>
-                <a
-                  href={`mailto:${site.contactEmail}?subject=SIMBIOCHEM%20II%20sponsorship`}
-                  className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
-                >
-                  Become a sponsor <ArrowRight className="size-4" />
-                </a>
+
+                <div className="flex flex-col justify-center rounded-xl bg-paper p-6">
+                  <p className="display text-lg font-semibold text-ink">
+                    Sponsor the 2nd edition
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-1">
+                    Tell us what you would like to support and we will find a shape that works —
+                    the tiers are a starting point, not a constraint.
+                  </p>
+                  <a
+                    href={`mailto:${site.contactEmail}?subject=SIMBIOCHEM%20II%20sponsorship`}
+                    className="mt-5 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+                  >
+                    Talk to the organisers <ArrowRight className="size-4" />
+                  </a>
+                  <p className="mt-3 text-center text-xs text-slate-2">{site.contactEmail}</p>
+                </div>
               </div>
+
+              <p className="mt-7 border-t border-mist pt-5 text-xs leading-6 text-slate-2">
+                {sponsorPrinciples}
+              </p>
             </div>
           </div>
         </section>

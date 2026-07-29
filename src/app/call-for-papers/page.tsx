@@ -23,7 +23,8 @@ import { importantDates, site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Call for Papers",
   description:
-    "SIMBIOCHEM II call for papers — non-archival short papers (5–8 pages) and abstracts on ML for simulation in biology and chemistry. Submission deadline 29 August 2026 on OpenReview.",
+    "Submit to SIMBIOCHEM II at NeurIPS 2026: non-archival 5–8 page papers on ML for molecular simulation. Anonymised PDFs on OpenReview by 29 August 2026.",
+  alternates: { canonical: "/call-for-papers" },
 };
 
 const committee = [

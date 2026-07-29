@@ -7,9 +7,12 @@ import { SiteHeader } from "@/components/site-header";
 import { firstEdition } from "@/content/previous-edition";
 
 export const metadata: Metadata = {
-  title: "SIMBIOCHEM I · EurIPS 2025, Copenhagen",
+  // `absolute` so the root template does not append "· SIMBIOCHEM II @
+  // NeurIPS 2026" to a title that is already about the previous edition.
+  title: { absolute: "SIMBIOCHEM I · EurIPS 2025 Workshop, Copenhagen" },
   description:
-    "The inaugural SIMBIOCHEM workshop at EurIPS 2025 in Copenhagen — over 100 attendees, 29 accepted posters, 8 spotlights, 5 Nature-invited extended versions and a DGX Spark best-paper award.",
+    "SIMBIOCHEM I at EurIPS 2025, Copenhagen: 100+ attendees, 29 posters, 8 spotlights, a DGX Spark best-paper award and 5 Nature-invited extended papers.",
+  alternates: { canonical: "/previous-editions/copenhagen" },
 };
 
 export default function CopenhagenEditionPage() {

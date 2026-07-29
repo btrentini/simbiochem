@@ -81,3 +81,59 @@ export const sponsorSupports: string[] = [
   "Best paper, best poster and reproducibility awards",
   "A high-quality Sydney social event for the whole community",
 ];
+
+export type SponsorWay = {
+  title: string;
+  body: string;
+  /** Must be an existing lucide-react export; resolved in page.tsx. */
+  icon: "PartyPopper" | "Coffee" | "PlaneTakeoff" | "Presentation" | "Award" | "Globe";
+};
+
+/** Concrete things a sponsor can put their name to. From the prospectus. */
+export const sponsorWays: SponsorWay[] = [
+  {
+    title: "The Sydney social event",
+    body: "Host or co-host the evening that closes the workshop day. Shared support targets USD $16,000; an exclusive social host covers the full USD $18,000.",
+    icon: "PartyPopper",
+  },
+  {
+    title: "Catering",
+    body: "Coffee, lunch and refreshments across the breaks and both poster sessions — the moments where most of the community actually meets.",
+    icon: "Coffee",
+  },
+  {
+    title: "Travel & registration support",
+    body: "Help students, speakers and underrepresented participants get to Sydney and through the door.",
+    icon: "PlaneTakeoff",
+  },
+  {
+    title: "Poster sessions & networking",
+    body: "Boards, printing and materials for our two poster sessions and the informal networking around them.",
+    icon: "Presentation",
+  },
+  {
+    title: "Awards & prizes",
+    body: "Best paper, best poster and reproducibility awards — named after your organisation if you would like.",
+    icon: "Award",
+  },
+  {
+    title: "Community infrastructure",
+    body: "The website, proceedings page and submission support that keep the workshop running from one edition to the next.",
+    icon: "Globe",
+  },
+];
+
+/** What a sponsor receives. Wording tracks the prospectus, including its caps. */
+export const sponsorBenefits: string[] = [
+  "Logo on the workshop website and on the sponsor slide shown through the day",
+  "Acknowledgement in the opening and closing remarks",
+  "Social-media acknowledgement from the workshop accounts",
+  "An optional short sponsor blurb on the website",
+  "Named support attached to a travel award, a prize, poster materials or catering",
+  "Gold and above: eligibility for one short break-time message — at most three across the whole day, with organiser approval and subject to venue rules",
+  "Diamond: featured recognition on the website and opening/closing slides, a dedicated organiser contact, and the option to be exclusive social host",
+  "Silver and above, opt-in: a “Top 5 Commercial Impact” shortlist drawn from accepted submissions — introductions happen only if the authors choose to be introduced",
+];
+
+export const sponsorPrinciples =
+  "Sponsorship does not influence review decisions, speaker selection, awards or publication opportunities. SIMBIOCHEM is community-driven and independent, and is not affiliated with any sponsor.";

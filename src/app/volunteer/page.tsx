@@ -10,7 +10,8 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Join the Programme Committee",
   description:
-    "Volunteer as a SIMBIOCHEM II reviewer. Help provide double-blind reviews across biology and chemistry tracks for the NeurIPS 2026 workshop.",
+    "Volunteer to review for SIMBIOCHEM II at NeurIPS 2026 in Sydney. Double-blind reviews, capped at three papers, all seniority levels welcome and credited.",
+  alternates: { canonical: "/volunteer" },
 };
 
 export default function VolunteerPage() {
