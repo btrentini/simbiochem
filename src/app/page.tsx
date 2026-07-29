@@ -328,7 +328,7 @@ export default async function Home() {
                   </Link>
                   <Link
                     href="/volunteer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                    className="inline-flex items-center gap-2 rounded-full bg-teal-300 px-6 py-3 text-sm font-semibold text-brand-950 transition hover:bg-teal-200"
                   >
                     Join the Programme Committee
                   </Link>

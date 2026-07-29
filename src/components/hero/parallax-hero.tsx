@@ -134,9 +134,12 @@ export function ParallaxHero() {
               Call for papers
               <ArrowRight className="size-4" />
             </Link>
+            {/* Teal, not green: two peer calls to action that must read as
+                different asks. 10.7:1 on brand-950 against the primary's 8.1:1,
+                so neither looks like the secondary option. */}
             <Link
               href="/volunteer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full bg-teal-300 px-6 py-3 text-sm font-semibold text-brand-950 shadow-lg shadow-teal-400/20 transition hover:bg-teal-200"
             >
               <Users className="size-4" />
               Call for Programme Committee

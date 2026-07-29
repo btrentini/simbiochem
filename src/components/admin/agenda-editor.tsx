@@ -42,6 +42,7 @@ function newItem(): AgendaItem {
     detail: "",
     status: "tentative",
     kind: "invited",
+    speaker: "",
   };
 }
 
@@ -158,9 +159,16 @@ function EditorRow({
           <input
             className={fieldClass}
             value={item.detail}
-            placeholder="Speaker / notes"
+            placeholder="Affiliation / notes"
             onChange={(e) => onChange({ ...item, detail: e.target.value })}
             aria-label="Detail"
+          />
+          <input
+            className={fieldClass}
+            value={item.speaker}
+            placeholder="Speaker photo — exact name, separate several with ·"
+            onChange={(e) => onChange({ ...item, speaker: e.target.value })}
+            aria-label="Speaker"
           />
         </div>
 
