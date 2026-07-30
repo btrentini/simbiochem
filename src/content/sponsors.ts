@@ -21,56 +21,77 @@ export const pastSponsors: string[] = [
 
 export type SponsorTier = {
   name: string;
-  range: string;
   blurb: string;
+  /** What a sponsor at this level typically puts their name to. */
+  supports: string[];
+  /** What the sponsor receives in return. */
   perks: string[];
   featured?: boolean;
 };
 
+/**
+ * Levels are described by what they support and what they include — figures
+ * live in the sponsorship letter, which interested sponsors can download.
+ * Everything here is deliberately value-free so the page stays an invitation
+ * rather than a price list.
+ */
 export const sponsorTiers: SponsorTier[] = [
   {
     name: "Bronze",
-    range: "USD $1,000–$4,999",
-    blurb: "Community supporters, startups and first-time partners.",
+    blurb:
+      "A friendly first step, and a good fit for startups and community supporters.",
+    supports: ["Travel awards", "Prizes", "Poster materials"],
     perks: [
       "Logo on the website and sponsor slide",
-      "Acknowledgement in opening / closing remarks",
-      "Named support for travel awards, prizes or catering",
+      "Acknowledgement in the opening and closing remarks",
+      "Named support for the item you choose",
+      "Listed under the category that fits you — community, pharma, investment or technology",
     ],
   },
   {
     name: "Silver",
-    range: "USD $5,000–$9,999",
-    blurb: "Meaningful visibility without operational overhead.",
+    blurb: "Meaningful visibility with very little operational overhead.",
+    supports: ["Catering", "Travel awards", "Poster sessions"],
     perks: [
-      "All Bronze benefits",
-      "Social-media acknowledgement",
-      "Optional short sponsor blurb on the website",
-      "Eligibility for shared social sponsorship",
+      "Everything in Bronze",
+      "Social-media acknowledgement from the workshop accounts",
+      "An optional short blurb about you on the website",
+      "Eligibility to join the shared social-event sponsorship",
     ],
   },
   {
     name: "Gold",
-    range: "USD $10,000–$14,999",
-    blurb: "Support awards, poster sessions, catering or the social event.",
+    blurb:
+      "For partners who want their name attached to a specific part of the day.",
+    supports: [
+      "Best paper or poster awards",
+      "A poster session",
+      "Catering",
+      "Speaker & student participation",
+    ],
     perks: [
-      "All Silver benefits",
-      "Recognition attached to one workshop element",
+      "Everything in Silver",
+      "Recognition attached to one workshop element of your choosing",
       "Priority for shared social-event sponsorship",
-      "Eligibility for one short break-time message (capped)",
+      "Eligibility for one short break-time message, subject to the day's cap and venue rules",
     ],
     featured: true,
   },
   {
     name: "Diamond",
-    range: "USD $15,000 and above",
-    blurb: "Strategic partners supporting the broader community.",
+    blurb: "Strategic partners supporting the workshop and the wider community.",
+    supports: [
+      "The Sydney social event",
+      "Catering",
+      "Travel awards",
+      "Speaker & student participation",
+    ],
     perks: [
-      "All Gold benefits",
-      "Featured recognition on the website & opening/closing slides",
-      "Priority choice among major support areas",
-      "Opportunity to serve as exclusive social host",
-      "Dedicated organiser contact for logistics",
+      "Everything in Gold",
+      "Featured recognition on the website and the opening and closing slides",
+      "First choice among the major support areas",
+      "The option to host the Sydney social event",
+      "A dedicated organiser contact for logistics",
     ],
   },
 ];
@@ -93,7 +114,7 @@ export type SponsorWay = {
 export const sponsorWays: SponsorWay[] = [
   {
     title: "The Sydney social event",
-    body: "Host or co-host the evening that closes the workshop day. Shared support targets USD $16,000; an exclusive social host covers the full USD $18,000.",
+    body: "Host or co-host the evening that closes the workshop day — the part everyone remembers. Several sponsors can share it, or one can take it on.",
     icon: "PartyPopper",
   },
   {

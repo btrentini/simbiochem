@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Handshake, X } from "lucide-react";
+import { ArrowLeft, Download, Handshake, X } from "lucide-react";
 
+import { SponsorForm } from "@/components/sponsor-form";
 import { sponsorTiers } from "@/content/sponsors";
-import { site } from "@/content/site";
 
 export function SponsorCta() {
   const [open, setOpen] = useState(false);
+  const [view, setView] = useState<"info" | "contact">("info");
 
   useEffect(() => {
     if (!open) return;
@@ -25,7 +26,11 @@ export function SponsorCta() {
       {/* Floating tab */}
       <button
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          // Always open on the overview rather than mid-conversation.
+          setView("info");
+          setOpen(true);
+        }}
         className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-950/25 transition hover:bg-brand-700"
       >
         <Handshake className="size-4 text-accent-400" />
@@ -43,7 +48,7 @@ export function SponsorCta() {
               <div>
                 <p className="eyebrow">Sponsor SIMBIOCHEM II</p>
                 <h2 className="display mt-2 text-xl font-semibold text-brand">
-                  Support the community
+                  {view === "info" ? "Support the community" : "Talk to the organisers"}
                 </h2>
               </div>
               <button
@@ -56,37 +61,102 @@ export function SponsorCta() {
               </button>
             </div>
 
-            <div className="flex-1 space-y-4 p-6">
-              <p className="text-sm leading-6 text-slate-1">
-                Sponsorship keeps the workshop community-driven and independent — funding travel
-                awards, catering, best-paper prizes and the Sydney social event, while scientific
-                review stays independent of sponsor interests.
-              </p>
-              {sponsorTiers.map((tier) => (
-                <div
-                  key={tier.name}
-                  className={`rounded-xl border p-4 ${
-                    tier.featured ? "border-teal-400 bg-teal-50/60" : "border-mist bg-white"
-                  }`}
-                >
-                  <div className="flex items-baseline justify-between gap-3">
-                    <p className="font-semibold text-brand">{tier.name}</p>
-                    <p className="text-sm font-semibold text-teal-700">{tier.range}</p>
-                  </div>
-                  <p className="mt-1 text-xs leading-5 text-slate-2">{tier.blurb}</p>
-                </div>
-              ))}
-            </div>
+            {view === "info" ? (
+              <>
+                <div className="flex-1 space-y-5 p-6">
+                  <p className="text-sm leading-6 text-slate-1">
+                    SIMBIOCHEM is put together by researchers who volunteer their time, and
+                    sponsors are what let us do it properly — bringing students and speakers to
+                    Sydney, feeding everyone through a long day of talks and posters, recognising
+                    the best work, and giving the community somewhere to keep talking afterwards.
+                  </p>
+                  <p className="text-sm leading-6 text-slate-1">
+                    There is no single right way to help. Below is how partners usually take part,
+                    but if something else fits you better we would genuinely like to hear it.
+                  </p>
 
-            <div className="border-t border-mist p-6">
-              <a
-                href={`mailto:${site.contactEmail}?subject=SIMBIOCHEM%20II%20sponsorship`}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-brand-950 transition hover:bg-accent-400"
-              >
-                Talk to the organisers <ArrowUpRight className="size-4" />
-              </a>
-              <p className="mt-3 text-center text-xs text-slate-2">{site.contactEmail}</p>
-            </div>
+                  <div className="space-y-3">
+                    {sponsorTiers.map((tier) => (
+                      <div
+                        key={tier.name}
+                        className={`rounded-xl border p-4 ${
+                          tier.featured ? "border-teal-400 bg-teal-50/60" : "border-mist bg-white"
+                        }`}
+                      >
+                        <p className="font-semibold text-brand">{tier.name}</p>
+                        <p className="mt-1 text-xs leading-5 text-slate-2">{tier.blurb}</p>
+
+                        <p className="mt-3 text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">
+                          Supports
+                        </p>
+                        <div className="mt-1.5 flex flex-wrap gap-1.5">
+                          {tier.supports.map((s) => (
+                            <span
+                              key={s}
+                              className="rounded-full bg-paper px-2.5 py-1 text-[0.7rem] text-slate-1"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
+
+                        <p className="mt-3 text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">
+                          Includes
+                        </p>
+                        <ul className="mt-1.5 space-y-1">
+                          {tier.perks.map((p) => (
+                            <li key={p} className="flex gap-2 text-xs leading-5 text-slate-1">
+                              <span className="mt-1.5 size-1 shrink-0 rounded-full bg-teal-500" />
+                              {p}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <a
+                    href="/simbiochem-ii-sponsorship.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-mist bg-white px-5 py-3 text-sm font-semibold text-brand transition hover:bg-paper"
+                  >
+                    <Download className="size-4" />
+                    Download the sponsorship letter
+                  </a>
+                  <p className="text-center text-xs text-slate-2">
+                    Full details, including levels of support, are in the letter.
+                  </p>
+                </div>
+
+                <div className="border-t border-mist p-6">
+                  <button
+                    type="button"
+                    onClick={() => setView("contact")}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-brand-950 transition hover:bg-accent-400"
+                  >
+                    <Handshake className="size-4" />
+                    Talk to the organisers
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="flex-1 space-y-5 p-6">
+                <button
+                  type="button"
+                  onClick={() => setView("info")}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-2 transition hover:text-ink"
+                >
+                  <ArrowLeft className="size-4" />
+                  Back to sponsorship
+                </button>
+                <p className="text-sm leading-6 text-slate-1">
+                  Tell us a little about you and we will come back to you. No commitment at this
+                  stage — early conversations are genuinely useful to us.
+                </p>
+                <SponsorForm compact />
+              </div>
+            )}
           </div>
         </div>
       ) : null}

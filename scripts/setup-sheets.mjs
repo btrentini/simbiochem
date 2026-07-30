@@ -21,6 +21,7 @@ const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 
 const REG_RANGE = process.env.GOOGLE_SHEETS_RANGE || "Registrations!A:J";
 const VOL_RANGE = process.env.GOOGLE_SHEETS_VOLUNTEERS_RANGE || "Volunteers!A:I";
+const SPON_RANGE = process.env.GOOGLE_SHEETS_SPONSORS_RANGE || "Sponsor enquiries!A:E";
 const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
 
 const HEADERS = {
@@ -49,6 +50,7 @@ const HEADERS = {
     "Link to your professional profile ",
     "Acknowledgement and Agreement",
   ],
+  [tabOf(SPON_RANGE)]: ["Timestamp", "Name", "Company", "Contact", "Message"],
 };
 
 function tabOf(range) {
@@ -138,7 +140,7 @@ async function main() {
   }
 
   console.log(
-    `\n✓ Done. Registrations save to "${tabOf(REG_RANGE)}", volunteers to "${tabOf(VOL_RANGE)}".\n`,
+    `\n✓ Done. Registrations -> "${tabOf(REG_RANGE)}", volunteers -> "${tabOf(VOL_RANGE)}", sponsor enquiries -> "${tabOf(SPON_RANGE)}".\n`,
   );
 }
 

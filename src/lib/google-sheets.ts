@@ -3,6 +3,7 @@ import "server-only";
 import { google } from "googleapis";
 
 import type { Registration } from "@/lib/registration";
+import type { SponsorEnquiry } from "@/lib/sponsor";
 import type { Volunteer } from "@/lib/volunteer";
 import { serverEnv } from "@/lib/server-env";
 
@@ -82,6 +83,39 @@ export async function appendRegistration(
           registration.dietaryRequirements,
           "Yes",
           registration.submissionId,
+        ],
+      ],
+    },
+  });
+}
+
+/**
+ * Appends a sponsorship enquiry. Columns A–E:
+ * Timestamp | Name | Company | Contact | Message
+ */
+export async function appendSponsorEnquiry(
+  enquiry: SponsorEnquiry,
+  timestamp = new Date(),
+) {
+  if (!serverEnv.GOOGLE_SHEETS_SPREADSHEET_ID) {
+    throw new Error("Google Sheets spreadsheet ID is missing.");
+  }
+
+  const sheets = google.sheets({ version: "v4", auth: getAuth() });
+  await sheets.spreadsheets.values.append({
+    spreadsheetId: serverEnv.GOOGLE_SHEETS_SPREADSHEET_ID,
+    range: serverEnv.GOOGLE_SHEETS_SPONSORS_RANGE,
+    valueInputOption: "RAW",
+    insertDataOption: "INSERT_ROWS",
+    includeValuesInResponse: false,
+    requestBody: {
+      values: [
+        [
+          sheetTimestamp(timestamp),
+          enquiry.name,
+          enquiry.company,
+          enquiry.contact,
+          enquiry.message,
         ],
       ],
     },

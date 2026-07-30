@@ -6,6 +6,7 @@ import {
   Award,
   CalendarDays,
   Coffee,
+  Download,
   Globe,
   Handshake,
   MapPin,
@@ -17,15 +18,6 @@ import {
   Users,
 } from "lucide-react";
 
-/** Maps the icon name stored in content/sponsors.ts to the component. */
-const SPONSOR_ICONS = {
-  PartyPopper,
-  Coffee,
-  PlaneTakeoff,
-  Presentation,
-  Award,
-  Globe,
-} as const;
 
 import { AgendaView } from "@/components/agenda-view";
 import { Avatar } from "@/components/avatar";
@@ -36,6 +28,7 @@ import { SectionHeading } from "@/components/section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SponsorCta } from "@/components/sponsor-cta";
+import { SponsorForm } from "@/components/sponsor-form";
 import { SponsorTile } from "@/components/sponsor-tile";
 import { announcements } from "@/content/announcements";
 import { advisors, organizers } from "@/content/people";
@@ -50,6 +43,17 @@ import {
 import { firstEdition } from "@/content/previous-edition";
 import { importantDates, site, themes } from "@/content/site";
 import { readAgenda } from "@/lib/agenda-store";
+
+/** Maps the icon name stored in content/sponsors.ts to the component. */
+const SPONSOR_ICONS = {
+  PartyPopper,
+  Coffee,
+  PlaneTakeoff,
+  Presentation,
+  Award,
+  Globe,
+} as const;
+
 
 const community = [
   "ML Researchers",
@@ -239,7 +243,7 @@ export default async function Home() {
 
             {/* What sponsors receive + invitation to get in touch */}
             <div className="mt-8 rounded-2xl border border-mist bg-white p-7">
-              <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+              <div className="grid gap-8 lg:grid-cols-2">
                 <div>
                   <div className="flex items-center gap-2">
                     <Handshake className="size-5 text-teal-600" />
@@ -253,23 +257,28 @@ export default async function Home() {
                       </li>
                     ))}
                   </ul>
+                  <a
+                    href="/simbiochem-ii-sponsorship.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-brand transition hover:bg-paper"
+                  >
+                    <Download className="size-4" />
+                    Download the sponsorship letter
+                  </a>
                 </div>
 
-                <div className="flex flex-col justify-center rounded-xl bg-paper p-6">
+                <div className="rounded-xl bg-paper p-6">
                   <p className="display text-lg font-semibold text-ink">
-                    Sponsor the 2nd edition
+                    Talk to the organisers
                   </p>
                   <p className="mt-2 text-sm leading-6 text-slate-1">
-                    Tell us what you would like to support and we will find a shape that works —
-                    the tiers are a starting point, not a constraint.
+                    Tell us what you would like to support and we will find a shape that works.
+                    No commitment at this stage.
                   </p>
-                  <a
-                    href={`mailto:${site.contactEmail}?subject=SIMBIOCHEM%20II%20sponsorship`}
-                    className="mt-5 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
-                  >
-                    Talk to the organisers <ArrowRight className="size-4" />
-                  </a>
-                  <p className="mt-3 text-center text-xs text-slate-2">{site.contactEmail}</p>
+                  <div className="mt-5">
+                    <SponsorForm />
+                  </div>
                 </div>
               </div>
 

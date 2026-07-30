@@ -37,6 +37,15 @@ const serverEnvSchema = z.object({
     .trim()
     .min(1)
     .default("Volunteers!A:I"),
+  SPONSOR_ENABLED: z
+    .enum(["true", "false"])
+    .default("true")
+    .transform((value) => value === "true"),
+  GOOGLE_SHEETS_SPONSORS_RANGE: z
+    .string()
+    .trim()
+    .min(1)
+    .default("Sponsor enquiries!A:E"),
   GOOGLE_SERVICE_ACCOUNT_EMAIL: optionalString,
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: optionalString,
   GOOGLE_SERVICE_ACCOUNT_CREDENTIALS_FILE: optionalString,
@@ -53,6 +62,8 @@ export const serverEnv = serverEnvSchema.parse({
   GOOGLE_SHEETS_RANGE: process.env.GOOGLE_SHEETS_RANGE,
   VOLUNTEER_ENABLED: process.env.VOLUNTEER_ENABLED,
   GOOGLE_SHEETS_VOLUNTEERS_RANGE: process.env.GOOGLE_SHEETS_VOLUNTEERS_RANGE,
+  SPONSOR_ENABLED: process.env.SPONSOR_ENABLED,
+  GOOGLE_SHEETS_SPONSORS_RANGE: process.env.GOOGLE_SHEETS_SPONSORS_RANGE,
   GOOGLE_SERVICE_ACCOUNT_EMAIL: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY:
     process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
