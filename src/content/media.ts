@@ -35,7 +35,7 @@ export const profileByName: Record<string, string> = {
   "Max Welling": "http://amlab.science.uva.nl/people/MaxWelling/",
   "Yu-Shan Lin": "https://chem.tufts.edu/people/faculty/yu-shan-lin",
   "Heather J. Kulik": "https://chemistry.mit.edu/profile/heather-j-kulik/",
-  "Ai Niitsu": "https://www.bdr.riken.jp/en/research/labs/niitsu-a/index.html",
+  "Ai Niitsu": "https://www.riken.jp/en/research/labs/ims/dyn_biomol_des/index.html",
   "John Chodera": "https://www.mskcc.org/research/ski/labs/john-chodera",
   "Bruno Trentini": "https://www.cs.ox.ac.uk/people/bruno.trentini/",
   "Emine Kucukbenli": "https://scholar.google.com/citations?user=LUXL9FoAAAAJ",
