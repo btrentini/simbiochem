@@ -231,6 +231,15 @@
    Content is visible by default so it never depends on JavaScript; the
    animation is layered on only where scroll-driven timelines exist. The
    reduce-motion block above already neutralises it for those who ask. */
+.reveal {
+  /* Grid and flex items default to min-width:auto, i.e. their min-content
+     width. Profile cards contain long affiliations, so their min-content is
+     ~431px; as grid items they refused to shrink to a 350px column and pushed
+     the whole document to 451px wide, giving every page horizontal scroll on a
+     390px phone. Only meaningful when .reveal is a grid/flex child. */
+  min-width: 0;
+}
+
 @keyframes reveal-in {
   from {
     opacity: 0;

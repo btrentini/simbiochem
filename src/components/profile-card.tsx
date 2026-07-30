@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { ExternalLink, Maximize2, X } from "lucide-react";
 
 import { Avatar } from "@/components/avatar";
@@ -64,7 +65,20 @@ export function ProfileCard({
         <Maximize2 className="size-4 shrink-0 text-slate-3 transition group-hover:text-teal-600" />
       </button>
 
-      {open ? (
+      {/*
+        Rendered into <body> rather than in place. Every ProfileCard sits inside
+        a <Reveal>, whose scroll animation leaves a transform on the element —
+        even the identity matrix at rest. A transformed ancestor becomes the
+        containing block for `position: fixed` AND a stacking context, so an
+        in-place modal was being sized and centred against its own card, clipped
+        by it, and painted under the neighbouring cards regardless of z-index.
+        A portal escapes both.
+
+        `open` is only ever set by a click, so this never runs during SSR and
+        the server and first client render agree.
+      */}
+      {open
+        ? createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           role="dialog"
@@ -107,8 +121,10 @@ export function ProfileCard({
               </a>
             ) : null}
           </div>
-        </div>
-      ) : null}
+        </div>,
+            document.body,
+          )
+        : null}
     </>
   );
 }
