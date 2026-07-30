@@ -36,8 +36,10 @@ import { panel, speakers } from "@/content/speakers";
 import {
   confirmedSponsors,
   pastSponsors,
-  sponsorBenefits,
+  sponsorCommunityMessage,
   sponsorPrinciples,
+  sponsorScarcityNote,
+  sponsorTiers,
   sponsorWays,
 } from "@/content/sponsors";
 import { firstEdition } from "@/content/previous-edition";
@@ -191,7 +193,7 @@ export default async function Home() {
               <SectionHeading
                 eyebrow="Sponsors"
                 title="Supported by the community"
-                description="Sponsorship funds travel awards, catering, best-paper prizes and the Sydney social event — while scientific review stays independent of sponsor interests."
+                description="Sponsors keep this workshop community-run — funding catering, prizes, poster sessions and the Sydney social event, while scientific review stays entirely independent of them."
               />
             </Reveal>
 
@@ -241,27 +243,90 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* What sponsors receive + invitation to get in touch */}
+            {/* Why it matters */}
+            <div className="mt-14 rounded-2xl border border-teal-200 bg-teal-50/50 p-7">
+              <div className="flex items-center gap-2">
+                <Handshake className="size-5 text-teal-700" />
+                <p className="text-sm font-semibold text-teal-800">
+                  Why sponsorship matters here
+                </p>
+              </div>
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-1">
+                {sponsorCommunityMessage}
+              </p>
+            </div>
+
+            {/* Recognition ladder */}
+            <div className="mt-8">
+              <h3 className="display text-2xl font-semibold text-ink">
+                What sponsors receive
+              </h3>
+              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-1">
+                Each level adds to the one below it. Levels of support are set out in the
+                sponsorship letter.
+              </p>
+              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {sponsorTiers.map((tier) => (
+                  <div
+                    key={tier.name}
+                    className={`flex flex-col rounded-2xl border p-5 ${
+                      tier.featured
+                        ? "border-teal-400 bg-teal-50/60 ring-1 ring-teal-300"
+                        : "border-mist bg-white"
+                    }`}
+                  >
+                    <p className="display text-lg font-semibold text-brand">{tier.name}</p>
+                    <p className="mt-1.5 text-xs leading-5 text-slate-2">{tier.blurb}</p>
+
+                    <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">
+                      Supports
+                    </p>
+                    <div className="mt-1.5 flex flex-wrap gap-1.5">
+                      {tier.supports.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full bg-paper px-2.5 py-1 text-[0.7rem] text-slate-1"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">
+                      Includes
+                    </p>
+                    <ul className="mt-1.5 space-y-1.5">
+                      {tier.perks.map((p) => (
+                        <li key={p} className="flex gap-2 text-xs leading-5 text-slate-1">
+                          <span className="mt-1.5 size-1 shrink-0 rounded-full bg-teal-500" />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-5 max-w-4xl text-xs leading-6 text-slate-2">
+                {sponsorScarcityNote}
+              </p>
+            </div>
+
+            {/* Invitation to get in touch */}
             <div className="mt-8 rounded-2xl border border-mist bg-white p-7">
               <div className="grid gap-8 lg:grid-cols-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <Handshake className="size-5 text-teal-600" />
-                    <p className="text-sm font-semibold text-ink">What sponsors receive</p>
-                  </div>
-                  <ul className="mt-4 grid gap-2">
-                    {sponsorBenefits.map((b) => (
-                      <li key={b} className="flex gap-2 text-sm leading-6 text-slate-1">
-                        <span className="mt-2 size-1 shrink-0 rounded-full bg-teal-500" />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="flex flex-col justify-center">
+                  <p className="display text-lg font-semibold text-ink">
+                    Prefer the full detail?
+                  </p>
+                  <p className="mt-2 max-w-md text-sm leading-6 text-slate-1">
+                    The sponsorship letter sets out every level, what each one supports and how
+                    we handle the parts that are limited.
+                  </p>
                   <a
                     href="/simbiochem-ii-sponsorship.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-brand transition hover:bg-paper"
+                    className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-brand transition hover:bg-paper"
                   >
                     <Download className="size-4" />
                     Download the sponsorship letter

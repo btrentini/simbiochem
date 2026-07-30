@@ -30,71 +30,83 @@ export type SponsorTier = {
 };
 
 /**
- * Levels are described by what they support and what they include — figures
- * live in the sponsorship letter, which interested sponsors can download.
- * Everything here is deliberately value-free so the page stays an invitation
- * rather than a price list.
+ * A visibility ladder, not a price list. Each tier adds recognition on top of
+ * the one below, and Diamond is unambiguously the most visible.
+ *
+ * Two things are genuinely scarce and are described as priority rather than
+ * entitlement, because they cannot be promised to everyone: the day carries at
+ * most THREE short break-time messages in total across all sponsors, and there
+ * are only about three award certificates to name. Anything physical depends on
+ * what NeurIPS allows in a workshop room, which is not an exhibit hall.
  */
 export const sponsorTiers: SponsorTier[] = [
   {
     name: "Bronze",
     blurb:
-      "A friendly first step, and a good fit for startups and community supporters.",
-    supports: ["Travel awards", "Prizes", "Poster materials"],
+      "A straightforward way for smaller groups, startups and long-standing friends of the workshop to put their name behind it.",
+    supports: ["Poster materials", "Prizes"],
     perks: [
-      "Logo on the website and sponsor slide",
-      "Acknowledgement in the opening and closing remarks",
-      "Named support for the item you choose",
-      "Listed under the category that fits you — community, pharma, investment or technology",
+      "Logo and link on the workshop website, grouped by category — community, pharma, investment or technology partner",
+      "Kept on the permanent edition archive, so the recognition outlives the day",
+      "Nothing to ship, nobody to staff, no deadlines to meet",
     ],
   },
   {
     name: "Silver",
-    blurb: "Meaningful visibility with very little operational overhead.",
-    supports: ["Catering", "Travel awards", "Poster sessions"],
+    blurb:
+      "For organisations that want to be visible in the room all day, without taking on anything operational.",
+    supports: ["Catering", "Poster sessions"],
     perks: [
       "Everything in Bronze",
-      "Social-media acknowledgement from the workshop accounts",
-      "An optional short blurb about you on the website",
-      "Eligibility to join the shared social-event sponsorship",
+      "Logo on the slides shown throughout both coffee breaks and both poster sessions — around four hours of the day",
+      "A shoutout from the organisers in the opening and closing acknowledgements",
+      "An acknowledgement from the workshop's social accounts",
+      "A short description of your organisation on the sponsor page",
     ],
   },
   {
     name: "Gold",
     blurb:
-      "For partners who want their name attached to a specific part of the day.",
-    supports: [
-      "Best paper or poster awards",
-      "A poster session",
-      "Catering",
-      "Speaker & student participation",
-    ],
+      "For partners who want their name attached to a named part of the programme, and a light presence in the room.",
+    supports: ["Best paper & poster awards", "Catering", "A poster session"],
     perks: [
       "Everything in Silver",
-      "Recognition attached to one workshop element of your choosing",
-      "Priority for shared social-event sponsorship",
-      "Eligibility for one short break-time message, subject to the day's cap and venue rules",
+      "Your name on an award certificate, worded as “supported by”, and read aloud at the closing awards — the one moment the whole room is seated",
+      "Materials on the shared sponsor table: swag, recruiting cards and printed matter, where the venue permits",
+      "A careers link on the sponsor page",
+      "Priority for shared sponsorship of the Sydney social event",
     ],
-    featured: true,
   },
   {
     name: "Diamond",
-    blurb: "Strategic partners supporting the workshop and the wider community.",
+    blurb:
+      "For the one or two partners underwriting the day itself — recognised first, everywhere the workshop recognises anyone.",
     supports: [
       "The Sydney social event",
       "Catering",
-      "Travel awards",
-      "Speaker & student participation",
+      "Awards",
+      "Student & speaker participation",
     ],
     perks: [
       "Everything in Gold",
-      "Featured recognition on the website and the opening and closing slides",
-      "First choice among the major support areas",
+      "Featured placement: top of the sponsor page in a larger lockup, and named on the opening and closing slides",
+      "Your banner in the workshop room — Diamond only, subject to venue approval",
+      "First call on the day's three short break-time messages, three minutes each",
+      "First choice among the major support areas, in order of confirmation",
       "The option to host the Sydney social event",
-      "A dedicated organiser contact for logistics",
+      "Custom arrangements, agreed in writing",
+      "A named organiser as your direct contact throughout",
     ],
+    featured: true,
   },
 ];
+
+/**
+ * Stated on the page rather than buried in the letter. A cap that is published
+ * is trusted; a cap that is discovered later is a complaint.
+ */
+export const sponsorScarcityNote =
+  "A few things are genuinely limited: the day carries at most three short break-time messages in total across all sponsors, there are only a handful of award certificates to name, and anything physical depends on what the NeurIPS venue allows. We allocate these in order of confirmation and tell you where you stand in writing — never after the fact.";
 
 export const sponsorSupports: string[] = [
   "Travel & registration support for students and underrepresented participants",
@@ -123,11 +135,6 @@ export const sponsorWays: SponsorWay[] = [
     icon: "Coffee",
   },
   {
-    title: "Travel & registration support",
-    body: "Help students, speakers and underrepresented participants get to Sydney and through the door.",
-    icon: "PlaneTakeoff",
-  },
-  {
     title: "Poster sessions & networking",
     body: "Boards, printing and materials for our two poster sessions and the informal networking around them.",
     icon: "Presentation",
@@ -138,23 +145,23 @@ export const sponsorWays: SponsorWay[] = [
     icon: "Award",
   },
   {
+    title: "Student & speaker participation",
+    body: "Bring people into the room who would otherwise not be there — students, early-career researchers and speakers travelling a long way.",
+    icon: "PlaneTakeoff",
+  },
+  {
     title: "Community infrastructure",
     body: "The website, proceedings page and submission support that keep the workshop running from one edition to the next.",
     icon: "Globe",
   },
 ];
 
-/** What a sponsor receives. Wording tracks the prospectus, including its caps. */
-export const sponsorBenefits: string[] = [
-  "Logo on the workshop website and on the sponsor slide shown through the day",
-  "Acknowledgement in the opening and closing remarks",
-  "Social-media acknowledgement from the workshop accounts",
-  "An optional short sponsor blurb on the website",
-  "Named support attached to a travel award, a prize, poster materials or catering",
-  "Gold and above: eligibility for one short break-time message — at most three across the whole day, with organiser approval and subject to venue rules",
-  "Diamond: featured recognition on the website and opening/closing slides, a dedicated organiser contact, and the option to be exclusive social host",
-  "Silver and above, opt-in: a “Top 5 Commercial Impact” shortlist drawn from accepted submissions — introductions happen only if the authors choose to be introduced",
-];
+/**
+ * The point of the section. Sponsors are choosing between many asks; this is
+ * the one that says what their money actually holds up.
+ */
+export const sponsorCommunityMessage =
+  "SIMBIOCHEM is organised by researchers who volunteer their time, and it has no institution behind it. What sponsors fund is not marketing space — it is a room where a PhD student can put a poster next to a lab they have only ever cited, lunch that keeps 150 people talking instead of scattering, and prizes that mean something on a CV. The first edition sent five papers on to Nature Portfolio editors. That is what support here buys.";
 
 export const sponsorPrinciples =
   "Sponsorship does not influence review decisions, speaker selection, awards or publication opportunities. SIMBIOCHEM is community-driven and independent, and is not affiliated with any sponsor.";
