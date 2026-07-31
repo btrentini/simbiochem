@@ -34,6 +34,18 @@ export function VolunteerForm() {
       return;
     }
 
+    // The form sets noValidate, so the checkbox's `required` attribute is not
+    // enforced by the browser. Without this the request goes out and comes
+    // back as a generic 400 — the server does reject it, but the person is
+    // never told why. Nobody joins the committee without acknowledging.
+    if (form.get("agreement") !== "on") {
+      setStatus("error");
+      setMessage(
+        "Please tick the acknowledgement — we cannot accept a sign-up without it.",
+      );
+      return;
+    }
+
     setStatus("sending");
     setMessage("");
 

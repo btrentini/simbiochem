@@ -36,7 +36,7 @@ const serverEnvSchema = z.object({
     .string()
     .trim()
     .min(1)
-    .default("Volunteers!A:I"),
+    .default("'Reviews@NeurIPS26'!A:I"),
   SPONSOR_ENABLED: z
     .enum(["true", "false"])
     .default("true")
@@ -45,7 +45,7 @@ const serverEnvSchema = z.object({
     .string()
     .trim()
     .min(1)
-    .default("Sponsor enquiries!A:E"),
+    .default("'Sponsor@NeurIPS26'!A:E"),
   // --- SMTP, for form notifications ---
   SMTP_HOST: optionalString,
   SMTP_PORT: z.coerce.number().int().min(1).max(65535).default(465),

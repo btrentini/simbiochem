@@ -20,8 +20,8 @@ import { google } from "googleapis";
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 
 const REG_RANGE = process.env.GOOGLE_SHEETS_RANGE || "Registrations!A:J";
-const VOL_RANGE = process.env.GOOGLE_SHEETS_VOLUNTEERS_RANGE || "Volunteers!A:I";
-const SPON_RANGE = process.env.GOOGLE_SHEETS_SPONSORS_RANGE || "Sponsor enquiries!A:E";
+const VOL_RANGE = process.env.GOOGLE_SHEETS_VOLUNTEERS_RANGE || "'Reviews@NeurIPS26'!A:I";
+const SPON_RANGE = process.env.GOOGLE_SHEETS_SPONSORS_RANGE || "'Sponsor@NeurIPS26'!A:E";
 const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
 
 const HEADERS = {
@@ -37,8 +37,7 @@ const HEADERS = {
     "Consent",
     "OpenReview submission ID",
   ],
-  // Verbatim copy of the Google Form response tab's header row, so rows from
-  // the site and rows from the form can be merged without remapping columns.
+  // Exact columns of the live Reviews@NeurIPS26 tab.
   [tabOf(VOL_RANGE)]: [
     "Timestamp",
     "Full Name",
@@ -47,9 +46,10 @@ const HEADERS = {
     "Current Level",
     "Preferred Tracks (Select all that apply)",
     "Tags of Expertise",
-    "Link to your professional profile ",
+    "Link to your professional profile",
     "Acknowledgement and Agreement",
   ],
+  // Exact columns of the live Sponsor@NeurIPS26 tab.
   [tabOf(SPON_RANGE)]: ["Timestamp", "Name", "Company", "Contact", "Message"],
 };
 
@@ -113,12 +113,13 @@ async function main() {
   console.log(`✓ Connected. Existing tabs: ${[...existing].join(", ")}\n`);
 
   for (const [tab, headers] of Object.entries(HEADERS)) {
+    // Never create a tab. These sheets already exist and hold data, so a typo
+    // in a range must surface as an error rather than quietly appearing as a
+    // near-duplicate next to the real one.
     if (!existing.has(tab)) {
-      await sheets.spreadsheets.batchUpdate({
-        spreadsheetId: SPREADSHEET_ID,
-        requestBody: { requests: [{ addSheet: { properties: { title: tab } } }] },
-      });
-      console.log(`  + created tab "${tab}"`);
+      console.log(`  x tab "${tab}" NOT FOUND - skipped, and not created.`);
+      console.log(`    Available tabs: ${[...existing].join(", ")}`);
+      continue;
     }
 
     const res = await sheets.spreadsheets.values.get({
