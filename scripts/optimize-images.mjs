@@ -80,11 +80,17 @@ for (const file of files) {
     });
   }
 
-  const isPng = meta.format === "png";
-  if (isPng) {
-    // palette quantisation is a large win on these flat molecular renders,
-    // and preserves the alpha channel they all rely on.
+  // Re-encode in the SOURCE format. An earlier version of this script branched
+  // only on "is it a PNG", which sent transparent WebP down the JPEG path: it
+  // flattened the alpha to black and wrote JPEG bytes into a .webp file. That
+  // is how the NVIDIA logo became a black bar. Never let an image with an alpha
+  // channel reach the JPEG encoder.
+  if (meta.format === "png") {
+    // Palette quantisation is a large win on flat molecular renders, and
+    // preserves the alpha channel they rely on.
     pipeline.png({ compressionLevel: 9, effort: 10, palette: true, quality: 90 });
+  } else if (meta.format === "webp" || meta.hasAlpha) {
+    pipeline.webp({ quality: 82, effort: 6 });
   } else {
     pipeline.jpeg({ quality: 82, mozjpeg: true, progressive: true });
   }
