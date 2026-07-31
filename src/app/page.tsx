@@ -186,176 +186,8 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Sponsors */}
-        <section id="sponsors" className="scroll-mt-20 border-t border-mist bg-paper">
-          <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
-            <Reveal>
-              <SectionHeading
-                eyebrow="Sponsors"
-                title="Supported by the community"
-                description="Sponsors keep this workshop community-run — funding catering, prizes, poster sessions and the Sydney social event, while scientific review stays entirely independent of them."
-              />
-            </Reveal>
-
-            <div className="mt-10 flex flex-wrap items-start gap-8">
-              {confirmedSponsors.map((s) => (
-                <SponsorTile key={s.name} sponsor={s} />
-              ))}
-            </div>
-
-            <div className="mt-8">
-              <p className="text-xs font-medium uppercase tracking-wide text-slate-2">
-                1st-edition sponsors
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {pastSponsors.map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-full border border-mist bg-white px-3 py-1.5 text-xs font-medium text-slate-1"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Ways to support */}
-            <div className="mt-14">
-              <h3 className="display text-2xl font-semibold text-ink">Ways to support</h3>
-              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-1">
-                SIMBIOCHEM is community-driven and independent, and sponsorship is what makes
-                the day possible — getting students and speakers into the room, catering the
-                breaks and poster sessions, prizes for the best work, and a Sydney social event
-                where the real conversations happen. Our current priorities are catering, the
-                social event, and travel support.
-              </p>
-              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {sponsorWays.map(({ title, body, icon }) => {
-                  const Icon = SPONSOR_ICONS[icon];
-                  return (
-                    <div key={title} className="rounded-2xl border border-mist bg-white p-5">
-                      <Icon className="size-5 text-teal-600" />
-                      <p className="mt-3 text-sm font-semibold text-ink">{title}</p>
-                      <p className="mt-1.5 text-sm leading-6 text-slate-2">{body}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Why it matters */}
-            <div className="mt-14 rounded-2xl border border-teal-200 bg-teal-50/50 p-7">
-              <div className="flex items-center gap-2">
-                <Handshake className="size-5 text-teal-700" />
-                <p className="text-sm font-semibold text-teal-800">
-                  Why sponsorship matters here
-                </p>
-              </div>
-              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-1">
-                {sponsorCommunityMessage}
-              </p>
-            </div>
-
-            {/* Recognition ladder */}
-            <div className="mt-8">
-              <h3 className="display text-2xl font-semibold text-ink">
-                What sponsors receive
-              </h3>
-              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-1">
-                Each level adds to the one below it. Levels of support are set out in the
-                sponsorship letter.
-              </p>
-              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {sponsorTiers.map((tier) => (
-                  <div
-                    key={tier.name}
-                    className={`flex flex-col rounded-2xl border p-5 ${
-                      tier.featured
-                        ? "border-teal-400 bg-teal-50/60 ring-1 ring-teal-300"
-                        : "border-mist bg-white"
-                    }`}
-                  >
-                    <p className="display text-lg font-semibold text-brand">{tier.name}</p>
-                    <p className="mt-1.5 text-xs leading-5 text-slate-2">{tier.blurb}</p>
-
-                    <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">
-                      Supports
-                    </p>
-                    <div className="mt-1.5 flex flex-wrap gap-1.5">
-                      {tier.supports.map((s) => (
-                        <span
-                          key={s}
-                          className="rounded-full bg-paper px-2.5 py-1 text-[0.7rem] text-slate-1"
-                        >
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-
-                    <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">
-                      Includes
-                    </p>
-                    <ul className="mt-1.5 space-y-1.5">
-                      {tier.perks.map((p) => (
-                        <li key={p} className="flex gap-2 text-xs leading-5 text-slate-1">
-                          <span className="mt-1.5 size-1 shrink-0 rounded-full bg-teal-500" />
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-5 max-w-4xl text-xs leading-6 text-slate-2">
-                {sponsorScarcityNote}
-              </p>
-            </div>
-
-            {/* Invitation to get in touch */}
-            <div className="mt-8 rounded-2xl border border-mist bg-white p-7">
-              <div className="grid gap-8 lg:grid-cols-2">
-                <div className="flex flex-col justify-center">
-                  <p className="display text-lg font-semibold text-ink">
-                    Prefer the full detail?
-                  </p>
-                  <p className="mt-2 max-w-md text-sm leading-6 text-slate-1">
-                    The sponsorship letter sets out every level, what each one supports and how
-                    we handle the parts that are limited.
-                  </p>
-                  <a
-                    href="/simbiochem-ii-sponsorship.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-brand transition hover:bg-paper"
-                  >
-                    <Download className="size-4" />
-                    Download the sponsorship letter
-                  </a>
-                </div>
-
-                <div className="rounded-xl bg-paper p-6">
-                  <p className="display text-lg font-semibold text-ink">
-                    Talk to the organisers
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-slate-1">
-                    Tell us what you would like to support and we will find a shape that works.
-                    No commitment at this stage.
-                  </p>
-                  <div className="mt-5">
-                    <SponsorForm />
-                  </div>
-                </div>
-              </div>
-
-              <p className="mt-7 border-t border-mist pt-5 text-xs leading-6 text-slate-2">
-                {sponsorPrinciples}
-              </p>
-            </div>
-          </div>
-        </section>
-
         {/* Speakers */}
-        <section id="speakers" className="scroll-mt-20 bg-white">
+        <section id="speakers" className="scroll-mt-20 border-t border-mist bg-paper">
           <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
             <Reveal>
               <SectionHeading
@@ -427,7 +259,7 @@ export default async function Home() {
         </section>
 
         {/* Agenda */}
-        <section id="agenda" className="scroll-mt-20 border-y border-mist bg-paper">
+        <section id="agenda" className="scroll-mt-20 border-y border-mist bg-white">
           <div className="mx-auto max-w-6xl px-5 py-20 lg:px-8 lg:py-24">
             <Reveal>
               <SectionHeading eyebrow="Agenda" title={agenda.title} description={agenda.note} />
@@ -605,6 +437,174 @@ export default async function Home() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Sponsors */}
+        <section id="sponsors" className="scroll-mt-20 border-t border-mist bg-white">
+          <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Sponsors"
+                title="Supported by the community"
+                description="Sponsors keep this workshop community-run — funding catering, prizes, poster sessions and the Sydney social event, while scientific review stays entirely independent of them."
+              />
+            </Reveal>
+
+            <div className="mt-10 flex flex-wrap items-start gap-8">
+              {confirmedSponsors.map((s) => (
+                <SponsorTile key={s.name} sponsor={s} />
+              ))}
+            </div>
+
+            <div className="mt-8">
+              <p className="text-xs font-medium uppercase tracking-wide text-slate-2">
+                1st-edition sponsors
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {pastSponsors.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full border border-mist bg-white px-3 py-1.5 text-xs font-medium text-slate-1"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Ways to support */}
+            <div className="mt-14">
+              <h3 className="display text-2xl font-semibold text-ink">Ways to support</h3>
+              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-1">
+                SIMBIOCHEM is community-driven and independent, and sponsorship is what makes
+                the day possible — getting students and speakers into the room, catering the
+                breaks and poster sessions, prizes for the best work, and a Sydney social event
+                where the real conversations happen. Our current priorities are catering, the
+                social event, and travel support.
+              </p>
+              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {sponsorWays.map(({ title, body, icon }) => {
+                  const Icon = SPONSOR_ICONS[icon];
+                  return (
+                    <div key={title} className="rounded-2xl border border-mist bg-white p-5">
+                      <Icon className="size-5 text-teal-600" />
+                      <p className="mt-3 text-sm font-semibold text-ink">{title}</p>
+                      <p className="mt-1.5 text-sm leading-6 text-slate-2">{body}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Why it matters */}
+            <div className="mt-14 rounded-2xl border border-teal-200 bg-teal-50/50 p-7">
+              <div className="flex items-center gap-2">
+                <Handshake className="size-5 text-teal-700" />
+                <p className="text-sm font-semibold text-teal-800">
+                  Why sponsorship matters here
+                </p>
+              </div>
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-1">
+                {sponsorCommunityMessage}
+              </p>
+            </div>
+
+            {/* Recognition ladder */}
+            <div className="mt-8">
+              <h3 className="display text-2xl font-semibold text-ink">
+                What sponsors receive
+              </h3>
+              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-1">
+                Each level adds to the one below it. Levels of support are set out in the
+                sponsorship letter.
+              </p>
+              <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {sponsorTiers.map((tier) => (
+                  <div
+                    key={tier.name}
+                    className={`flex flex-col rounded-2xl border p-5 ${
+                      tier.featured
+                        ? "border-teal-400 bg-teal-50/60 ring-1 ring-teal-300"
+                        : "border-mist bg-white"
+                    }`}
+                  >
+                    <p className="display text-lg font-semibold text-brand">{tier.name}</p>
+                    <p className="mt-1.5 text-xs leading-5 text-slate-2">{tier.blurb}</p>
+
+                    <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">
+                      Supports
+                    </p>
+                    <div className="mt-1.5 flex flex-wrap gap-1.5">
+                      {tier.supports.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full bg-paper px-2.5 py-1 text-[0.7rem] text-slate-1"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+
+                    <p className="mt-4 text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">
+                      Includes
+                    </p>
+                    <ul className="mt-1.5 space-y-1.5">
+                      {tier.perks.map((p) => (
+                        <li key={p} className="flex gap-2 text-xs leading-5 text-slate-1">
+                          <span className="mt-1.5 size-1 shrink-0 rounded-full bg-teal-500" />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-5 max-w-4xl text-xs leading-6 text-slate-2">
+                {sponsorScarcityNote}
+              </p>
+            </div>
+
+            {/* Invitation to get in touch */}
+            <div className="mt-8 rounded-2xl border border-mist bg-white p-7">
+              <div className="grid gap-8 lg:grid-cols-2">
+                <div className="flex flex-col justify-center">
+                  <p className="display text-lg font-semibold text-ink">
+                    Prefer the full detail?
+                  </p>
+                  <p className="mt-2 max-w-md text-sm leading-6 text-slate-1">
+                    The sponsorship letter sets out every level, what each one supports and how
+                    we handle the parts that are limited.
+                  </p>
+                  <a
+                    href="/simbiochem-ii-sponsorship.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex w-fit items-center gap-2 rounded-full border border-mist bg-white px-5 py-2.5 text-sm font-semibold text-brand transition hover:bg-paper"
+                  >
+                    <Download className="size-4" />
+                    Download the sponsorship letter
+                  </a>
+                </div>
+
+                <div className="rounded-xl bg-paper p-6">
+                  <p className="display text-lg font-semibold text-ink">
+                    Talk to the organisers
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-1">
+                    Tell us what you would like to support and we will find a shape that works.
+                    No commitment at this stage.
+                  </p>
+                  <div className="mt-5">
+                    <SponsorForm />
+                  </div>
+                </div>
+              </div>
+
+              <p className="mt-7 border-t border-mist pt-5 text-xs leading-6 text-slate-2">
+                {sponsorPrinciples}
+              </p>
             </div>
           </div>
         </section>

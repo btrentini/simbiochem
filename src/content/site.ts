@@ -71,8 +71,8 @@ export const navLinks: { label: string; href: string }[] = [
   { label: "Speakers", href: "/#speakers" },
   { label: "Agenda", href: "/#agenda" },
   { label: "Call for Papers", href: "/call-for-papers" },
-  { label: "Sponsors", href: "/#sponsors" },
   { label: "Organisers", href: "/#organisers" },
   { label: "Venue", href: "/#venue" },
+  { label: "Sponsors", href: "/#sponsors" },
   { label: "Previous Editions", href: "/previous-editions/copenhagen" },
 ];
