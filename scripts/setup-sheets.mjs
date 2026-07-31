@@ -135,7 +135,34 @@ async function main() {
       });
       console.log(`  ✓ wrote header row to "${tab}"`);
     } else {
-      console.log(`  · "${tab}" already has a header row (left unchanged)`);
+      // A tab with existing rows is the dangerous case: we append blind, so a
+      // different column order would interleave new data into the wrong
+      // columns. Show both and say plainly whether they line up.
+      console.log(`  · "${tab}" already has data — header row left unchanged.`);
+      const rows = await sheets.spreadsheets.values.get({
+        spreadsheetId: SPREADSHEET_ID,
+        range: `${tab}!A:A`,
+      });
+      const count = Math.max((rows.data.values?.length ?? 1) - 1, 0);
+      console.log(`    existing data rows: ${count}`);
+      let aligned = firstRow.length === headers.length;
+      console.log("    column   existing                              this site will write");
+      const width = Math.max(firstRow.length, headers.length);
+      for (let i = 0; i < width; i++) {
+        const col = String.fromCharCode(65 + i);
+        const have = firstRow[i] ?? "(none)";
+        const want = headers[i] ?? "(none)";
+        const same = have.trim().toLowerCase() === want.trim().toLowerCase();
+        if (!same) aligned = false;
+        console.log(`    ${col}        ${same ? " " : "!"} ${have.slice(0, 36).padEnd(36)} ${want}`);
+      }
+      console.log(
+        aligned
+          ? `    ✓ columns line up — appended rows will match the existing ones.`
+          : `    ⚠ COLUMNS DIFFER. Lines marked "!" would land under a different\n` +
+            `      heading than the existing rows. Fix the tab's headers, or point\n` +
+            `      GOOGLE_SHEETS_VOLUNTEERS_RANGE at a different tab, before enabling.`,
+      );
     }
   }
 
