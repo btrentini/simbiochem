@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { Loader2 } from "lucide-react";
 
+import { CoiNotice } from "@/components/coi-notice";
 import { VOLUNTEER_LEVELS, VOLUNTEER_TRACKS } from "@/lib/volunteer";
 
 const inputClass =
@@ -63,7 +64,7 @@ export function VolunteerForm() {
       formEl.reset();
       setStatus("sent");
       setMessage(
-        "Thank you — your Programme Committee sign-up has been recorded. We'll be in touch about review assignments.",
+        "Thank you for offering to help. The organisers read every submission, and will reach out if your expertise is a good match for what comes in.",
       );
     } catch {
       setStatus("error");
@@ -80,7 +81,7 @@ export function VolunteerForm() {
         aria-live="polite"
         className="rounded-2xl border border-teal-200 bg-teal-50 p-8 text-center outline-none"
       >
-        <p className="display text-xl font-semibold text-teal-800">You&rsquo;re on the list</p>
+        <p className="display text-xl font-semibold text-teal-800">Thank you for your interest</p>
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-teal-900/80">{message}</p>
       </div>
     );
@@ -218,9 +219,12 @@ export function VolunteerForm() {
       <label className="flex items-start gap-3 text-sm font-normal text-slate-1 sm:col-span-2">
         <input className="mt-1 accent-teal-600" name="agreement" type="checkbox" required />
         <span>
-          I understand and agree to review under the workshop&rsquo;s COI handling and
+          I agree to review under the workshop&rsquo;s conflict-of-interest and
           confidentiality terms, and consent to the organisers using these details to
           coordinate the Programme Committee. <span className="text-emphasis-600">*</span>
+          <span className="mt-1 block text-xs font-normal">
+            <CoiNotice />
+          </span>
         </span>
       </label>
 
@@ -232,10 +236,10 @@ export function VolunteerForm() {
         >
           {status === "sending" ? (
             <>
-              <Loader2 className="size-4 animate-spin" /> Submitting…
+              <Loader2 className="size-4 animate-spin" /> Sending…
             </>
           ) : (
-            "Join the Programme Committee"
+            "Submit my details"
           )}
         </button>
         <p

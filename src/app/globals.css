@@ -262,3 +262,17 @@
     }
   }
 }
+
+/* Tailwind v4's preflight sets buttons to cursor:default, matching the browser
+   default — v3 forced pointer. The result was that every <button> on the site
+   lost its pointer while every <a> kept one. Restore it once here rather than
+   adding cursor-pointer to each button. */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+summary {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

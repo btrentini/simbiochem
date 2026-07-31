@@ -70,10 +70,27 @@ export default function VolunteerPage() {
                 Programme Committee application
               </h2>
               <p className="mt-3 text-sm leading-6 text-slate-1">
-                Your details are validated on the server and appended directly to an
-                organiser-controlled spreadsheet. We&rsquo;ll contact you about review assignments
-                after submissions close.
+                Sending your details is an expression of interest, not a commitment either
+                way. The organisers read every submission and will reach out if your
+                expertise matches what comes in.
               </p>
+
+              <div className="mt-6 rounded-2xl border border-teal-200 bg-teal-50/60 p-6">
+                <p className="text-sm font-semibold text-teal-800">What we ask, and what we promise</p>
+                <ul className="mt-3 space-y-2.5">
+                  {[
+                    "We aim to allocate no more than three papers per reviewer, and will do our best to hold that line.",
+                    "We put real effort into matching papers to your stated tracks and expertise, rather than assigning at random.",
+                    "You will have a designated organiser to contact directly with any question or doubt — including if you spot a conflict after an assignment lands.",
+                    "Reviewing is double-blind, and reviewers are credited on the website.",
+                  ].map((c) => (
+                    <li key={c} className="flex gap-2.5 text-sm leading-6 text-slate-1">
+                      <span className="mt-2 size-1 shrink-0 rounded-full bg-teal-600" />
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div className="mt-8 rounded-2xl border border-mist bg-white p-6 sm:p-8">
                 <VolunteerForm />
               </div>
