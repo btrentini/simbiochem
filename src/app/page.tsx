@@ -383,66 +383,8 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Venue */}
-        <section id="venue" className="scroll-mt-20 border-t border-mist bg-paper">
-          <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
-            <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-              <div>
-                <SectionHeading
-                  eyebrow="Venue"
-                  title="Sydney, Australia"
-                  description="SIMBIOCHEM II is a NeurIPS 2026 workshop in Sydney, Australia. NeurIPS workshops run December 11–13."
-                />
-                <div className="mt-8 space-y-4">
-                  <div className="flex items-start gap-3 rounded-xl border border-mist bg-white p-5">
-                    <CalendarDays className="mt-0.5 size-5 text-teal-600" />
-                    <div>
-                      <p className="font-semibold text-ink">{site.dateDisplay}</p>
-                      <p className="mt-1 text-sm text-slate-2">{site.dateNote}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3 rounded-xl border border-mist bg-white p-5">
-                    <MapPin className="mt-0.5 size-5 text-teal-600" />
-                    <div>
-                      <p className="font-semibold text-ink">NeurIPS 2026 · {site.city}</p>
-                      <p className="mt-1 text-sm text-slate-2">
-                        Exact venue and room assigned by NeurIPS. A sponsor-supported Sydney social
-                        event follows the workshop day.
-                      </p>
-                      <a
-                        href="https://www.google.com/maps/search/?api=1&query=Sydney%2C%20Australia"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 hover:text-teal-800"
-                      >
-                        Open in Google Maps <ArrowUpRight className="size-3.5" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-brand-200 lg:h-full lg:min-h-[24rem]">
-                <Image
-                  src="/venue/sydney.jpg"
-                  alt="Sydney, Australia — Opera House and Harbour Bridge"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-brand-950/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                  <p className="display text-xl font-semibold">Join us on Sydney Harbour</p>
-                  <p className="mt-1 max-w-md text-sm text-slate-200">
-                    A full day of talks, spotlights and posters, capped by a community social event.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Sponsors */}
-        <section id="sponsors" className="scroll-mt-20 border-t border-mist bg-white">
+        <section id="sponsors" className="scroll-mt-20 border-t border-mist bg-paper">
           <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
             <Reveal>
               <SectionHeading
@@ -605,6 +547,64 @@ export default async function Home() {
               <p className="mt-7 border-t border-mist pt-5 text-xs leading-6 text-slate-2">
                 {sponsorPrinciples}
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Venue */}
+        <section id="venue" className="scroll-mt-20 border-t border-mist bg-white">
+          <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
+            <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+              <div>
+                <SectionHeading
+                  eyebrow="Venue"
+                  title="Sydney, Australia"
+                  description="SIMBIOCHEM II is a NeurIPS 2026 workshop in Sydney, Australia. NeurIPS workshops run December 11–13."
+                />
+                <div className="mt-8 space-y-4">
+                  <div className="flex items-start gap-3 rounded-xl border border-mist bg-white p-5">
+                    <CalendarDays className="mt-0.5 size-5 text-teal-600" />
+                    <div>
+                      <p className="font-semibold text-ink">{site.dateDisplay}</p>
+                      <p className="mt-1 text-sm text-slate-2">{site.dateNote}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 rounded-xl border border-mist bg-white p-5">
+                    <MapPin className="mt-0.5 size-5 text-teal-600" />
+                    <div>
+                      <p className="font-semibold text-ink">NeurIPS 2026 · {site.city}</p>
+                      <p className="mt-1 text-sm text-slate-2">
+                        Exact venue and room assigned by NeurIPS. A sponsor-supported Sydney social
+                        event follows the workshop day.
+                      </p>
+                      <a
+                        href="https://www.google.com/maps/search/?api=1&query=Sydney%2C%20Australia"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 hover:text-teal-800"
+                      >
+                        Open in Google Maps <ArrowUpRight className="size-3.5" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-brand-200 lg:h-full lg:min-h-[24rem]">
+                <Image
+                  src="/venue/sydney.jpg"
+                  alt="Sydney, Australia — Opera House and Harbour Bridge"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-brand-950/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                  <p className="display text-xl font-semibold">Join us on Sydney Harbour</p>
+                  <p className="mt-1 max-w-md text-sm text-slate-200">
+                    A full day of talks, spotlights and posters, capped by a community social event.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
