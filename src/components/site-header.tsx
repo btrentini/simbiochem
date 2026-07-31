@@ -118,13 +118,6 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link
-              href="/volunteer"
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-1 hover:bg-paper"
-            >
-              Programme Committee
-            </Link>
-            <Link
               href="/call-for-papers"
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-accent-500 px-4 py-2.5 text-sm font-semibold text-brand-950"

@@ -71,6 +71,7 @@ export const navLinks: { label: string; href: string }[] = [
   { label: "Speakers", href: "/#speakers" },
   { label: "Agenda", href: "/#agenda" },
   { label: "Call for Papers", href: "/call-for-papers" },
+  { label: "Programme Committee", href: "/volunteer" },
   { label: "Organisers", href: "/#organisers" },
   { label: "Sponsors", href: "/#sponsors" },
   { label: "Venue", href: "/#venue" },

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { appendSponsorEnquiry } from "@/lib/google-sheets";
+import { mailConfigured, sendSponsorEnquiry } from "@/lib/mailer";
 import { RateLimiter, clientKey } from "@/lib/rate-limit";
 import { serverEnv } from "@/lib/server-env";
 import { sponsorEnquirySchema } from "@/lib/sponsor";
@@ -64,8 +65,14 @@ async function readJsonBody(request: NextRequest): Promise<unknown> {
 }
 
 export async function POST(request: NextRequest) {
-  if (!serverEnv.SPONSOR_ENABLED) {
-    return json({ error: "Sponsorship enquiries are not currently open." }, 503);
+  if (!serverEnv.SPONSOR_ENABLED || !mailConfigured()) {
+    return json(
+      {
+        error:
+          "The enquiry form is not available right now. Please email workshop@simbiochem.com instead.",
+      },
+      503,
+    );
   }
 
   if (!hasAllowedOrigin(request)) {
@@ -101,10 +108,16 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    await appendSponsorEnquiry(parsed.data);
+    // Email is the delivery mechanism the organisers actually watch. The
+    // spreadsheet, if credentials happen to be configured, is a best-effort
+    // second copy — never let it fail the request.
+    await sendSponsorEnquiry(parsed.data);
+    void appendSponsorEnquiry(parsed.data).catch((err) =>
+      console.warn("Sponsor enquiry emailed but not logged to Sheets", err),
+    );
     return json({ ok: true }, 201);
   } catch (error) {
-    console.error("Unable to save sponsorship enquiry", error);
+    console.error("Unable to send sponsorship enquiry", error);
     return json(
       {
         error:

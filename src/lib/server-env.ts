@@ -46,6 +46,13 @@ const serverEnvSchema = z.object({
     .trim()
     .min(1)
     .default("Sponsor enquiries!A:E"),
+  // --- SMTP, for form notifications ---
+  SMTP_HOST: optionalString,
+  SMTP_PORT: z.coerce.number().int().min(1).max(65535).default(465),
+  SMTP_USER: optionalString,
+  SMTP_PASSWORD: optionalString,
+  /** Where enquiries land. Defaults to the authenticated mailbox. */
+  SPONSOR_NOTIFY_TO: optionalString,
   GOOGLE_SERVICE_ACCOUNT_EMAIL: optionalString,
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: optionalString,
   GOOGLE_SERVICE_ACCOUNT_CREDENTIALS_FILE: optionalString,
@@ -64,6 +71,11 @@ export const serverEnv = serverEnvSchema.parse({
   GOOGLE_SHEETS_VOLUNTEERS_RANGE: process.env.GOOGLE_SHEETS_VOLUNTEERS_RANGE,
   SPONSOR_ENABLED: process.env.SPONSOR_ENABLED,
   GOOGLE_SHEETS_SPONSORS_RANGE: process.env.GOOGLE_SHEETS_SPONSORS_RANGE,
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: process.env.SMTP_PORT,
+  SMTP_USER: process.env.SMTP_USER,
+  SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+  SPONSOR_NOTIFY_TO: process.env.SPONSOR_NOTIFY_TO,
   GOOGLE_SERVICE_ACCOUNT_EMAIL: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
   GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY:
     process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY,
