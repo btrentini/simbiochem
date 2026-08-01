@@ -143,8 +143,8 @@ export async function appendVolunteer(
     insertDataOption: "INSERT_ROWS",
     includeValuesInResponse: false,
     requestBody: {
-      // Column order mirrors the Google Form's response tab exactly (A-I), so
-      // the two sets of rows can be merged without remapping.
+      // Column order mirrors the Google Form's response tab (A-I), with the
+      // optional OpenReview ID appended as J so existing rows are untouched.
       values: [
         [
           sheetTimestamp(timestamp),
@@ -156,6 +156,7 @@ export async function appendVolunteer(
           volunteer.expertise,
           volunteer.profileUrl,
           AGREEMENT_VALUE,
+          volunteer.openReviewId ?? "",
         ],
       ],
     },

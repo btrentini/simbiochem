@@ -36,7 +36,7 @@ const serverEnvSchema = z.object({
     .string()
     .trim()
     .min(1)
-    .default("'Reviews@NeurIPS26'!A:I"),
+    .default("'Reviews@NeurIPS26'!A:J"),
   SPONSOR_ENABLED: z
     .enum(["true", "false"])
     .default("true")

@@ -20,7 +20,7 @@ import { google } from "googleapis";
 const SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
 
 const REG_RANGE = process.env.GOOGLE_SHEETS_RANGE || "Registrations!A:J";
-const VOL_RANGE = process.env.GOOGLE_SHEETS_VOLUNTEERS_RANGE || "'Reviews@NeurIPS26'!A:I";
+const VOL_RANGE = process.env.GOOGLE_SHEETS_VOLUNTEERS_RANGE || "'Reviews@NeurIPS26'!A:J";
 const SPON_RANGE = process.env.GOOGLE_SHEETS_SPONSORS_RANGE || "'Sponsor@NeurIPS26'!A:E";
 const SPREADSHEET_ID = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
 
@@ -48,6 +48,7 @@ const HEADERS = {
     "Tags of Expertise",
     "Link to your professional profile",
     "Acknowledgement and Agreement",
+    "OpenReview ID",
   ],
   // Exact columns of the live Sponsor@NeurIPS26 tab.
   [tabOf(SPON_RANGE)]: ["Timestamp", "Name", "Company", "Contact", "Message"],
@@ -157,6 +158,27 @@ async function main() {
         if (!same) aligned = false;
         console.log(`    ${col}        ${same ? " " : "!"} ${have.slice(0, 36).padEnd(36)} ${want}`);
       }
+      const isPrefix =
+        firstRow.length < headers.length &&
+        firstRow.every(
+          (h, i) => (h ?? "").trim().toLowerCase() === headers[i].trim().toLowerCase(),
+        );
+      if (isPrefix) {
+        const missing = headers.slice(firstRow.length);
+        const startCol = String.fromCharCode(65 + firstRow.length);
+        await sheets.spreadsheets.values.update({
+          spreadsheetId: SPREADSHEET_ID,
+          range: `${tab}!${startCol}1`,
+          valueInputOption: "RAW",
+          requestBody: { values: [missing] },
+        });
+        console.log(
+          `    + added header(s) ${missing.join(", ")} at column ${startCol}. ` +
+            `Existing rows keep their values and are simply blank there.`,
+        );
+        aligned = true;
+      }
+
       console.log(
         aligned
           ? `    ✓ columns line up — appended rows will match the existing ones.`

@@ -55,6 +55,15 @@ export const volunteerSchema = z.object({
     .min(2, "Please list a few keywords so we can match you to papers.")
     .max(400, "Please shorten this a little."),
   profileUrl: urlish,
+  /**
+   * Optional. OpenReview profile IDs look like ~Firstname_Lastname1. Kept as a
+   * loose string rather than a strict pattern: refusing a slightly-off ID on an
+   * optional field would cost us a reviewer for no benefit.
+   */
+  openReviewId: z.preprocess(
+    (v) => (typeof v === "string" ? v.trim() : v),
+    z.string().max(100, "That is longer than an OpenReview ID.").optional().default(""),
+  ),
   agreement: z.literal(true, "Please tick the acknowledgement to continue."),
   // Honeypot: must stay empty.
   website: z.string().max(0).default(""),

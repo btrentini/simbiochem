@@ -20,6 +20,7 @@ const FIELD_LABELS: Record<string, string> = {
   tracks: "Preferred tracks",
   expertise: "Tags of expertise",
   profileUrl: "Link to your professional profile",
+  openReviewId: "OpenReview ID",
   agreement: "Acknowledgement",
 };
 
@@ -93,6 +94,7 @@ export function VolunteerForm() {
       tracks,
       expertise: form.get("expertise"),
       profileUrl: form.get("profileUrl"),
+      openReviewId: form.get("openReviewId") ?? "",
       agreement: form.get("agreement") === "on",
       website: form.get("website") ?? "",
     };
@@ -195,9 +197,10 @@ export function VolunteerForm() {
           aria-describedby="v-email-hint"
         />
         <span id="v-email-hint" className={hintClass}>
-          One address, and ideally the one on your OpenReview account so we can
-          match them up. An institutional address is less likely to send our
-          review invitations to spam.
+          Please use the address on your OpenReview account — that is how
+          review invitations reach you, and a mismatch is the single most common
+          reason someone never gets assigned. An institutional address is also
+          less likely to be filtered as spam.
         </span>
       </div>
 
@@ -292,6 +295,24 @@ export function VolunteerForm() {
         <span id="v-profileUrl-hint" className={hintClass}>
           Somewhere we can see your recent work. Google Scholar is ideal;
           LinkedIn, GitHub or a personal page are all fine.
+        </span>
+      </div>
+
+      <div className="sm:col-span-2">
+        <label className={labelClass} htmlFor="v-openReviewId">
+          OpenReview ID <span className="font-normal text-slate-3">(optional)</span>
+        </label>
+        <input
+          id="v-openReviewId"
+          className={inputClass}
+          name="openReviewId"
+          maxLength={100}
+          placeholder="~Firstname_Lastname1"
+          aria-describedby="v-openReviewId-hint"
+        />
+        <span id="v-openReviewId-hint" className={hintClass}>
+          If you know it, this saves us matching you by hand. You will find it on
+          your OpenReview profile page — it starts with a tilde.
         </span>
       </div>
 
