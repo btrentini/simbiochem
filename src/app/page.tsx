@@ -448,9 +448,13 @@ export default async function Home() {
                   Why sponsorship matters here
                 </p>
               </div>
-              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-1">
-                {sponsorCommunityMessage}
-              </p>
+              <div className="mt-3 max-w-4xl space-y-3">
+                {sponsorCommunityMessage.map((para) => (
+                  <p key={para.slice(0, 32)} className="text-base leading-7 text-slate-1">
+                    {para}
+                  </p>
+                ))}
+              </div>
             </div>
 
             {/* Recognition ladder */}

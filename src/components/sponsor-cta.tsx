@@ -65,10 +65,11 @@ export function SponsorCta() {
               <>
                 <div className="flex-1 space-y-5 p-6">
                   <p className="text-sm leading-6 text-slate-1">
-                    SIMBIOCHEM is put together by researchers who volunteer their time, and
-                    sponsors are what let us do it properly — bringing students and speakers to
-                    Sydney, feeding everyone through a long day of talks and posters, recognising
-                    the best work, and giving the community somewhere to keep talking afterwards.
+                    SIMBIOCHEM is a community-driven workshop, organised by researchers who
+                    volunteer their time. Sponsoring it puts your organisation in front of a
+                    small, focused group doing some of the strongest work in machine learning
+                    for biology and chemistry — a chance to build your brand, meet
+                    collaborators and recruit, while supporting the science itself.
                   </p>
                   <p className="text-sm leading-6 text-slate-1">
                     There is no single right way to help. Below is how partners usually take part,

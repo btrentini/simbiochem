@@ -157,11 +157,13 @@ export const sponsorWays: SponsorWay[] = [
 ];
 
 /**
- * The point of the section. Sponsors are choosing between many asks; this is
- * the one that says what their money actually holds up.
+ * Why sponsor. Rendered as separate paragraphs, so keep each one self-contained.
  */
-export const sponsorCommunityMessage =
-  "SIMBIOCHEM is organised by researchers who volunteer their time, and it has no institution behind it. What sponsors fund is not marketing space — it is a room where a PhD student can put a poster next to a lab they have only ever cited, lunch that keeps 150 people talking instead of scattering, and prizes that mean something on a CV. The first edition sent five papers on to Nature Portfolio editors. That is what support here buys.";
+export const sponsorCommunityMessage: string[] = [
+  "SIMBIOCHEM is a community-driven workshop, organised by researchers who volunteer their time around their own work. Sponsorship is what makes the day possible — and we think the exchange runs both ways.",
+  "The room is small and unusually well selected: people doing some of the strongest work in machine learning for biology and chemistry, who attend and present at NeurIPS, the most respected venue in the field. Sponsoring SIMBIOCHEM puts your organisation in front of exactly that community — a real opportunity to build your brand among researchers who are hard to reach anywhere else, to find collaborators, and to recruit.",
+  "It also supports the science itself: the poster that starts a collaboration, the prize that shifts an early-career trajectory, the conversation over lunch that becomes a paper. Our first edition sent five papers on to Nature Portfolio editors. Those are the conversations your support helps make happen — and they are the ones that can genuinely make things better.",
+];
 
 export const sponsorPrinciples =
   "Sponsorship does not influence review decisions, speaker selection, awards or publication opportunities. SIMBIOCHEM is community-driven and independent, and is not affiliated with any sponsor.";
