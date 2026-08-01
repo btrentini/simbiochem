@@ -115,7 +115,8 @@ export function VolunteerForm() {
           aria-describedby="v-fullName-hint"
         />
         <span id="v-fullName-hint" className={hintClass}>
-          Please abbreviate middle names or use your preferred first and last names.
+          However you would like to be credited on the website. Preferred or
+          shortened names are completely fine.
         </span>
       </div>
 
@@ -133,8 +134,10 @@ export function VolunteerForm() {
           aria-describedby="v-affiliation-hint"
         />
         <span id="v-affiliation-hint" className={hintClass}>
-          Comma-separated; separate multiple affiliations with semicolons. Use
-          &ldquo;unaffiliated&rdquo; if applicable.
+          In that order, comma-separated — e.g. &ldquo;Tufts University, Chemistry,
+          Postdoc&rdquo;. Separate a second affiliation with a semicolon, and write
+          &ldquo;unaffiliated&rdquo; if none applies. We use this to spot conflicts of
+          interest before assigning you anything.
         </span>
       </div>
 
@@ -152,7 +155,9 @@ export function VolunteerForm() {
           aria-describedby="v-email-hint"
         />
         <span id="v-email-hint" className={hintClass}>
-          One email only. Institutional preferred over Gmail/Outlook/QQ/Yahoo.
+          One address, and ideally the one on your OpenReview account so we can
+          match them up. An institutional address is less likely to send our
+          review invitations to spam.
         </span>
       </div>
 
@@ -160,7 +165,14 @@ export function VolunteerForm() {
         <label className={labelClass} htmlFor="v-level">
           Current level <span className="text-emphasis-600">*</span>
         </label>
-        <select id="v-level" className={inputClass} name="level" required defaultValue="">
+        <select
+          id="v-level"
+          className={inputClass}
+          name="level"
+          required
+          defaultValue=""
+          aria-describedby="v-level-hint"
+        >
           <option value="" disabled>
             Select…
           </option>
@@ -170,6 +182,10 @@ export function VolunteerForm() {
             </option>
           ))}
         </select>
+        <span id="v-level-hint" className={hintClass}>
+          Reviewers of every level are welcome — this only helps us balance the
+          load across the committee.
+        </span>
       </div>
 
       <fieldset className="sm:col-span-2">
@@ -182,11 +198,21 @@ export function VolunteerForm() {
               key={track}
               className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-mist bg-white px-4 py-2.5 text-sm font-normal shadow-sm has-[:checked]:border-teal-500 has-[:checked]:bg-teal-50"
             >
-              <input type="checkbox" name="tracks" value={track} className="accent-teal-600" />
+              <input
+                type="checkbox"
+                name="tracks"
+                value={track}
+                className="accent-teal-600"
+                aria-describedby="v-tracks-hint"
+              />
               {track}
             </label>
           ))}
         </div>
+        <span id="v-tracks-hint" className={hintClass}>
+          Pick both if your work spans them. The more you tick, the more we have
+          to match you against.
+        </span>
       </fieldset>
 
       <div className="sm:col-span-2">
@@ -200,7 +226,13 @@ export function VolunteerForm() {
           required
           maxLength={400}
           placeholder="e.g. Diffusion Models, Protein Folding, QM/MM, DFT, Bayesian Methods, MLIPs"
+          aria-describedby="v-expertise-hint"
         />
+        <span id="v-expertise-hint" className={hintClass}>
+          Comma-separated keywords. This is the field we actually match papers
+          against, so specific beats broad — &ldquo;free energy perturbation&rdquo; is
+          more useful to us than &ldquo;chemistry&rdquo;.
+        </span>
       </div>
 
       <div className="sm:col-span-2">
@@ -218,7 +250,8 @@ export function VolunteerForm() {
           aria-describedby="v-profileUrl-hint"
         />
         <span id="v-profileUrl-hint" className={hintClass}>
-          Google Scholar preferred; LinkedIn, GitHub or a personal website also fine.
+          Somewhere we can see your recent work. Google Scholar is ideal;
+          LinkedIn, GitHub or a personal page are all fine.
         </span>
       </div>
 
