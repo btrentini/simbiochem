@@ -70,7 +70,8 @@ export function SponsorForm({ compact = false }: { compact?: boolean }) {
           Thank you for your interest
         </p>
         <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-teal-900/80">
-          A member of SIMBIOCHEM&rsquo;s organiser team will be in touch.
+          Your message is with the organising team, and one of us will read it
+          properly and get back to you. Thank you for thinking of SIMBIOCHEM.
         </p>
       </div>
     );

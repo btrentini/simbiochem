@@ -76,7 +76,7 @@ export function VolunteerForm() {
       formEl.reset();
       setStatus("sent");
       setMessage(
-        "Thank you for offering to help. The organisers read every submission, and will reach out if your expertise is a good match for what comes in.",
+        "Your details are with the organising team. We read every one, and once submissions are in we will get in touch where someone's expertise lines up well with the papers we receive. Either way, thank you for offering your time — it is what keeps the workshop running.",
       );
     } catch {
       setStatus("error");
@@ -93,7 +93,7 @@ export function VolunteerForm() {
         aria-live="polite"
         className="rounded-2xl border border-teal-200 bg-teal-50 p-8 text-center outline-none"
       >
-        <p className="display text-xl font-semibold text-teal-800">Thank you for your interest</p>
+        <p className="display text-xl font-semibold text-teal-800">Thank you for offering to help</p>
         <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-teal-900/80">{message}</p>
       </div>
     );

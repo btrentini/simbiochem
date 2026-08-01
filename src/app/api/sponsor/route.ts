@@ -53,14 +53,8 @@ async function readJsonBody(request: NextRequest): Promise<unknown> {
 }
 
 export async function POST(request: NextRequest) {
-  if (!serverEnv.SPONSOR_ENABLED || !mailConfigured()) {
-    return json(
-      {
-        error:
-          "The enquiry form is not available right now. Please email workshop@simbiochem.com instead.",
-      },
-      503,
-    );
+  if (!serverEnv.SPONSOR_ENABLED) {
+    return json({ error: "Sponsorship enquiries are not currently open." }, 503);
   }
 
   if (!hasAllowedOrigin(request)) {
@@ -95,23 +89,33 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  try {
-    // Email is the delivery mechanism the organisers actually watch. The
-    // spreadsheet, if credentials happen to be configured, is a best-effort
-    // second copy — never let it fail the request.
-    await sendSponsorEnquiry(parsed.data);
-    void appendSponsorEnquiry(parsed.data).catch((err) =>
-      console.warn("Sponsor enquiry emailed but not logged to Sheets", err),
-    );
-    return json({ ok: true }, 201);
-  } catch (error) {
-    console.error("Unable to send sponsorship enquiry", error);
-    return json(
-      {
-        error:
-          "Your message could not be sent. Please email workshop@simbiochem.com instead.",
-      },
-      503,
-    );
+  // Two independent sinks: the spreadsheet the organisers curate, and the
+  // shared inbox they watch. Both are attempted, and the enquiry counts as
+  // delivered if either lands — losing a sponsor's message because one of
+  // them is misconfigured would be the worst outcome here.
+  const [sheet, mail] = await Promise.allSettled([
+    appendSponsorEnquiry(parsed.data),
+    mailConfigured()
+      ? sendSponsorEnquiry(parsed.data)
+      : Promise.reject(new Error("SMTP is not configured.")),
+  ]);
+
+  if (sheet.status === "rejected") {
+    console.error("Sponsor enquiry: sheet write failed", sheet.reason);
   }
+  if (mail.status === "rejected") {
+    console.error("Sponsor enquiry: email failed", mail.reason);
+  }
+
+  if (sheet.status === "fulfilled" || mail.status === "fulfilled") {
+    return json({ ok: true }, 201);
+  }
+
+  return json(
+    {
+      error:
+        "Your message could not be sent. Please email workshop@simbiochem.com instead.",
+    },
+    503,
+  );
 }
