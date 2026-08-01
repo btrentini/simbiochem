@@ -101,13 +101,6 @@ export const sponsorTiers: SponsorTier[] = [
   },
 ];
 
-/**
- * Stated on the page rather than buried in the letter. A cap that is published
- * is trusted; a cap that is discovered later is a complaint.
- */
-export const sponsorScarcityNote =
-  "A few things are genuinely limited: the day carries at most three short break-time messages in total across all sponsors, there are only a handful of award certificates to name, and anything physical depends on what the NeurIPS venue allows. We allocate these in order of confirmation and tell you where you stand in writing — never after the fact.";
-
 export const sponsorSupports: string[] = [
   "Travel & registration support for students and underrepresented participants",
   "Poster sessions, catering and informal networking",

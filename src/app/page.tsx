@@ -38,7 +38,6 @@ import {
   pastSponsors,
   sponsorCommunityMessage,
   sponsorPrinciples,
-  sponsorScarcityNote,
   sponsorTiers,
   sponsorWays,
 } from "@/content/sponsors";
@@ -419,13 +418,6 @@ export default async function Home() {
             {/* Ways to support */}
             <div className="mt-14">
               <h3 className="display text-2xl font-semibold text-ink">Ways to support</h3>
-              <p className="mt-3 max-w-3xl text-base leading-7 text-slate-1">
-                SIMBIOCHEM is community-driven and independent, and sponsorship is what makes
-                the day possible — getting students and speakers into the room, catering the
-                breaks and poster sessions, prizes for the best work, and a Sydney social event
-                where the real conversations happen. Our current priorities are catering, the
-                social event, and travel support.
-              </p>
               <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {sponsorWays.map(({ title, body, icon }) => {
                   const Icon = SPONSOR_ICONS[icon];
@@ -507,9 +499,6 @@ export default async function Home() {
                   </div>
                 ))}
               </div>
-              <p className="mt-5 max-w-4xl text-xs leading-6 text-slate-2">
-                {sponsorScarcityNote}
-              </p>
             </div>
 
             {/* Invitation to get in touch */}
