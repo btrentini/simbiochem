@@ -181,8 +181,14 @@ function makeAtoms(radius: number, palette: string[], n: number): Atom[] {
   return atoms;
 }
 
-export function HeroPhysics() {
+export function HeroPhysics({ onFirstFrame }: { onFirstFrame?: () => void } = {}) {
   const reduce = useReducedMotion();
+  // Kept in a ref so the draw loop never re-runs when the parent re-renders.
+  // Assigned in an effect, not during render.
+  const firstFrameRef = useRef(onFirstFrame);
+  useEffect(() => {
+    firstFrameRef.current = onFirstFrame;
+  }, [onFirstFrame]);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // null until measured on the client, so we never pick a cast (or load a
   // sprite) before we know which viewport we are on.
@@ -836,6 +842,13 @@ export function HeroPhysics() {
       return { alpha: Math.min(1, t * 2.5), scale: back };
     }
 
+    let announced = false;
+    function announceFirstFrame() {
+      if (announced) return;
+      announced = true;
+      firstFrameRef.current?.();
+    }
+
     function draw() {
       ctx!.clearRect(0, 0, w, h);
 
@@ -876,6 +889,9 @@ export function HeroPhysics() {
           );
         } else {
           drawImageBody(b, b.spec.opacity * enter.alpha, enter.scale, 0, b.vib);
+        }
+        if (b === bodies[0] && enter.alpha > 0.9 && b.img.complete && b.img.naturalWidth > 0) {
+          announceFirstFrame();
         }
       }
     }

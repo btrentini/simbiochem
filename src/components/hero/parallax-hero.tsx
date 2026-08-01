@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -15,10 +15,14 @@ import { ArrowRight, CalendarDays, ChevronDown, MapPin, Users } from "lucide-rea
 
 import { HeroPhysics } from "./hero-physics";
 import logo from "../../../public/simbiochemLogo.png";
+import proteinSeed from "../../../public/hero/protein.png";
 
 export function ParallaxHero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+  const [canvasReady, setCanvasReady] = useState(false);
+  // Stable identity, so HeroPhysics's effect does not re-run on every render.
+  const handleFirstFrame = useCallback(() => setCanvasReady(true), []);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -63,9 +67,36 @@ export function ParallaxHero() {
       <div className="absolute inset-0 -z-30 opacity-20 grid-faint" aria-hidden="true" />
 
       {/* Interactive molecular physics playground. Shown on phones too, where
-          HeroPhysics runs a random pair scaled to the pane. */}
+          HeroPhysics runs a random pair scaled to the pane.
+
+          The canvas cannot draw anything until the client bundle has loaded,
+          and its sprites are requested from JavaScript so the preload scanner
+          never sees them — measured at ~1.9s on 4G against a 0.4s first paint.
+          So the protein is also rendered as a real <img> in the server markup,
+          at the position and size the canvas will place it. It is on screen at
+          first paint with no JavaScript at all, and cross-fades out the moment
+          the canvas has drawn the same body itself. */}
       <div className="pointer-events-none absolute inset-0 -z-20">
-        <HeroPhysics />
+        <Image
+          src={proteinSeed}
+          alt=""
+          priority
+          aria-hidden="true"
+          // Without this next/image serves a 750px variant for a box that is
+          // never wider than 340px — four times the bytes on the one asset that
+          // has to arrive first.
+          sizes="(max-width: 639px) 160px, 340px"
+          className={`absolute -translate-x-1/2 -translate-y-1/2 select-none transition-opacity duration-700 ease-out ${
+            canvasReady ? "opacity-0" : "opacity-90"
+          } left-[74%] top-[15%] sm:top-[50%]`}
+          style={{
+            // Mirrors SPECS[0].size and layout[0] in hero-physics.tsx — the
+            // compact layout puts the protein high, the desktop one centres it.
+            width: "clamp(150px, 23vw, 340px)",
+            height: "auto",
+          }}
+        />
+        <HeroPhysics onFirstFrame={handleFirstFrame} />
       </div>
 
       {/* Left scrim keeps the title readable over moving molecules */}
