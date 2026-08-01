@@ -11,6 +11,42 @@ const inputClass =
 const hintClass = "mt-1 block text-xs font-normal text-slate-2";
 const labelClass = "block text-sm font-medium text-slate-1";
 
+/** Field name -> the label the person actually sees on screen. */
+const FIELD_LABELS: Record<string, string> = {
+  fullName: "Full name",
+  affiliation: "Institution, Department, Role",
+  email: "Institutional email",
+  level: "Current level",
+  tracks: "Preferred tracks",
+  expertise: "Tags of expertise",
+  profileUrl: "Link to your professional profile",
+  agreement: "Acknowledgement",
+};
+
+type Issue = { path?: (string | number)[]; message?: string };
+
+/**
+ * The API returns Zod's issues, which name the offending field. Throwing them
+ * away and showing "Please check the form details" left people re-reading a
+ * form that looked completely correct. Turn them into per-field messages.
+ */
+function describeIssues(issues: Issue[]): string {
+  const seen = new Set<string>();
+  const parts: string[] = [];
+  for (const issue of issues) {
+    const field = String(issue.path?.[0] ?? "");
+    if (!field || seen.has(field)) continue;
+    seen.add(field);
+    // Messages already end in punctuation; do not staple another full stop on.
+    const text = (issue.message ?? "Please check this field.").replace(/\.$/, "");
+    parts.push(`${FIELD_LABELS[field] ?? field} — ${text}`);
+  }
+  if (!parts.length) return "Please check the form details and try again.";
+  return parts.length === 1
+    ? `${parts[0]}.`
+    : `Please check these fields. ${parts.join(". ")}.`;
+}
+
 export function VolunteerForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -67,10 +103,14 @@ export function VolunteerForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = (await response.json()) as { error?: string };
+      const result = (await response.json()) as { error?: string; issues?: Issue[] };
       if (!response.ok) {
         setStatus("error");
-        setMessage(result.error ?? "Your sign-up could not be submitted.");
+        setMessage(
+          result.issues?.length
+            ? describeIssues(result.issues)
+            : (result.error ?? "Your sign-up could not be submitted."),
+        );
         return;
       }
       formEl.reset();
