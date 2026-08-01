@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { appendVolunteer } from "@/lib/google-sheets";
+import { hasAllowedOrigin } from "@/lib/origin";
 import { RateLimiter, clientKey } from "@/lib/rate-limit";
 import { serverEnv } from "@/lib/server-env";
 import { volunteerSchema } from "@/lib/volunteer";
@@ -16,19 +17,6 @@ function json(body: object, status: number, headers?: HeadersInit) {
     status,
     headers: { "Cache-Control": "no-store", ...headers },
   });
-}
-
-function hasAllowedOrigin(request: NextRequest) {
-  const origin = request.headers.get("origin");
-  if (!origin) return false;
-  try {
-    const expectedOrigin = serverEnv.SITE_URL
-      ? new URL(serverEnv.SITE_URL).origin
-      : request.nextUrl.origin;
-    return new URL(origin).origin === expectedOrigin;
-  } catch {
-    return false;
-  }
 }
 
 async function readJsonBody(request: NextRequest): Promise<unknown> {
