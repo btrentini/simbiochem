@@ -85,11 +85,11 @@
 \DeclareOption{sglblindworkshop}{
   \@workshoptrue
   \@anonymousfalse
-  \newcommand{\@trackname}{Accepted as a Workshop Paper at the \@workshoptitle.}
+  \newcommand{\@trackname}{Accepted into the \@workshoptitle.}
 }
 \DeclareOption{dblblindworkshop}{
   \@workshoptrue
-  \newcommand{\@trackname}{Accepted as a Workshop Paper at the \@workshoptitle.}
+  \newcommand{\@trackname}{Accepted into the \@workshoptitle.}
 }
 \DeclareOption{nonanonymous}{
   \@anonymousfalse
@@ -398,9 +398,15 @@
       \@trackname
     }
   \else
-    \newcommand{\@noticestring}{%
-      Submitted to \@neuripsordinal\/ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Do not distribute.%
-    }
+    \if@workshop
+      \newcommand{\@noticestring}{%
+        Submitted to the \@workshoptitle. Do not distribute.%
+      }
+    \else
+      \newcommand{\@noticestring}{%
+        Submitted to \@neuripsordinal\/ Conference on Neural Information Processing Systems (NeurIPS \@neuripsyear). Do not distribute.%
+      }
+    \fi
 
     % hide the acknowledgements
     \NewEnviron{hide}{}

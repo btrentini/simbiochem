@@ -578,16 +578,12 @@ export default function CallForPapersPage() {
                   experiment only if its authors opt in.
                 </li>
                 <li>
-                  • <strong>Voluntary reviewer participation.</strong> Reviewers take part only if
-                  they volunteer.
-                </li>
-                <li>
-                  • <strong>Observational inference.</strong> We study the impact of AI assistance
-                  rather than assume it — measuring effects on review quality and discussion.
-                </li>
-                <li>
                   • <strong>Confidentiality &amp; privacy</strong> are upheld to the highest
                   standards.
+                </li>
+                <li>
+                  • <strong>Disclosure is encouraged.</strong> If you used AI to help write a
+                  review, we would rather you said so.
                 </li>
               </ul>
               <p className="mt-3 text-sm leading-6 text-slate-1">
