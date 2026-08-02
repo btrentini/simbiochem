@@ -77,3 +77,24 @@ export const navLinks: { label: string; href: string }[] = [
   { label: "Venue", href: "/#venue" },
   { label: "Previous Editions", href: "/previous-editions/copenhagen" },
 ];
+
+/**
+ * What the workshop welcomes, and what reviews weigh. Shared verbatim by the
+ * call for papers and the reviewer sign-up so the two cannot drift apart —
+ * authors and reviewers should be reading the same standard.
+ */
+export const submissionEthos = {
+  heading: "What we welcome",
+  paragraphs: [
+    "SIMBIOCHEM is a place for scientific discussion, not only for finished results. We actively welcome early-stage work: methods that look promising but are not yet validated in the lab, partial or negative results others can learn from, and early ideas that could steer where the community goes next.",
+    "Experienced and early-career researchers are equally welcome, from academia and from industry. Work being early is not a mark against it here — we only ask that you are clear about what has been shown and what has not.",
+  ],
+  criteriaIntro:
+    "Academic rigour still applies. Every submission is reviewed on four things:",
+  criteria: [
+    { name: "Novelty", detail: "A new idea, or a genuinely new angle on a known one." },
+    { name: "Impact", detail: "If it holds up, does it matter to the field?" },
+    { name: "Correctness", detail: "Are the claims supported by what is actually shown?" },
+    { name: "Clarity", detail: "Can a reader follow the method and the reasoning?" },
+  ],
+} as const;

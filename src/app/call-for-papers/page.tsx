@@ -18,7 +18,7 @@ import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { advisors, organizers } from "@/content/people";
-import { importantDates, site } from "@/content/site";
+import { importantDates, site, submissionEthos } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Call for Papers",
@@ -216,6 +216,31 @@ export default function CallForPapersPage() {
               <p className="mt-5 text-base leading-7 text-slate-1">
                 Submission is entirely electronic, via the SIMBIOCHEM venue on OpenReview.
               </p>
+
+              <div className="mt-7 rounded-2xl border border-teal-200 bg-teal-50/60 p-6">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="size-5 text-teal-700" />
+                  <p className="text-base font-semibold text-teal-800">
+                    {submissionEthos.heading}
+                  </p>
+                </div>
+                {submissionEthos.paragraphs.map((para) => (
+                  <p key={para.slice(0, 24)} className="mt-3 text-sm leading-6 text-slate-1">
+                    {para}
+                  </p>
+                ))}
+                <p className="mt-4 text-sm leading-6 text-slate-1">
+                  {submissionEthos.criteriaIntro}
+                </p>
+                <dl className="mt-3 grid gap-2 sm:grid-cols-2">
+                  {submissionEthos.criteria.map((c) => (
+                    <div key={c.name} className="rounded-xl bg-white/70 px-4 py-3">
+                      <dt className="text-sm font-semibold text-brand">{c.name}</dt>
+                      <dd className="mt-0.5 text-xs leading-5 text-slate-2">{c.detail}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             </Reveal>
 
             <div className="mt-8 space-y-6">

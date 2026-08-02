@@ -5,7 +5,7 @@ import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { VolunteerForm } from "@/components/volunteer-form";
-import { site } from "@/content/site";
+import { site, submissionEthos } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Join the Programme Committee",
@@ -74,6 +74,26 @@ export default function VolunteerPage() {
                 way. The organisers read every submission and will reach out if your
                 expertise matches what comes in.
               </p>
+
+              <div className="mt-6 rounded-2xl border border-mist bg-white p-6">
+                <p className="text-sm font-semibold text-ink">{submissionEthos.heading}</p>
+                {submissionEthos.paragraphs.map((para) => (
+                  <p key={para.slice(0, 24)} className="mt-3 text-sm leading-6 text-slate-1">
+                    {para}
+                  </p>
+                ))}
+                <p className="mt-4 text-sm leading-6 text-slate-1">
+                  As a reviewer you would be weighing exactly these four things:
+                </p>
+                <dl className="mt-3 grid gap-2 sm:grid-cols-2">
+                  {submissionEthos.criteria.map((c) => (
+                    <div key={c.name} className="rounded-xl bg-paper px-4 py-3">
+                      <dt className="text-sm font-semibold text-brand">{c.name}</dt>
+                      <dd className="mt-0.5 text-xs leading-5 text-slate-2">{c.detail}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
 
               <div className="mt-6 rounded-2xl border border-teal-200 bg-teal-50/60 p-6">
                 <p className="text-sm font-semibold text-teal-800">What we ask, and what we promise</p>
