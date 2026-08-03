@@ -85,7 +85,7 @@ export const defaultAgenda: Agenda = {
     { id: "break-2", start: "13:45", end: "14:00", title: "Coffee Break + Poster Setup", detail: "Catering provided by sponsors", status: "confirmed", kind: "break", speaker: "" },
     { id: "poster-2", start: "14:00", end: "16:00", title: "Poster Session II", detail: "Catering provided by sponsors", status: "confirmed", kind: "poster", speaker: "" },
     { id: "panel", start: "16:00", end: "16:45", title: "Panel — Agents & Simulations", detail: "Frank Noé · Anthony Costa (NVIDIA) · Kristine Deibler (Novo Nordisk) · Konstantin Hemker (OpenAI)", status: "confirmed", kind: "panel", speaker: "Frank Noé · Anthony Costa · Kristine Deibler · Konstantin Hemker" },
-    { id: "keynote-2", start: "16:45", end: "17:10", title: "Keynote — Max Welling", detail: "CuspAI · AMLab", status: "confirmed", kind: "keynote", speaker: "Max Welling" },
+    { id: "keynote-2", start: "16:45", end: "17:10", title: "Keynote — speaker to be confirmed", detail: "", status: "tentative", kind: "keynote", speaker: "" },
     { id: "closing", start: "17:10", end: "17:30", title: "Best Paper Awards + Closing", detail: "Organisers", status: "confirmed", kind: "ceremony", speaker: "" },
     { id: "social", start: "18:30", end: "21:00", title: "Optional Social Event", detail: "Further networking, supported by sponsors", status: "tentative", kind: "social", speaker: "" },
   ],

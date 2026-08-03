@@ -199,13 +199,30 @@ export default async function Home() {
             <div className="mt-12 grid gap-5 sm:grid-cols-2">
               {keynotes.map((s) => (
                 <Reveal key={s.name}>
-                  <ProfileCard
-                    name={s.name}
-                    affiliation={s.affiliation}
-                    role="Keynote speaker"
-                    bio={s.blurb}
-                    kind="keynote"
-                  />
+                  {s.placeholder ? (
+                    <div className="flex h-full w-full items-center gap-4 rounded-2xl border border-dashed border-mist bg-paper/60 p-4">
+                      <span className="flex size-[52px] shrink-0 items-center justify-center rounded-full border border-dashed border-slate-4 text-slate-3">
+                        <Users className="size-5" />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="text-[0.62rem] font-semibold uppercase tracking-wide text-slate-3">
+                          Keynote
+                        </span>
+                        <span className="block font-semibold text-slate-2">{s.name}</span>
+                        <span className="block truncate text-sm text-slate-3">
+                          {s.affiliation}
+                        </span>
+                      </span>
+                    </div>
+                  ) : (
+                    <ProfileCard
+                      name={s.name}
+                      affiliation={s.affiliation}
+                      role="Keynote speaker"
+                      bio={s.blurb}
+                      kind="keynote"
+                    />
+                  )}
                 </Reveal>
               ))}
             </div>

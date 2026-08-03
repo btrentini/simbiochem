@@ -7,6 +7,9 @@ export type Speaker = {
   image?: string;
   /** Optional one-line note shown in the floating profile. */
   blurb?: string;
+  /** A slot that is announced but not yet filled — rendered as a placeholder,
+   *  not as a clickable profile with nobody behind it. */
+  placeholder?: boolean;
 };
 
 export const speakers: Speaker[] = [
@@ -19,12 +22,11 @@ export const speakers: Speaker[] = [
       "Frank Noé is a Partner Research Manager at Microsoft Research AI for Science in Berlin, and holds an honorary professorship at Freie Universität Berlin. He co-pioneered Markov state modelling for molecular kinetics, and led the work on Boltzmann Generators, which sample equilibrium states with deep learning. With his team at Microsoft Research he developed BioEmu, a generative model of protein equilibrium ensembles published in Science in 2025. His work sits close to our theme of conformational ensembles, kinetics and rare events.",
   },
   {
-    name: "Max Welling",
-    affiliation: "CuspAI · AMLab, University of Amsterdam",
+    name: "To be confirmed",
+    affiliation: "Second keynote — announcement to follow",
     role: "Keynote",
-    status: "confirmed",
-    blurb:
-      "Max Welling is professor of machine learning at the University of Amsterdam, where he heads the Amsterdam Machine Learning Lab. He is also a co-founder of CuspAI, which works on AI for materials discovery. With Diederik Kingma he introduced the variational autoencoder, and his graph and equivariant neural networks are building blocks for models of molecules and materials. That work on symmetry and generative modelling speaks to our themes of learned potentials and molecular foundation models.",
+    status: "tentative",
+    placeholder: true,
   },
   {
     name: "Yu-Shan Lin",
