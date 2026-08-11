@@ -7,11 +7,11 @@ import { ArrowUpRight, ShieldAlert, X } from "lucide-react";
 import { site } from "@/content/site";
 
 const CONFLICTS = [
-  "You work at the same institution as the author, or did recently.",
-  "You have co-authored with them in the last three years.",
-  "You were their advisor or their student, at any point.",
-  "You are family, or close personal friends.",
-  "You have a financial interest in the work.",
+  "Your Education & Career History shows the same affiliation within the past three years (a domain conflict).",
+  "You are family or have a close personal relationship.",
+  "You have a PhD advisor–advisee relationship in either direction.",
+  "You co-authored an original research article within the past three years; perspective pieces do not count.",
+  "Another relationship would significantly compromise the fairness of the review.",
 ];
 
 /**

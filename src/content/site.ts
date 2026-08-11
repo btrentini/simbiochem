@@ -22,7 +22,7 @@ export const site = {
   openReviewUrl:
     "https://openreview.net/group?id=NeurIPS.cc/2026/Workshop/Simbiochem&referrer=%5BHomepage%5D(%2F)",
   openReviewShort: "NeurIPS.cc/2026/Workshop/Simbiochem",
-  neuripsCoiGuide: "https://neurips.cc/public/guides/ConflictsOfInterest",
+  neuripsCoiGuide: "https://neurips.cc/Conferences/2026/MainTrackHandbook#Conflicts-of-Interest",
   neuripsWorkshopGuide: "https://neurips.cc/Conferences/2026/WorkshopsGuidance",
 } as const;
 

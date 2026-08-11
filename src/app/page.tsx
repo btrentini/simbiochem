@@ -319,8 +319,10 @@ export default async function Home() {
                 <div className="mt-6 flex items-start gap-2 rounded-xl border border-emphasis-500/30 bg-emphasis-600/10 p-4 text-sm text-slate-200">
                   <ShieldAlert className="mt-0.5 size-4 shrink-0 text-emphasis-500" />
                   <p>
-                    This year NeurIPS requires COI disclosure — including a shared affiliation or
-                    even a mild friendship with the organising or advisory committees.{" "}
+                    NeurIPS distinguishes domain conflicts (affiliations within the past three
+                    years) from personal conflicts. Organisers and anyone with a personal conflict
+                    with an organiser cannot submit; a shared affiliation alone does not make a
+                    submission ineligible.{" "}
                     <Link href="/call-for-papers#coi" className="font-semibold text-white underline">
                       Read the COI policy
                     </Link>

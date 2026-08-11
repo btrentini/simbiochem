@@ -17,7 +17,7 @@ import {
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { advisors, organizers } from "@/content/people";
+import { organizers } from "@/content/people";
 import { importantDates, site, submissionEthos } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -26,11 +26,6 @@ export const metadata: Metadata = {
     "Submit to SIMBIOCHEM II at NeurIPS 2026: non-archival 5–8 page papers on ML for molecular simulation. Anonymised PDFs on OpenReview by 29 August 2026.",
   alternates: { canonical: "/call-for-papers" },
 };
-
-const committee = [
-  ...organizers.map((p) => ({ name: p.name, affiliation: p.affiliation })),
-  ...advisors.map((p) => ({ name: p.name, affiliation: p.affiliation })),
-];
 
 const steps = [
   { href: "#about", label: "About" },
@@ -453,46 +448,41 @@ export default function CallForPapersPage() {
                 <p className="eyebrow text-emphasis-600">Required this year — taken seriously</p>
               </div>
               <p className="mt-5 text-base leading-7 text-slate-1">
-                This year, NeurIPS requires disclosure of conflicts of interest. In OpenReview you
-                will be required to mark whether{" "}
-                <strong>any author, co-author, or collaborator</strong> — including anyone named in
-                the acknowledgements, and anyone connected through{" "}
-                <strong>grants or funding</strong> — has <strong>any relationship</strong>, even a
-                mild friendship, with anyone on the{" "}
-                <strong>organising or advisory committees</strong>.{" "}
-                <strong>This explicitly includes sharing the same affiliation</strong> (same current
-                or recent institution) as a committee member.
+                NeurIPS 2026 distinguishes <strong>domain conflicts</strong>, which come from the
+                past three years of Education &amp; Career History, from{" "}
+                <strong>personal conflicts</strong> with individuals. Keep every author&rsquo;s
+                OpenReview profile current so these declarations can support conflict-safe review
+                assignment.
               </p>
             </Reveal>
 
             <div className="mt-8 rounded-2xl border-2 border-emphasis-600/25 bg-white p-6">
               <div className="flex items-center gap-2 text-emphasis-600">
                 <AlertTriangle className="size-5" />
-                <p className="text-sm font-semibold uppercase tracking-wide">Desk-reject notice</p>
+                <p className="text-sm font-semibold uppercase tracking-wide">
+                  Submission eligibility
+                </p>
               </div>
               <p className="mt-3 text-sm leading-6 text-ink">
-                The organisers reserve the right to <strong>desk-reject</strong> a submission where a
-                disclosed (or undisclosed but discoverable) conflict may affect the integrity of the
-                workshop, in line with NeurIPS&rsquo; COI guidelines. Submissions from organisers,
-                and from those with a personal COI to an organiser (their students, postdocs, close
-                collaborators, family or close personal relationships), are <strong>not eligible</strong>.
-                Any attempt to manipulate reviewer assignment through false declarations may result
-                in rejection without review.
+                Under the NeurIPS 2026 workshop guidance, <strong>organisers and anyone with a
+                personal conflict of interest with an organiser may not submit</strong>. NeurIPS
+                gives an organiser&rsquo;s PhD student or postdoc as examples. A shared current or
+                recent institutional affiliation is a domain conflict; it does not by itself make an
+                author ineligible, but the conflicted organiser will not assess that submission.
               </p>
             </div>
 
             <div className="mt-8">
               <h3 className="text-base font-semibold text-ink">
-                In OpenReview, declare — for every committee member — whether you have:
+                How NeurIPS 2026 defines the two types of conflict
               </h3>
               <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-1">
                 {[
-                  ["Same institution (domain conflict)", "A current or recent (past 3 years) shared affiliation — entered via your OpenReview Education & Career History."],
-                  ["PhD advisor / advisee", "A PhD advisor–advisee relationship (in either direction), at any time."],
-                  ["Collaboration or co-authorship", "A current, frequent, or recent (past 3 years) collaboration or co-authorship."],
-                  ["Family or close personal relationship", "A family tie or close personal relationship — including friendship, even a mild one."],
-                  ["Shared grants / funding / acknowledgements", "Shared grants or funding, or being named together in acknowledgements."],
-                  ["Any other fairness-compromising relationship", "Anything else that could compromise the fairness of review. These can be marked confidential, visible only to the chairs."],
+                  ["Domain conflict", "Affiliations in the past three years, entered in OpenReview Education & Career History. Include all affiliations, such as consulting and sabbaticals."],
+                  ["Family or close personal relationship", "This is a personal conflict."],
+                  ["PhD advisor / advisee", "A PhD advisor–advisee relationship in either direction is a personal conflict."],
+                  ["Recent original-research co-authorship", "Co-authorship on an original research article within the past three years is a personal conflict. Perspective pieces do not count."],
+                  ["Other exceptional conflicts", "If another relationship would significantly compromise review fairness, declare it through OpenReview or contact the workshop organisers for guidance."],
                 ].map(([title, body]) => (
                   <li key={title} className="flex gap-3">
                     <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-emphasis-600" />
@@ -527,11 +517,15 @@ export default function CallForPapersPage() {
               <div className="flex items-center gap-2">
                 <Users className="size-5 text-teal-600" />
                 <h3 className="text-base font-semibold text-ink">
-                  Check your COI against every organiser and advisor
+                  Organisers covered by the submission restriction
                 </h3>
               </div>
+              <p className="mt-3 text-sm leading-6 text-slate-1">
+                The restriction on submitting because of a personal conflict applies to the
+                organisers listed below, not to members of the advisory committee.
+              </p>
               <div className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
-                {committee.map((m) => (
+                {organizers.map((m) => (
                   <div
                     key={m.name}
                     className="flex items-baseline justify-between gap-3 border-b border-mist/70 py-1.5"
