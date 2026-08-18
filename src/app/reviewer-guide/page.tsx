@@ -251,8 +251,8 @@ export default function ReviewerGuidePage() {
               </div>
             </div>
             <p className="mt-3 text-sm leading-6 text-slate-1">
-              AI assistance is allowed. It is not encouraged. You remain responsible for every
-              word and score.
+              AI Assistance is allowed (but not encouraged). You remain responsible for every word
+              and score.
             </p>
             <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-1">
               <li>• Use AI only for limited support. For example, organise your notes or proofread.</li>
