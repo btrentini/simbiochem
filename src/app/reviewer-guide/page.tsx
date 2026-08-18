@@ -32,8 +32,8 @@ const scores = [
   {
     name: "Clarity",
     question: "Is the paper easy to understand and assess?",
-    low: "The argument is hard to follow. Key details are unclear. Charts are poorly labelled.",
-    high: "The argument is easy to follow. Claims and limits are clear. Charts are well labelled.",
+    low: "The argument is hard to follow. Key details are unclear. Figures are poorly labelled.",
+    high: "The argument is easy to follow. Claims and limits are clear. Figures are well labelled and self-explanatory. The overall presentation is good, with clean formatting and few typos.",
   },
 ] as const;
 
@@ -42,10 +42,10 @@ const reviewChecklist = [
   "List strengths and weaknesses.",
   "Explain each score.",
   "Give actionable suggestions.",
-  "Aim for at least 5,000 characters.",
+  "Be as comprehensive as possible.",
 ] as const;
 
-const deskReject = [
+const deskRejectFlags = [
   "Clear evidence of substantially AI-generated writing without meaningful author verification.",
   "Duplicate or near-duplicate submissions.",
   "Plagiarism.",
@@ -148,15 +148,19 @@ export default function ReviewerGuidePage() {
             </div>
             <div className="mt-5 grid gap-6 md:grid-cols-2">
               <div>
-                <h3 className="font-semibold text-emphasis-600">Recommend desk rejection</h3>
-                <TickList items={deskReject} />
+                <h3 className="font-semibold text-emphasis-600">Flag to the organisers</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-1">
+                  Do not make the desk-rejection decision yourself. Flag the submission in
+                  OpenReview. The organisers will review it and decide.
+                </p>
+                <TickList items={deskRejectFlags} />
               </div>
               <div>
                 <h3 className="font-semibold text-teal-700">Do not desk reject for</h3>
                 <TickList items={doNotDeskReject} />
                 <p className="mt-5 text-sm leading-6 text-slate-1">
-                  Focus on the main 5–8 pages. You may stop after page 8. Read appendices only when
-                  needed to assess a claim.
+                  Focus on the main 5–8 pages. You may stop after page 8. Reading appendices is
+                  optional. Read them only when needed to assess a claim.
                 </p>
               </div>
             </div>
@@ -171,11 +175,10 @@ export default function ReviewerGuidePage() {
                 ]}
               />
               <a
-                href="/templates/simbiochem-neurips-2026-template.zip"
-                download
+                href="/call-for-papers#templates"
                 className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 hover:text-teal-800"
               >
-                Download the suggested template <ExternalLink className="size-4" />
+                Check the suggested template <ExternalLink className="size-4" />
               </a>
             </div>
           </section>
@@ -225,10 +228,11 @@ export default function ReviewerGuidePage() {
             <div className="mt-5 rounded-xl border border-teal-200 bg-teal-50/60 p-4">
               <h3 className="font-semibold text-teal-800">Keep the workshop context in mind</h3>
               <p className="mt-2 text-sm leading-6 text-slate-1">
-                This is a specialist workshop, not the main conference. Ideas can score well without
-                extensive benchmarks or laboratory validation. A well-founded early idea can steer
-                discussion and future work. The evidence must still support the stated claims.
-                Methods must be sound. Limitations must be clear. Research integrity is essential.
+                This is a specialist workshop, not the main conference. It is primarily a
+                machine-learning workshop. Ideas can score well without extensive benchmarks or
+                even lab validation. A well-founded early idea can steer discussion and future work.
+                The evidence must still support the stated claims. Methods must be sound.
+                Limitations must be clear. Research integrity is essential.
               </p>
               <p className="mt-2 text-sm leading-6 text-slate-1">
                 Do not lower the Clarity score only because extensive baselines or benchmarks are
@@ -252,10 +256,10 @@ export default function ReviewerGuidePage() {
             </p>
             <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-1">
               <li>• Use AI only for limited support. For example, organise your notes or proofread.</li>
-              <li>• Never upload confidential content to an unauthorised service.</li>
+              <li>• Do not upload confidential content to a service that retains data. This includes free versions of popular chatbots.</li>
+              <li>• Only use a secure chatbot if the content will not be used for training, stored in its memory or exposed to other users.</li>
               <li>• Do not outsource reading, judgement or review writing.</li>
-              <li>• Verify every claim. No separate AI-assistance note is required.</li>
-              <li>• Complete the three required OpenReview checkboxes before submission.</li>
+              <li>• Verify every claim.</li>
             </ul>
           </section>
 
