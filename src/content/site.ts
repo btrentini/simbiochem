@@ -90,11 +90,10 @@ export const submissionEthos = {
     "Experienced and early-career researchers are equally welcome, from academia and from industry. Work being early is not a mark against it here — we only ask that you are clear about what has been shown and what has not.",
   ],
   criteriaIntro:
-    "Academic rigour still applies. Every submission is reviewed on four things:",
+    "Academic rigour still applies. Each paper receives three scores from 1 (poor) to 5 (excellent):",
   criteria: [
-    { name: "Novelty", detail: "A new idea, or a genuinely new angle on a known one." },
-    { name: "Impact", detail: "If it holds up, does it matter to the field?" },
-    { name: "Correctness", detail: "Are the claims supported by what is actually shown?" },
-    { name: "Clarity", detail: "Can a reader follow the method and the reasoning?" },
+    { name: "Novelty", detail: "Does the paper present a genuinely new idea, direction or perspective?" },
+    { name: "Clarity", detail: "Is the paper easy to understand and assess? Are its claims, limits and figures clear?" },
+    { name: "Impact", detail: "Could the work meaningfully influence future research or practice?" },
   ],
 } as const;

@@ -11,7 +11,6 @@ import {
   Presentation,
   ShieldAlert,
   Sparkles,
-  Users,
 } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
@@ -227,7 +226,7 @@ export default function CallForPapersPage() {
                 <p className="mt-4 text-sm leading-6 text-slate-1">
                   {submissionEthos.criteriaIntro}
                 </p>
-                <dl className="mt-3 grid gap-2 sm:grid-cols-2">
+                <dl className="mt-3 grid gap-2 md:grid-cols-3">
                   {submissionEthos.criteria.map((c) => (
                     <div key={c.name} className="rounded-xl bg-white/70 px-4 py-3">
                       <dt className="text-sm font-semibold text-brand">{c.name}</dt>
@@ -337,7 +336,7 @@ export default function CallForPapersPage() {
               <div className="flex items-center gap-2 text-emphasis-600">
                 <EyeOff className="size-5" />
                 <p className="text-sm font-semibold uppercase tracking-wide">
-                  Anonymise carefully — desk-reject otherwise
+                  Anonymise carefully
                 </p>
               </div>
               <ul className="mt-3 space-y-2 text-sm leading-6 text-ink">
@@ -350,8 +349,7 @@ export default function CallForPapersPage() {
                   websites, and images/figures (or their metadata) that could reveal your identity.
                 </li>
                 <li>
-                  • <strong>Failing to submit an anonymised paper will cause desk rejection.</strong>{" "}
-                  Acknowledgements may be added only in the camera-ready version after acceptance.
+                  • Acknowledgements may be added only in the camera-ready version after acceptance.
                 </li>
                 <li>
                   • Because the workshop is <strong>non-archival</strong>, reviewers are explicitly
@@ -360,6 +358,9 @@ export default function CallForPapersPage() {
                   that could deanonymise you.
                 </li>
               </ul>
+              <p className="mt-4 text-sm font-semibold text-emphasis-700">
+                Non-anonymous papers will be desk-rejected.
+              </p>
             </div>
 
             {/* Research integrity */}
@@ -371,12 +372,15 @@ export default function CallForPapersPage() {
                 </p>
               </div>
               <p className="mt-3 text-sm leading-6 text-ink">
-                Authors must comply with research-integrity guidelines. Submitting the same paper
-                more than once — tweaked duplicates, or multiple versions of the same work — is
-                misconduct. <strong>We run mechanisms to detect this</strong>, and any such attempt
-                (or any other attempt to outsmart the review process) will be reported to the
-                organisers, <strong>OpenReview and NeurIPS as misconduct</strong>, and will be
-                desk-rejected.
+                This year, we will take attempts to outsmart the review process very seriously.
+                Duplicate and near-duplicate submissions are easy for us to identify. They waste
+                reviewers&rsquo; time and damage trust in our community. They may be desk-rejected
+                and reported to the organisers, OpenReview and NeurIPS as misconduct.
+              </p>
+              <p className="mt-3 text-sm leading-6 text-ink">
+                Please be mindful of everyone&rsquo;s time. Submit one clear paper for one body of
+                work, and help us make SIMBIOCHEM a welcoming and enjoyable community to
+                collaborate with.
               </p>
             </div>
 
@@ -442,59 +446,61 @@ export default function CallForPapersPage() {
         <section id="coi" className="scroll-mt-20 border-y border-mist bg-paper">
           <div className="mx-auto max-w-4xl px-5 py-16 lg:px-8">
             <Reveal>
-              <StepHeading n={3} title="Declare your conflicts of interest" />
+              <StepHeading n={3} title="Check conflicts of interest" />
               <div className="mt-4 flex items-center gap-2">
-                <ShieldAlert className="size-5 text-emphasis-600" />
-                <p className="eyebrow text-emphasis-600">Required this year — taken seriously</p>
+                <ShieldAlert className="size-5 text-teal-600" />
+                <p className="eyebrow text-teal-700">Complete before submission</p>
               </div>
               <p className="mt-5 text-base leading-7 text-slate-1">
-                NeurIPS 2026 distinguishes <strong>domain conflicts</strong>, which come from the
-                past three years of Education &amp; Career History, from{" "}
-                <strong>personal conflicts</strong> with individuals. Keep every author&rsquo;s
-                OpenReview profile current so these declarations can support conflict-safe review
-                assignment.
+                Declare relevant conflicts before submission. This helps us assign reviewers
+                fairly.
               </p>
             </Reveal>
 
-            <div className="mt-8 rounded-2xl border-2 border-emphasis-600/25 bg-white p-6">
-              <div className="flex items-center gap-2 text-emphasis-600">
-                <AlertTriangle className="size-5" />
-                <p className="text-sm font-semibold uppercase tracking-wide">
-                  Submission eligibility
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <div className="rounded-2xl border border-mist bg-white p-6">
+                <h3 className="text-base font-semibold text-ink">Domain conflicts</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-1">
+                  Keep every author&rsquo;s OpenReview profile up to date. This helps us avoid
+                  assigning a reviewer with a potential conflict of interest.
                 </p>
               </div>
-              <p className="mt-3 text-sm leading-6 text-ink">
-                Under the NeurIPS 2026 workshop guidance, <strong>organisers and anyone with a
-                personal conflict of interest with an organiser may not submit</strong>. NeurIPS
-                gives an organiser&rsquo;s PhD student or postdoc as examples. A shared current or
-                recent institutional affiliation is a domain conflict; it does not by itself make an
-                author ineligible, but the conflicted organiser will not assess that submission.
+              <div className="rounded-2xl border border-mist bg-white p-6">
+                <h3 className="text-base font-semibold text-ink">Personal conflicts</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-1">
+                  Declare family or close personal relationships, PhD adviser–advisee relationships,
+                  and original-research co-authorship within the past three years. Disclose any
+                  other relationship that could compromise review fairness. If unsure, contact us.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-teal-200 bg-teal-50/60 p-6">
+              <h3 className="text-base font-semibold text-teal-800">Submission eligibility</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-1">
+                Workshop organisers and anyone with a personal conflict with an organiser may not
+                submit. A shared affiliation does not by itself mean that an author has a personal
+                conflict with an organiser, nor does it prevent submission. Keeping affiliations
+                up to date in OpenReview helps us assign reviewers fairly. Please indicate a
+                potential conflict of interest with the organising committee if you are closely
+                related to anyone listed below.
               </p>
-            </div>
-
-            <div className="mt-8">
-              <h3 className="text-base font-semibold text-ink">
-                How NeurIPS 2026 defines the two types of conflict
-              </h3>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-1">
-                {[
-                  ["Domain conflict", "Affiliations in the past three years, entered in OpenReview Education & Career History. Include all affiliations, such as consulting and sabbaticals."],
-                  ["Family or close personal relationship", "This is a personal conflict."],
-                  ["PhD advisor / advisee", "A PhD advisor–advisee relationship in either direction is a personal conflict."],
-                  ["Recent original-research co-authorship", "Co-authorship on an original research article within the past three years is a personal conflict. Perspective pieces do not count."],
-                  ["Other exceptional conflicts", "If another relationship would significantly compromise review fairness, declare it through OpenReview or contact the workshop organisers for guidance."],
-                ].map(([title, body]) => (
-                  <li key={title} className="flex gap-3">
-                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-emphasis-600" />
-                    <span>
-                      <strong className="text-ink">{title}.</strong> {body}
+              <div className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+                {organizers.map((organizer) => (
+                  <div
+                    key={organizer.name}
+                    className="flex items-baseline justify-between gap-3 border-b border-teal-200/70 py-1.5"
+                  >
+                    <span className="text-sm font-medium text-ink">{organizer.name}</span>
+                    <span className="text-right text-xs text-slate-2">
+                      {organizer.affiliation}
                     </span>
-                  </li>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href={site.neuripsCoiGuide}
                 target="_blank"
@@ -512,30 +518,6 @@ export default function CallForPapersPage() {
                 NeurIPS 2026 workshops guidance <ArrowUpRight className="size-4" />
               </a>
             </div>
-
-            <div className="mt-10 rounded-2xl border border-mist bg-white p-6">
-              <div className="flex items-center gap-2">
-                <Users className="size-5 text-teal-600" />
-                <h3 className="text-base font-semibold text-ink">
-                  Organisers covered by the submission restriction
-                </h3>
-              </div>
-              <p className="mt-3 text-sm leading-6 text-slate-1">
-                The restriction on submitting because of a personal conflict applies to the
-                organisers listed below, not to members of the advisory committee.
-              </p>
-              <div className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
-                {organizers.map((m) => (
-                  <div
-                    key={m.name}
-                    className="flex items-baseline justify-between gap-3 border-b border-mist/70 py-1.5"
-                  >
-                    <span className="text-sm font-medium text-ink">{m.name}</span>
-                    <span className="text-right text-xs text-slate-2">{m.affiliation}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
@@ -551,15 +533,15 @@ export default function CallForPapersPage() {
                 <h3 className="text-base font-semibold text-ink">Review process</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-1">
                   Up to three double-blind reviews per submission, with reviewer loads capped at
-                  three. Approve/reject recommendations are required; detailed comments are
-                  encouraged. <strong>There is no rebuttal phase.</strong>
+                  three. Reviewers score <strong>Novelty, Clarity and Impact from 1 to 5</strong> and
+                  provide detailed comments. <strong>There is no rebuttal phase.</strong>
                 </p>
               </div>
               <div className="rounded-2xl border border-mist bg-white p-6">
                 <h3 className="text-base font-semibold text-ink">Recognition &amp; prizes</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-1">
                   Best papers are selected by the organisers and advisors on{" "}
-                  <strong>novelty, impact and presentation</strong>. The committee is reaching out to
+                  <strong>Novelty, Clarity and Impact</strong>. The committee is reaching out to
                   sponsors and journals about additional prizes and fast-track opportunities.
                 </p>
               </div>
@@ -577,40 +559,36 @@ export default function CallForPapersPage() {
               </div>
             </div>
 
-            {/* Use of AI in reviewing */}
+            {/* Use of AI in papers and reviewing */}
             <div className="mt-8 rounded-2xl border border-mist bg-white p-6">
               <div className="flex items-center gap-2">
                 <Sparkles className="size-5 text-teal-600" />
-                <h3 className="text-base font-semibold text-ink">Use of AI in reviewing</h3>
+                <h3 className="text-base font-semibold text-ink">Use of AI in papers and reviews</h3>
               </div>
               <p className="mt-2 text-sm leading-6 text-slate-1">
-                Reviewers may use AI to assist their reviews in accordance with NeurIPS guidelines,
-                under these guiding principles:
+                AI assistance is allowed under NeurIPS guidelines, but it is not encouraged.
+                Research integrity remains central.
               </p>
-              <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-1">
-                <li>
-                  • <strong>Human judgement is augmented, not replaced.</strong> The tool assists
-                  reviewers and does not replace any human in the review process.
-                </li>
-                <li>
-                  • <strong>Informed author consent.</strong> A paper is included in any AI-assistance
-                  experiment only if its authors opt in.
-                </li>
-                <li>
-                  • <strong>Confidentiality &amp; privacy</strong> are upheld to the highest
-                  standards.
-                </li>
-                <li>
-                  • <strong>Disclosure is encouraged.</strong> If you used AI to help write a
-                  review, we would rather you said so.
-                </li>
-              </ul>
-              <p className="mt-3 text-sm leading-6 text-slate-1">
-                Reviewers are expected to be fair, to <strong>stick to the paper</strong> under
-                review, and <strong>not to search for information that could identify authors</strong>.
-                We encourage using AI wisely per NeurIPS guidelines. Papers that are clearly
-                AI-generated and of poor quality may be desk-rejected. If authors believe a reviewer
-                used AI unwisely, they may report the review to the organisers.
+              <div className="mt-4 grid gap-5 md:grid-cols-2">
+                <div className="rounded-xl bg-paper p-4">
+                  <h4 className="text-sm font-semibold text-brand">Authors</h4>
+                  <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-1">
+                    <li>• Disclose AI when it significantly contributes to writing, deriving new theory or experimentation.</li>
+                    <li>• Submit in good faith. You remain responsible for every claim, result and sentence.</li>
+                  </ul>
+                </div>
+                <div className="rounded-xl bg-paper p-4">
+                  <h4 className="text-sm font-semibold text-brand">Reviewers</h4>
+                  <p className="mt-2 text-sm leading-6 text-slate-1">
+                    Reviewers receive specific guidelines. Before submitting each review, they
+                    confirm in OpenReview that they have read the paper, take responsibility for
+                    their words and accept accountability for the review.
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-6 text-slate-1">
+                AI is an important tool. We still put research integrity first. We want this
+                community to grow in knowledge, judgement and skill.
               </p>
             </div>
           </div>

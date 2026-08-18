@@ -10,7 +10,7 @@ const CONFLICTS = [
   "Your Education & Career History shows the same affiliation within the past three years (a domain conflict).",
   "You are family or have a close personal relationship.",
   "You have a PhD advisor–advisee relationship in either direction.",
-  "You co-authored an original research article within the past three years; perspective pieces do not count.",
+  "You co-authored an original research article within the past three years.",
   "Another relationship would significantly compromise the fairness of the review.",
 ];
 

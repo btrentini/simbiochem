@@ -83,9 +83,9 @@ export default function VolunteerPage() {
                   </p>
                 ))}
                 <p className="mt-4 text-sm leading-6 text-slate-1">
-                  As a reviewer you would be weighing exactly these four things:
+                  As a reviewer, you would score these same three criteria from 1 to 5:
                 </p>
-                <dl className="mt-3 grid gap-2 sm:grid-cols-2">
+                <dl className="mt-3 grid gap-2 md:grid-cols-3">
                   {submissionEthos.criteria.map((c) => (
                     <div key={c.name} className="rounded-xl bg-paper px-4 py-3">
                       <dt className="text-sm font-semibold text-brand">{c.name}</dt>
