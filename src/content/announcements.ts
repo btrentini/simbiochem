@@ -1,3 +1,5 @@
+import { deadlines } from "@/content/site";
+
 export type Announcement = {
   date: string;
   tag: string;
@@ -15,9 +17,9 @@ export const announcements: Announcement[] = [
     tone: "accent",
   },
   {
-    date: "Open now",
+    date: "Extended",
     tag: "Call for papers",
-    title: "Submissions are open — deadline 29 August 2026, 11:59 PM UTC.",
+    title: `Submission deadline extended to ${deadlines.submission} (AoE).`,
     href: "/call-for-papers",
     tone: "accent",
   },

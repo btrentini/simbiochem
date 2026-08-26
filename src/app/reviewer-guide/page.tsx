@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { AlertTriangle, Award, Check, ExternalLink, Scale, Sparkles } from "lucide-react";
+import { AlertTriangle, Award, CalendarClock, Check, ExternalLink, Scale, Sparkles } from "lucide-react";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { site } from "@/content/site";
+import { deadlines, site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "SIMBIOCHEM Review Process",
@@ -107,6 +107,29 @@ export default function ReviewerGuidePage() {
             </div>
           </section>
 
+          <section className="rounded-2xl border border-teal-200 bg-teal-50/60 p-6 sm:p-8">
+            <div className="flex items-start gap-4">
+              <div className="rounded-full bg-teal-100 p-2.5">
+                <CalendarClock className="size-6 text-teal-700" aria-hidden="true" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="eyebrow text-teal-700">Key dates</p>
+                <h2 className="display mt-2 text-xl font-semibold text-brand">
+                  Submit all reviews by {deadlines.review} (AoE)
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-slate-1">
+                  This gives the organisers time to make acceptance decisions and select the
+                  spotlight papers.
+                </p>
+                <ul className="mt-4 grid gap-2 text-sm leading-6 text-slate-1 sm:grid-cols-2">
+                  <li>• Submissions close: {deadlines.submission} (AoE)</li>
+                  <li>• Reviews due: {deadlines.review} (AoE)</li>
+                  <li>• Acceptance decisions: {deadlines.decisions} (AoE)</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
           <section className="rounded-2xl border border-mist bg-white p-6 sm:p-8">
             <p className="eyebrow">Step 1</p>
             <h2 className="display mt-2 text-2xl font-semibold text-brand">Plan your time</h2>
@@ -114,7 +137,8 @@ export default function ReviewerGuidePage() {
               You&rsquo;ll receive at least two and no more than three papers for review.
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-1">
-              Reserve at least one full day for each paper. More time is better.
+              Reserve at least one full day for each paper. More time is better. Submit every
+              review by {deadlines.review} (AoE).
             </p>
           </section>
 

@@ -17,12 +17,12 @@ import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { organizers } from "@/content/people";
-import { importantDates, site, submissionEthos } from "@/content/site";
+import { deadlines, importantDates, site, submissionEthos } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Call for Papers",
   description:
-    "Submit to SIMBIOCHEM II at NeurIPS 2026: non-archival 5–8 page papers on ML for molecular simulation. Anonymised PDFs on OpenReview by 29 August 2026.",
+    `Submit to SIMBIOCHEM II at NeurIPS 2026: non-archival 5–8 page papers on ML for molecular simulation. Anonymised PDFs on OpenReview by ${deadlines.submission} AoE.`,
   alternates: { canonical: "/call-for-papers" },
 };
 
@@ -109,7 +109,7 @@ export default function CallForPapersPage() {
             <div className="mt-7 flex flex-wrap items-center gap-4">
               <OpenReviewButton light />
               <p className="text-sm text-slate-300">
-                Deadline <strong className="text-white">29 August 2026, 11:59 PM UTC</strong>
+                Deadline <strong className="text-white">{deadlines.submission} (AoE)</strong>
               </p>
             </div>
             <nav className="mt-8 flex flex-wrap gap-2" aria-label="Sections">
@@ -147,8 +147,7 @@ export default function CallForPapersPage() {
               ))}
             </div>
             <p className="mt-4 text-sm text-slate-2">
-              Camera-ready (accepted papers only): after notification — the exact date is announced
-              with decisions. All deadlines are on OpenReview.
+              Submission and acceptance-decision deadlines are AoE.
             </p>
           </div>
         </section>
@@ -614,7 +613,7 @@ export default function CallForPapersPage() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <OpenReviewButton light />
               <p className="text-sm text-slate-400">
-                Deadline 29 August 2026, 11:59 PM UTC · questions to{" "}
+                Deadline {deadlines.submission} (AoE) · questions to{" "}
                 <a href={`mailto:${site.contactEmail}`} className="text-teal-300">
                   {site.contactEmail}
                 </a>

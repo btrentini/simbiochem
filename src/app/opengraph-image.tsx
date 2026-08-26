@@ -3,6 +3,8 @@ import { join } from "node:path";
 
 import { ImageResponse } from "next/og";
 
+import { deadlines } from "@/content/site";
+
 // Needs the Node runtime to read the logo off disk.
 export const runtime = "nodejs";
 
@@ -130,7 +132,7 @@ export default async function Image() {
               fontWeight: 600,
             }}
           >
-            Call for papers open · deadline 29 Aug 2026
+            Call for papers open · deadline {deadlines.submission} (AoE)
           </div>
         </div>
 

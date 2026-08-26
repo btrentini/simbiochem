@@ -13,6 +13,8 @@ import {
 } from "motion/react";
 import { ArrowRight, CalendarDays, ChevronDown, MapPin, Users } from "lucide-react";
 
+import { deadlines } from "@/content/site";
+
 import { HeroPhysics } from "./hero-physics";
 import logo from "../../../public/simbiochemLogo.png";
 import proteinSeed from "../../../public/hero/protein.png";
@@ -153,7 +155,7 @@ export function ParallaxHero() {
           <div className="mt-6">
             <span className="inline-flex items-center gap-2 rounded-full bg-accent-500/15 px-3 py-1.5 text-xs font-semibold text-accent-300 ring-1 ring-inset ring-accent-500/30">
               <span className="size-1.5 rounded-full bg-accent-400" />
-              Call for papers open · deadline 29 Aug 2026
+              Call for papers open · deadline {deadlines.submission} (AoE)
             </span>
           </div>
 

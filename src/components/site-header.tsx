@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
 
-import { navLinks } from "@/content/site";
+import { deadlines, navLinks } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 import logo from "../../public/simbiochemLogo.png";
@@ -48,6 +48,16 @@ export function SiteHeader() {
           : "border-transparent bg-white/60 backdrop-blur-sm",
       )}
     >
+      <Link
+        href="/call-for-papers"
+        className="block border-b border-accent-600/30 bg-accent-500 px-5 py-2 text-brand-950 transition hover:bg-accent-400"
+      >
+        <span className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-xs font-medium sm:text-sm">
+          <strong>Deadline extended</strong>
+          <span>Submissions: {deadlines.submission} (AoE)</span>
+          <span>Acceptance decisions: {deadlines.decisions} (AoE)</span>
+        </span>
+      </Link>
       <nav
         className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 lg:px-8"
         aria-label="Main navigation"

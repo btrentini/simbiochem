@@ -33,6 +33,12 @@ export type ImportantDate = {
   tone?: "default" | "accent" | "emphasis";
 };
 
+export const deadlines = {
+  submission: "04 September 2026",
+  review: "25 September 2026",
+  decisions: "28 September 2026",
+} as const;
+
 export const importantDates: ImportantDate[] = [
   {
     label: "Submissions open",
@@ -41,13 +47,13 @@ export const importantDates: ImportantDate[] = [
   },
   {
     label: "Submission deadline",
-    value: "August 29, 2026",
-    note: "11:59 PM UTC (UTC-0)",
+    value: deadlines.submission,
+    note: "AoE",
     tone: "emphasis",
   },
   {
-    label: "Author notification",
-    value: "September 29, 2026",
+    label: "Acceptance decisions",
+    value: deadlines.decisions,
     note: "AoE",
   },
   {
