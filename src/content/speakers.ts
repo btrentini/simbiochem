@@ -22,11 +22,12 @@ export const speakers: Speaker[] = [
       "Frank Noé is a Partner Research Manager at Microsoft Research AI for Science in Berlin, and holds an honorary professorship at Freie Universität Berlin. He co-pioneered Markov state modelling for molecular kinetics, and led the work on Boltzmann Generators, which sample equilibrium states with deep learning. With his team at Microsoft Research he developed BioEmu, a generative model of protein equilibrium ensembles published in Science in 2025. His work sits close to our theme of conformational ensembles, kinetics and rare events.",
   },
   {
-    name: "To be confirmed",
-    affiliation: "Second keynote — announcement to follow",
+    name: "Jack Yang",
+    affiliation: "UNSW Sydney",
     role: "Keynote",
-    status: "tentative",
-    placeholder: true,
+    status: "confirmed",
+    blurb:
+      "Jack Yang is a Senior Lecturer in the UNSW School of Materials Science & Engineering. His research spans theory and design of materials and theoretical and computational chemistry.",
   },
   {
     name: "Yu-Shan Lin",
