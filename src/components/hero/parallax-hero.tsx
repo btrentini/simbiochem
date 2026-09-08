@@ -13,8 +13,6 @@ import {
 } from "motion/react";
 import { ArrowRight, CalendarDays, ChevronDown, MapPin, Users } from "lucide-react";
 
-import { deadlines } from "@/content/site";
-
 import { HeroPhysics } from "./hero-physics";
 import logo from "../../../public/simbiochemLogo.png";
 import proteinSeed from "../../../public/hero/protein.png";
@@ -155,7 +153,7 @@ export function ParallaxHero() {
           <div className="mt-6">
             <span className="inline-flex items-center gap-2 rounded-full bg-accent-500/15 px-3 py-1.5 text-xs font-semibold text-accent-300 ring-1 ring-inset ring-accent-500/30">
               <span className="size-1.5 rounded-full bg-accent-400" />
-              Call for papers open · deadline {deadlines.submission} (AoE)
+              Call for papers closed · 79 submissions received
             </span>
           </div>
 
@@ -164,7 +162,7 @@ export function ParallaxHero() {
               href="/call-for-papers"
               className="inline-flex items-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-brand-950 shadow-lg shadow-accent-500/20 transition hover:bg-accent-400"
             >
-              Call for papers
+              Read the call for papers
               <ArrowRight className="size-4" />
             </Link>
             {/* Teal, not green: two peer calls to action that must read as
@@ -175,7 +173,7 @@ export function ParallaxHero() {
               className="inline-flex items-center gap-2 rounded-full bg-teal-300 px-6 py-3 text-sm font-semibold text-brand-950 shadow-lg shadow-teal-400/20 transition hover:bg-teal-200"
             >
               <Users className="size-4" />
-              Call for Programme Committee
+              Programme Committee closed
             </Link>
           </div>
         </div>

@@ -132,7 +132,7 @@ export default async function Image() {
               fontWeight: 600,
             }}
           >
-            Call for papers open · deadline {deadlines.submission} (AoE)
+            79 submissions received · decisions {deadlines.decisions} (AoE)
           </div>
         </div>
 

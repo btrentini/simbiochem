@@ -11,22 +11,21 @@ export type Announcement = {
 /** Latest updates, newest first. */
 export const announcements: Announcement[] = [
   {
-    date: "July 2026",
-    tag: "Accepted",
-    title: "SIMBIOCHEM II is confirmed as a NeurIPS 2026 workshop in Sydney.",
+    date: "September 2026",
+    tag: "79 submissions",
+    title: "We received 79 submissions this year. We are delighted by the response and excited to see the community grow.",
     tone: "accent",
   },
   {
-    date: "Extended",
+    date: "Closed",
     tag: "Call for papers",
-    title: `Submission deadline extended to ${deadlines.submission} (AoE).`,
+    title: `The call for papers closed on ${deadlines.submission} (AoE). Acceptance decisions will be announced on ${deadlines.decisions} (AoE).`,
     href: "/call-for-papers",
-    tone: "accent",
   },
   {
-    date: "Ongoing",
-    tag: "Get involved",
-    title: "Programme Committee sign-ups are open to reviewers of all levels.",
+    date: "Closed",
+    tag: "Programme Committee",
+    title: "The call for Programme Committee members is now closed.",
     href: "/volunteer",
   },
 ];

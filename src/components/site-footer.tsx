@@ -47,12 +47,12 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <Link href="/call-for-papers" className="hover:text-white">
-                  Call for papers
+                  Call for papers — closed
                 </Link>
               </li>
               <li>
                 <Link href="/volunteer" className="hover:text-white">
-                  Join the Programme Committee
+                  Programme Committee — closed
                 </Link>
               </li>
               <li>

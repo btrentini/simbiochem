@@ -12,9 +12,9 @@ const SITE_URL = (process.env.SITE_URL ?? site.website).replace(/\/+$/, "");
  * /admin and /api are deliberately absent (see robots.ts).
  */
 const lastModified = {
-  home: new Date("2026-07-29"),
-  callForPapers: new Date("2026-07-29"),
-  volunteer: new Date("2026-07-29"),
+  home: new Date("2026-09-08"),
+  callForPapers: new Date("2026-09-08"),
+  volunteer: new Date("2026-09-08"),
   copenhagen: new Date("2026-07-27"),
 } as const;
 
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      // The deadline page — the one most worth ranking while the CFP is open.
+      // Retain the call as the public record of scope, rules and review process.
       url: `${SITE_URL}/call-for-papers`,
       lastModified: lastModified.callForPapers,
       changeFrequency: "weekly",

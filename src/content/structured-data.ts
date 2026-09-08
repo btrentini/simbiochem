@@ -46,7 +46,7 @@ export function structuredData(siteUrl: string) {
         alternateName: "SIMBIOCHEM II",
         url: `${base}/`,
         description:
-          `A NeurIPS 2026 workshop on machine learning for molecular simulation in biology and chemistry: learned potentials, differentiable and enhanced molecular dynamics, molecular foundation models, calibrated uncertainty and agentic, tool-calling scientific systems. The exact day is confirmed by NeurIPS closer to the conference. Papers are due ${deadlines.submission} AoE and the workshop is non-archival.`,
+          `A NeurIPS 2026 workshop on machine learning for molecular simulation in biology and chemistry: learned potentials, differentiable and enhanced molecular dynamics, molecular foundation models, calibrated uncertainty and agentic, tool-calling scientific systems. The 2026 call received 79 submissions, with acceptance decisions on ${deadlines.decisions} AoE. The workshop is non-archival.`,
         image: `${base}/opengraph-image`,
         startDate: "2026-12-11",
         endDate: "2026-12-12",

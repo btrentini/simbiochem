@@ -8,6 +8,7 @@ export type Sponsor = {
 
 export const confirmedSponsors: Sponsor[] = [
   { name: "NVIDIA", status: "confirmed", url: "https://www.nvidia.com" },
+  { name: "Novo Nordisk", status: "confirmed", url: "https://www.novonordisk.com" },
 ];
 
 // Sponsors of the 1st edition (SIMBIOCHEM@EurIPS'25), shown for track record.

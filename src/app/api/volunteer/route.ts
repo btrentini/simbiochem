@@ -5,6 +5,7 @@ import { hasAllowedOrigin } from "@/lib/origin";
 import { RateLimiter, clientKey } from "@/lib/rate-limit";
 import { serverEnv } from "@/lib/server-env";
 import { volunteerSchema } from "@/lib/volunteer";
+import { programmeCommitteeApplicationsOpen } from "@/content/site";
 
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_BODY_BYTES = 16 * 1024;
@@ -52,7 +53,7 @@ async function readJsonBody(request: NextRequest): Promise<unknown> {
 }
 
 export async function POST(request: NextRequest) {
-  if (!serverEnv.VOLUNTEER_ENABLED) {
+  if (!programmeCommitteeApplicationsOpen || !serverEnv.VOLUNTEER_ENABLED) {
     return json({ error: "Volunteer sign-up is not currently open." }, 503);
   }
 

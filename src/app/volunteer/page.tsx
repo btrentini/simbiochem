@@ -4,13 +4,12 @@ import { ClipboardCheck, Scale, Users } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { VolunteerForm } from "@/components/volunteer-form";
-import { site, submissionEthos } from "@/content/site";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Join the Programme Committee",
+  title: "Programme Committee",
   description:
-    "Volunteer to review for SIMBIOCHEM II at NeurIPS 2026 in Sydney. Double-blind reviews, capped at three papers, all seniority levels welcome and credited.",
+    "The call for the SIMBIOCHEM II Programme Committee is closed. Reviewers provide double-blind reviews and are credited on the workshop website.",
   alternates: { canonical: "/volunteer" },
 };
 
@@ -22,14 +21,13 @@ export default function VolunteerPage() {
         <section className="relative overflow-hidden bg-brand-950 text-white">
           <div className="absolute inset-0 opacity-30 grid-faint" aria-hidden="true" />
           <div className="relative mx-auto max-w-5xl px-5 py-16 lg:px-8">
-            <span className="eyebrow text-teal-300">Get involved</span>
+            <span className="eyebrow text-teal-300">Applications closed</span>
             <h1 className="display mt-4 text-4xl font-semibold sm:text-5xl">
-              Join the Programme Committee
+              Programme Committee
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-              We are assembling a diverse Programme Committee to provide double-blind reviews across
-              the biology and chemistry tracks. Reviewers of all levels of seniority are welcome and
-              will be acknowledged on the website.
+              The call for Programme Committee members is now closed. Thank you to everyone who
+              volunteered to support fair, thoughtful reviews across the biology and chemistry tracks.
             </p>
           </div>
         </section>
@@ -65,38 +63,17 @@ export default function VolunteerPage() {
         <section className="border-t border-mist bg-paper">
           <div className="mx-auto max-w-3xl px-5 py-16 lg:px-8">
             <Reveal>
-              <p className="eyebrow">Sign-up</p>
+              <p className="eyebrow">Programme Committee</p>
               <h2 className="display mt-3 text-2xl font-semibold text-brand sm:text-3xl">
-                Programme Committee application
+                Applications are now closed
               </h2>
               <p className="mt-3 text-sm leading-6 text-slate-1">
-                Sending your details is an expression of interest, not a commitment either
-                way. The organisers read every submission and will reach out if your
-                expertise matches what comes in.
+                We are now matching reviewers to this year&rsquo;s 79 submissions. Selected reviewers
+                will receive their assignments and instructions through OpenReview.
               </p>
 
-              <div className="mt-6 rounded-2xl border border-mist bg-white p-6">
-                <p className="text-sm font-semibold text-ink">{submissionEthos.heading}</p>
-                {submissionEthos.paragraphs.map((para) => (
-                  <p key={para.slice(0, 24)} className="mt-3 text-sm leading-6 text-slate-1">
-                    {para}
-                  </p>
-                ))}
-                <p className="mt-4 text-sm leading-6 text-slate-1">
-                  As a reviewer, you would score these same three criteria from 1 to 5:
-                </p>
-                <dl className="mt-3 grid gap-2 md:grid-cols-3">
-                  {submissionEthos.criteria.map((c) => (
-                    <div key={c.name} className="rounded-xl bg-paper px-4 py-3">
-                      <dt className="text-sm font-semibold text-brand">{c.name}</dt>
-                      <dd className="mt-0.5 text-xs leading-5 text-slate-2">{c.detail}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-
               <div className="mt-6 rounded-2xl border border-teal-200 bg-teal-50/60 p-6">
-                <p className="text-sm font-semibold text-teal-800">What we ask, and what we promise</p>
+                <p className="text-sm font-semibold text-teal-800">What reviewers can expect</p>
                 <ul className="mt-3 space-y-2.5">
                   {[
                     "We aim to allocate no more than three papers per reviewer, and will do our best to hold that line.",
@@ -111,11 +88,8 @@ export default function VolunteerPage() {
                   ))}
                 </ul>
               </div>
-              <div className="mt-8 rounded-2xl border border-mist bg-white p-6 sm:p-8">
-                <VolunteerForm />
-              </div>
               <p className="mt-6 text-sm text-slate-2">
-                Prefer email? Reach the organisers at{" "}
+                Questions? Reach the organisers at{" "}
                 <a href={`mailto:${site.contactEmail}`} className="font-medium text-teal-700">
                   {site.contactEmail}
                 </a>

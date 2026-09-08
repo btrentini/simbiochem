@@ -22,7 +22,7 @@ import { deadlines, importantDates, site, submissionEthos } from "@/content/site
 export const metadata: Metadata = {
   title: "Call for Papers",
   description:
-    `Submit to SIMBIOCHEM II at NeurIPS 2026: non-archival 5–8 page papers on ML for molecular simulation. Anonymised PDFs on OpenReview by ${deadlines.submission} AoE.`,
+    `The SIMBIOCHEM II call for papers is closed. We received 79 submissions; acceptance decisions will be announced on ${deadlines.decisions} AoE.`,
   alternates: { canonical: "/call-for-papers" },
 };
 
@@ -31,7 +31,7 @@ const steps = [
   { href: "#what", label: "What to submit" },
   { href: "#templates", label: "Templates & rules" },
   { href: "#coi", label: "Conflicts" },
-  { href: "#submit", label: "Submit" },
+  { href: "#submit", label: "Status" },
 ];
 
 function OpenReviewButton({ light = false }: { light?: boolean }) {
@@ -46,7 +46,7 @@ function OpenReviewButton({ light = false }: { light?: boolean }) {
           : "inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
       }
     >
-      Submit on OpenReview <ArrowUpRight className="size-4" />
+      View the OpenReview venue <ArrowUpRight className="size-4" />
     </a>
   );
 }
@@ -98,18 +98,19 @@ export default function CallForPapersPage() {
           />
           <div className="relative mx-auto max-w-4xl px-5 py-20 lg:px-8">
             <span className="inline-flex items-center gap-2 rounded-full bg-accent-500/15 px-3 py-1 text-xs font-semibold text-accent-300 ring-1 ring-inset ring-accent-500/30">
-              <span className="size-2 rounded-full bg-accent-400" /> Call for papers · Open
+              <span className="size-2 rounded-full bg-accent-400" /> Call for papers · Closed
             </span>
             <h1 className="display mt-6 text-4xl font-bold sm:text-6xl">Call for Papers</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
-              SIMBIOCHEM is currently accepting submissions — <strong className="text-white">non-archival</strong>{" "}
-              short papers (5–8 pages) and abstracts on machine learning for simulation in biology
-              and chemistry. Read this page top to bottom; the anonymisation and COI rules matter.
+              We received <strong className="text-white">79 submissions</strong> this year. We are
+              delighted by the response and excited to see the community grow. Reviews are now
+              under way.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-4">
               <OpenReviewButton light />
               <p className="text-sm text-slate-300">
-                Deadline <strong className="text-white">{deadlines.submission} (AoE)</strong>
+                Acceptance decisions{" "}
+                <strong className="text-white">{deadlines.decisions} (AoE)</strong>
               </p>
             </div>
             <nav className="mt-8 flex flex-wrap gap-2" aria-label="Sections">
@@ -545,15 +546,16 @@ export default function CallForPapersPage() {
                 </p>
               </div>
               <div className="rounded-2xl border border-mist bg-white p-6">
-                <h3 className="text-base font-semibold text-ink">Reviewers wanted</h3>
+                <h3 className="text-base font-semibold text-ink">Programme Committee</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-1">
-                  We welcome reviewers of all levels of seniority; reviewers are listed on the website.
+                  The call for Programme Committee members is now closed. Reviewers will be listed
+                  on the website.
                 </p>
                 <Link
                   href="/volunteer"
                   className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 hover:text-teal-800"
                 >
-                  Join the Programme Committee <ArrowUpRight className="size-4" />
+                  Programme Committee details <ArrowUpRight className="size-4" />
                 </Link>
               </div>
             </div>
@@ -593,27 +595,19 @@ export default function CallForPapersPage() {
           </div>
         </section>
 
-        {/* Step 4 — Submit */}
+        {/* Step 4 — Status */}
         <section id="submit" className="scroll-mt-20 border-t border-mist bg-brand-950 text-white">
           <div className="mx-auto max-w-4xl px-5 py-16 lg:px-8">
-            <StepHeading n={4} title="Submit on OpenReview" onDark />
+            <StepHeading n={4} title="Call for papers closed" onDark />
             <p className="mt-5 max-w-2xl text-slate-200">
-              Once you have prepared an anonymised PDF with the template and completed the COI
-              declaration, submit through the SIMBIOCHEM OpenReview portal before the deadline.
+              Thank you to everyone who submitted. We received 79 papers this year. Reviews are now
+              under way, and acceptance decisions will be announced on{" "}
+              <strong className="text-white">{deadlines.decisions} (AoE)</strong>.
             </p>
-            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-300">
-              {["Anonymised PDF, no identifying links", "NeurIPS 2026 template", "COI declaration complete"].map(
-                (c) => (
-                  <span key={c} className="inline-flex items-center gap-2">
-                    <CheckCircle2 className="size-4 text-accent-400" /> {c}
-                  </span>
-                ),
-              )}
-            </div>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <OpenReviewButton light />
               <p className="text-sm text-slate-400">
-                Deadline {deadlines.submission} (AoE) · questions to{" "}
+                Questions? Contact{" "}
                 <a href={`mailto:${site.contactEmail}`} className="text-teal-300">
                   {site.contactEmail}
                 </a>

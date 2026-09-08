@@ -14,7 +14,6 @@ import {
   PartyPopper,
   PlaneTakeoff,
   Presentation,
-  ShieldAlert,
   Users,
 } from "lucide-react";
 
@@ -288,46 +287,33 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Call for papers band */}
+        {/* Submission update */}
         <section id="call-for-papers" className="scroll-mt-20 bg-brand-950 text-white">
           <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
               <div>
-                <p className="eyebrow text-teal-300">Call for papers · Open</p>
+                <p className="eyebrow text-teal-300">Call for papers · Closed</p>
                 <h2 className="display mt-3 text-3xl font-semibold sm:text-4xl">
-                  Submit your work on ML for molecular simulation
+                  79 submissions received
                 </h2>
                 <p className="mt-4 max-w-xl text-slate-300">
-                  Non-archival short papers (5–8 pages) and abstracts, double-blind. Six spotlight
-                  talks and best-paper awards from accepted submissions. Read the call to get the
-                  templates and COI requirements before you submit.
+                  We are delighted by this year&rsquo;s response and excited to see the SIMBIOCHEM
+                  community grow. Reviews are now under way, with acceptance decisions on{" "}
+                  <strong className="text-white">28 September 2026 (AoE)</strong>.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link
                     href="/call-for-papers"
                     className="inline-flex items-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-brand-950 transition hover:bg-accent-400"
                   >
-                    Read the call for papers <ArrowRight className="size-4" />
+                    Read the submission details <ArrowRight className="size-4" />
                   </Link>
                   <Link
                     href="/volunteer"
-                    className="inline-flex items-center gap-2 rounded-full bg-teal-300 px-6 py-3 text-sm font-semibold text-brand-950 transition hover:bg-teal-200"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                   >
-                    Join the Programme Committee
+                    Programme Committee closed
                   </Link>
-                </div>
-                <div className="mt-6 flex items-start gap-2 rounded-xl border border-emphasis-500/30 bg-emphasis-600/10 p-4 text-sm text-slate-200">
-                  <ShieldAlert className="mt-0.5 size-4 shrink-0 text-emphasis-500" />
-                  <p>
-                    NeurIPS distinguishes domain conflicts (affiliations within the past three
-                    years) from personal conflicts. Organisers and anyone with a personal conflict
-                    with an organiser cannot submit; a shared affiliation alone does not make a
-                    submission ineligible.{" "}
-                    <Link href="/call-for-papers#coi" className="font-semibold text-white underline">
-                      Read the COI policy
-                    </Link>
-                    .
-                  </p>
                 </div>
               </div>
 

@@ -39,10 +39,12 @@ export const deadlines = {
   decisions: "28 September 2026",
 } as const;
 
+export const programmeCommitteeApplicationsOpen = false;
+
 export const importantDates: ImportantDate[] = [
   {
-    label: "Submissions open",
-    value: "Now on OpenReview",
+    label: "Call for papers",
+    value: "Closed",
     tone: "accent",
   },
   {

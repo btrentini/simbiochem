@@ -53,9 +53,7 @@ export function SiteHeader() {
         className="block border-b border-accent-600/30 bg-accent-500 px-5 py-2 text-brand-950 transition hover:bg-accent-400"
       >
         <span className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-xs font-medium sm:text-sm">
-          <strong>Deadline extended</strong>
-          <span>Submissions: {deadlines.submission} (AoE)</span>
-          <span>Acceptance decisions: {deadlines.decisions} (AoE)</span>
+          <strong>Acceptance decisions: {deadlines.decisions} (AoE)</strong>
         </span>
       </Link>
       <nav
@@ -97,9 +95,9 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="/call-for-papers"
-            className="hidden items-center gap-1.5 rounded-full bg-accent-500 px-4 py-2 text-[0.82rem] font-semibold text-brand-950 shadow-sm transition hover:bg-accent-400 sm:inline-flex"
+            className="hidden items-center gap-1.5 rounded-full bg-accent-500 px-4 py-2 text-xs font-semibold text-brand-950 shadow-sm transition hover:bg-accent-400 sm:inline-flex"
           >
-            Call for papers
+            Call for papers closed
             <ArrowRight className="size-4" />
           </Link>
           <button
@@ -132,7 +130,7 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-accent-500 px-4 py-2.5 text-sm font-semibold text-brand-950"
             >
-              Call for papers
+              Call for papers closed
               <ArrowRight className="size-4" />
             </Link>
           </div>
