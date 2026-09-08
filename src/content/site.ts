@@ -11,9 +11,11 @@ export const site = {
   venueShort: "NeurIPS 2026 · Sydney, Australia",
   host: "NeurIPS 2026 Workshop",
   city: "Sydney, Australia",
-  // NeurIPS 2026 workshops run Dec 11–13; our day is one of Dec 11 / Dec 12.
-  dateDisplay: "December 11 or 12, 2026",
-  dateNote: "Exact day (Dec 11 or Dec 12) to be confirmed by NeurIPS.",
+  dateDisplay: "Friday, 11 December 2026",
+  dateNote: "NeurIPS 2026 workshop day",
+  roomNames: "MR C4.6 and C4.7",
+  roomDisplay: "Rooms MR C4.6 and C4.7",
+  roomShort: "MR C4.6 & C4.7",
   expectedAttendance: "100–150 researchers",
   website: "https://simbiochem.com",
   contactEmail: "workshop@simbiochem.com",
@@ -60,8 +62,8 @@ export const importantDates: ImportantDate[] = [
   },
   {
     label: "Workshop day",
-    value: "Dec 11 or 12, 2026",
-    note: "Exact day TBC by NeurIPS",
+    value: site.dateDisplay,
+    note: site.roomDisplay,
   },
 ];
 

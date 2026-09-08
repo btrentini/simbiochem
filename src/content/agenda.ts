@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { site } from "@/content/site";
+
 export const AGENDA_STATUS = ["confirmed", "tentative", "prospective"] as const;
 export const AGENDA_KIND = [
   "ceremony",
@@ -70,7 +72,7 @@ export const KIND_LABELS: Record<(typeof AGENDA_KIND)[number], string> = {
 /** Default programme, transcribed from the accepted proposal schedule. */
 export const defaultAgenda: Agenda = {
   title: "Workshop Schedule",
-  note: "The formal programme runs from 08:45 to 17:00, with keynotes, invited talks, community spotlights and two poster sessions. An optional social event follows in the evening. Times are provisional and will be finalised once NeurIPS confirms the room and day.",
+  note: `${site.dateDisplay} · ${site.roomDisplay}. The formal programme runs from 08:45 to 17:00, with keynotes, invited talks, community spotlights and two poster sessions. An optional social event follows in the evening.`,
   items: [
     { id: "opening", start: "08:45", end: "09:00", title: "Opening", detail: "Organisers", status: "confirmed", kind: "ceremony", speaker: "" },
     { id: "keynote-1", start: "09:00", end: "09:30", title: "Keynote — Frank Noé", detail: "MSR AI for Science · FU Berlin", status: "confirmed", kind: "keynote", speaker: "Frank Noé" },

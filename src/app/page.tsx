@@ -557,7 +557,7 @@ export default async function Home() {
                 <SectionHeading
                   eyebrow="Venue"
                   title="Sydney, Australia"
-                  description="SIMBIOCHEM II is a NeurIPS 2026 workshop in Sydney, Australia. NeurIPS workshops run December 11–13."
+                  description={`SIMBIOCHEM II takes place on ${site.dateDisplay}, in rooms ${site.roomNames} at NeurIPS 2026 in Sydney.`}
                 />
                 <div className="mt-8 space-y-4">
                   <div className="flex items-start gap-3 rounded-xl border border-mist bg-white p-5">
@@ -570,10 +570,10 @@ export default async function Home() {
                   <div className="flex items-start gap-3 rounded-xl border border-mist bg-white p-5">
                     <MapPin className="mt-0.5 size-5 text-teal-600" />
                     <div>
-                      <p className="font-semibold text-ink">NeurIPS 2026 · {site.city}</p>
+                      <p className="font-semibold text-ink">{site.roomDisplay}</p>
                       <p className="mt-1 text-sm text-slate-2">
-                        Exact venue and room assigned by NeurIPS. A sponsor-supported Sydney social
-                        event follows the workshop day.
+                        NeurIPS 2026 · {site.city}. A sponsor-supported Sydney social event follows
+                        the workshop day.
                       </p>
                       <a
                         href="https://www.google.com/maps/search/?api=1&query=Sydney%2C%20Australia"

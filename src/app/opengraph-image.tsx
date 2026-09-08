@@ -3,13 +3,12 @@ import { join } from "node:path";
 
 import { ImageResponse } from "next/og";
 
-import { deadlines } from "@/content/site";
+import { site } from "@/content/site";
 
 // Needs the Node runtime to read the logo off disk.
 export const runtime = "nodejs";
 
-export const alt =
-  "SIMBIOCHEM II — Machine Learning for Simulations in Biology and Chemistry. A NeurIPS 2026 workshop in Sydney, Australia.";
+export const alt = `SIMBIOCHEM II — Machine Learning for Simulations in Biology and Chemistry. ${site.dateDisplay}, ${site.roomDisplay}, ${site.city}.`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -132,7 +131,7 @@ export default async function Image() {
               fontWeight: 600,
             }}
           >
-            79 submissions received · decisions {deadlines.decisions} (AoE)
+            {`${site.dateDisplay} · ${site.roomShort}`}
           </div>
         </div>
 

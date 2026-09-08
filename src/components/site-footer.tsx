@@ -69,7 +69,9 @@ export function SiteFooter() {
             © {"2026"} SIMBIOCHEM. Independently organised; not affiliated with
             or endorsed by any sponsor or institution.
           </p>
-          <p>{site.venueShort} · Day and room confirmed by NeurIPS closer to the event.</p>
+          <p>
+            {site.venueShort} · {site.dateDisplay} · {site.roomDisplay}
+          </p>
         </div>
         <p className="mt-3 text-[0.68rem] leading-5 text-slate-3">
           Imagery via Wikimedia Commons — hero: GFP structure by Richard Wheeler (CC BY-SA 3.0);

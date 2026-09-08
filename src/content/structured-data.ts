@@ -8,9 +8,8 @@ import { deadlines, site, themes } from "@/content/site";
  * submission deadline, so the deadline lives in the description rather than in
  * an invented field.
  *
- * The exact day is still TBC between 11 and 12 December, so the event is
- * declared across that window and the description says so — better than
- * omitting dates entirely, which would forfeit event rich results.
+ * The workshop day and rooms are confirmed by NeurIPS and mirrored from the
+ * canonical site constants below.
  */
 export function structuredData(siteUrl: string) {
   const base = siteUrl.replace(/\/+$/, "");
@@ -46,10 +45,10 @@ export function structuredData(siteUrl: string) {
         alternateName: "SIMBIOCHEM II",
         url: `${base}/`,
         description:
-          `A NeurIPS 2026 workshop on machine learning for molecular simulation in biology and chemistry: learned potentials, differentiable and enhanced molecular dynamics, molecular foundation models, calibrated uncertainty and agentic, tool-calling scientific systems. The 2026 call received 79 submissions, with acceptance decisions on ${deadlines.decisions} AoE. The workshop is non-archival.`,
+          `A NeurIPS 2026 workshop on machine learning for molecular simulation in biology and chemistry, held on ${site.dateDisplay} in rooms ${site.roomNames}. Topics include learned potentials, differentiable and enhanced molecular dynamics, molecular foundation models, calibrated uncertainty and agentic, tool-calling scientific systems. The 2026 call received 79 submissions, with acceptance decisions on ${deadlines.decisions} AoE. The workshop is non-archival.`,
         image: `${base}/opengraph-image`,
         startDate: "2026-12-11",
-        endDate: "2026-12-12",
+        endDate: "2026-12-11",
         eventStatus: "https://schema.org/EventScheduled",
         eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
         inLanguage: "en",
@@ -58,7 +57,7 @@ export function structuredData(siteUrl: string) {
         organizer: { "@id": `${base}/#organization` },
         location: {
           "@type": "Place",
-          name: "NeurIPS 2026, Sydney",
+          name: site.roomDisplay,
           address: {
             "@type": "PostalAddress",
             addressLocality: "Sydney",

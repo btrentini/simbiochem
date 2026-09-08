@@ -13,6 +13,8 @@ import {
 } from "motion/react";
 import { ArrowRight, CalendarDays, ChevronDown, MapPin, Users } from "lucide-react";
 
+import { site } from "@/content/site";
+
 import { HeroPhysics } from "./hero-physics";
 import logo from "../../../public/simbiochemLogo.png";
 import proteinSeed from "../../../public/hero/protein.png";
@@ -128,24 +130,25 @@ export function ParallaxHero() {
             systems that learn from reality.
           </p>
 
-          {/* Highlighted date + location */}
+          {/* Highlighted date + assigned rooms */}
           <div className="mt-8 inline-flex flex-wrap items-stretch gap-x-8 gap-y-4 rounded-2xl border border-teal-400/30 bg-white/[0.05] px-6 py-4 backdrop-blur">
             <div className="flex items-center gap-3">
               <CalendarDays className="size-5 text-teal-300" />
               <div>
                 <p className="text-[0.6rem] font-semibold uppercase tracking-wider text-teal-300">
-                  Dates
+                  Date
                 </p>
-                <p className="text-lg font-semibold text-white">Dec 11 or 12, 2026</p>
+                <p className="text-lg font-semibold text-white">{site.dateDisplay}</p>
               </div>
             </div>
             <div className="flex items-center gap-3 border-white/10 sm:border-l sm:pl-8">
               <MapPin className="size-5 text-teal-300" />
               <div>
                 <p className="text-[0.6rem] font-semibold uppercase tracking-wider text-teal-300">
-                  Location
+                  Rooms
                 </p>
-                <p className="text-lg font-semibold text-white">Sydney, Australia</p>
+                <p className="text-lg font-semibold text-white">{site.roomShort}</p>
+                <p className="text-xs text-slate-300">{site.city}</p>
               </div>
             </div>
           </div>
