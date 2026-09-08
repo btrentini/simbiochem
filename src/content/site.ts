@@ -35,7 +35,7 @@ export type ImportantDate = {
 
 export const deadlines = {
   submission: "04 September 2026",
-  review: "25 September 2026",
+  review: "21 September 2026",
   decisions: "28 September 2026",
 } as const;
 

@@ -28,7 +28,9 @@ export const photoByName: Record<string, string> = {
 
 export const logoByName: Record<string, string> = {
   "NVIDIA": "/sponsors/nvidia.webp",
-  "Novo Nordisk": "/sponsors/novo-nordisk.jpg"
+  "Novo Nordisk": "/sponsors/novo-nordisk.jpg",
+  "Bioyond Robotics": "/sponsors/bioyond-robotics.jpg",
+  "Viva Biotech": "/sponsors/viva-biotech.jpg"
 };
 
 /** Official profile page per person (used by the profile dialog). */
