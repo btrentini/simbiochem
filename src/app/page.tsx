@@ -9,6 +9,7 @@ import {
   Download,
   Globe,
   Handshake,
+  Info,
   MapPin,
   Megaphone,
   PartyPopper,
@@ -122,6 +123,42 @@ export default async function Home() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Confirmed sponsors */}
+        <section
+          aria-labelledby="confirmed-sponsors-heading"
+          className="border-b border-mist bg-paper"
+        >
+          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:px-8">
+            <div className="max-w-xl">
+              <p className="eyebrow">Confirmed sponsors</p>
+              <h2
+                id="confirmed-sponsors-heading"
+                className="display mt-2 text-3xl font-semibold tracking-tight text-ink"
+              >
+                Supported by the community
+              </h2>
+              <Link
+                href="#sponsors"
+                className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-700 transition hover:text-teal-800"
+              >
+                Sponsorship details <ArrowRight className="size-3.5" />
+              </Link>
+              <p className="mt-4 flex max-w-lg items-start gap-2 text-xs leading-5 text-slate-2">
+                <Info className="mt-0.5 size-3.5 shrink-0" aria-hidden="true" />
+                <span>
+                  Our sponsors help fund the workshop, but remain independent of agenda-setting
+                  and scientific review.
+                </span>
+              </p>
+            </div>
+            <div className="flex flex-wrap items-start gap-5 sm:gap-6 lg:justify-end">
+              {confirmedSponsors.map((s) => (
+                <SponsorTile key={s.name} sponsor={s} />
+              ))}
             </div>
           </div>
         </section>
