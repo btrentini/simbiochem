@@ -3,7 +3,6 @@ import { ArrowDown, Trophy, Users } from "lucide-react";
 
 
 import { ReviewScoreDistribution } from "@/components/review-score-distribution";
-import { OutcomeProbabilities } from "@/components/outcome-probabilities";
 import { site } from "@/content/site";
 import { workshopStats, yoyGrowth } from "@/content/workshop-stats";
 
@@ -205,9 +204,10 @@ export function WorkshopStats() {
       <p className="mt-6 text-xs leading-5 text-slate-2">
         Organiser-confirmed 2025 counts: <Link href="/previous-editions/copenhagen" className="underline decoration-mist underline-offset-4 hover:text-brand">29 accepted papers</Link> from 37 submissions (78.4% acceptance).
       </p>
-      <div className="mt-8 grid gap-8 border-t border-mist pt-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-10">
-        <ReviewScoreDistribution />
-        <OutcomeProbabilities />
+      <div className="mt-8 border-t border-mist pt-8">
+        <div className="mx-auto max-w-3xl">
+          <ReviewScoreDistribution />
+        </div>
       </div>
       </div>
     </section>
