@@ -80,4 +80,4 @@ Dashed vertical lines show the observed arithmetic mean of paper-average scores 
 
 ## Homepage layout
 
-The review-process Sankey and score distributions sit side by side on desktop. The submission comparison, growth and review metrics run horizontally below both figures. These groups stack in the same order on smaller screens.
+The review-process Sankey sits above a two-column desktop row: score distributions on the left, and submission comparisons, growth and review metrics on the right. These groups stack in the same order on smaller screens.

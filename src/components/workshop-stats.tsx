@@ -161,18 +161,17 @@ export function WorkshopStats() {
   return (
     <section id="workshop-stats" aria-labelledby="workshop-stats-heading" className="scroll-mt-28 border-b border-mist bg-white">
       <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-16">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)]" data-review-charts="true">
+      <div className="mx-auto max-w-4xl" data-review-sankey="true">
         <SubmissionFlow />
-        <div className="min-w-0 border-t border-mist pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
-          <ReviewScoreDistribution />
-        </div>
       </div>
-      <div className="mt-8 border-t border-mist pt-7" data-review-metrics="true">
+      <div className="mt-8 grid gap-8 border-t border-mist pt-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]" data-review-details="true">
+        <ReviewScoreDistribution />
+        <div className="min-w-0 border-t border-mist pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8" data-review-metrics="true">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <h2 id="workshop-stats-heading" className="display text-xl font-semibold text-ink">Submissions and review outcomes</h2>
           <Link href={site.openReviewUrl} className="text-xs text-slate-2 underline decoration-mist underline-offset-4 transition hover:text-brand">Decisions in OpenReview</Link>
         </div>
-        <div className="mt-6 grid gap-6 lg:grid-cols-3 lg:gap-8" data-metrics-row="true">
+        <div className="mt-6 space-y-6" data-metrics-row="true">
           <div className="min-w-0">
           <table className="w-full text-left text-sm tabular-nums">
             <caption className="sr-only">Submission and acceptance counts by workshop edition</caption>
@@ -190,7 +189,7 @@ export function WorkshopStats() {
             </tbody>
           </table>
           </div>
-          <div className="min-w-0 border-t border-mist pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+          <div className="min-w-0 border-t border-mist pt-5">
             <h3 className="text-xs font-medium text-slate-2">Growth from the previous edition</h3>
             <dl className="mt-4 space-y-3 text-sm tabular-nums">
               {comparisons.map(({ label, before, after, provisional }) => (
@@ -198,7 +197,7 @@ export function WorkshopStats() {
               ))}
             </dl>
           </div>
-          <div className="min-w-0 border-t border-mist pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+          <div className="min-w-0 border-t border-mist pt-5">
             <dl className="space-y-3 text-sm tabular-nums">
               {[
                 { label: "Papers reviewed", value: current.reviewed },
@@ -214,6 +213,7 @@ export function WorkshopStats() {
         <p className="mt-6 text-xs leading-5 text-slate-2">
           Organiser-confirmed 2025 counts: <Link href="/previous-editions/copenhagen" className="underline decoration-mist underline-offset-4 hover:text-brand">29 accepted papers</Link> from 37 submissions (78.4% acceptance).
         </p>
+        </div>
       </div>
       </div>
     </section>
