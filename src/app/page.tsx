@@ -30,6 +30,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SponsorCta } from "@/components/sponsor-cta";
 import { SponsorForm } from "@/components/sponsor-form";
 import { SponsorTile } from "@/components/sponsor-tile";
+import { WorkshopStats } from "@/components/workshop-stats";
 import { announcements } from "@/content/announcements";
 import { advisors, organizers } from "@/content/people";
 import { panel, speakers } from "@/content/speakers";
@@ -134,7 +135,7 @@ export default async function Home() {
         >
           <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:px-8">
             <div className="max-w-xl">
-              <p className="eyebrow">Confirmed sponsors</p>
+              <p className="eyebrow">Confirmed sponsors &amp; contributors</p>
               <h2
                 id="confirmed-sponsors-heading"
                 className="display mt-2 text-3xl font-semibold tracking-tight text-ink"
@@ -266,13 +267,26 @@ export default async function Home() {
             <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {invited.map((s) => (
                 <Reveal key={s.name}>
-                  <ProfileCard
-                    name={s.name}
-                    affiliation={s.affiliation}
-                    role="Invited speaker"
-                    bio={s.blurb}
-                    kind="invited"
-                  />
+                  {s.placeholder ? (
+                    <div className="flex h-full items-center gap-4 rounded-2xl border border-dashed border-slate-4 bg-white/60 p-4">
+                      <span className="flex size-[52px] shrink-0 items-center justify-center rounded-full border border-dashed border-slate-4 text-slate-2">
+                        <Users className="size-5" aria-hidden="true" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-[0.62rem] font-semibold uppercase tracking-wide text-teal-700">Invited talk</p>
+                        <p className="font-semibold text-ink">{s.name}</p>
+                        <p className="mt-1 text-xs text-slate-2">{s.affiliation}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <ProfileCard
+                      name={s.name}
+                      affiliation={s.affiliation}
+                      role="Invited speaker"
+                      bio={s.blurb}
+                      kind="invited"
+                    />
+                  )}
                 </Reveal>
               ))}
             </div>
@@ -335,15 +349,15 @@ export default async function Home() {
                 </h2>
                 <p className="mt-4 max-w-xl text-slate-300">
                   We are delighted by this year&rsquo;s response and excited to see the SIMBIOCHEM
-                  community grow. Reviews are now under way, with acceptance decisions on{" "}
-                  <strong className="text-white">28 September 2026 (AoE)</strong>.
+                  community grow. Decisions are now available in OpenReview, with 53 papers
+                  accepted for the workshop.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
                   <Link
-                    href="/call-for-papers"
+                    href={site.openReviewUrl}
                     className="inline-flex items-center gap-2 rounded-full bg-accent-500 px-6 py-3 text-sm font-semibold text-brand-950 transition hover:bg-accent-400"
                   >
-                    Read the submission details <ArrowRight className="size-4" />
+                    View decisions in OpenReview <ArrowRight className="size-4" />
                   </Link>
                   <Link
                     href="/volunteer"
@@ -374,6 +388,9 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        {/* Submissions and review outcomes */}
+        <WorkshopStats />
 
         {/* Organisers */}
         <section id="organisers" className="scroll-mt-20 bg-white">
@@ -429,7 +446,7 @@ export default async function Home() {
           <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Sponsors"
+                eyebrow="Sponsors & contributors"
                 title="Supported by the community"
                 description="Sponsors keep this workshop community-run — funding catering, prizes, poster sessions and the Sydney social event, while scientific review stays entirely independent of them."
               />

@@ -1,4 +1,4 @@
-import { deadlines } from "@/content/site";
+import { deadlines, site } from "@/content/site";
 
 export type Announcement = {
   date: string;
@@ -12,14 +12,15 @@ export type Announcement = {
 export const announcements: Announcement[] = [
   {
     date: "September 2026",
-    tag: "79 submissions",
-    title: "We received 79 submissions this year. We are delighted by the response and excited to see the community grow.",
+    tag: "Decisions available",
+    title: "Decisions are now available in OpenReview. Thank you to our authors and reviewers.",
+    href: site.openReviewUrl,
     tone: "accent",
   },
   {
     date: "Closed",
     tag: "Call for papers",
-    title: `The call for papers closed on ${deadlines.submission} (AoE). Acceptance decisions will be announced on ${deadlines.decisions} (AoE).`,
+    title: `The call for papers closed on ${deadlines.submission} (AoE).`,
     href: "/call-for-papers",
   },
   {

@@ -1,5 +1,6 @@
 export type Sponsor = {
   name: string;
+  role?: "sponsor" | "contributor";
   status: "confirmed" | "in-conversation";
   /** Optional square logo in /public/sponsors (e.g. "/sponsors/nvidia.png"). */
   logo?: string;
@@ -8,7 +9,7 @@ export type Sponsor = {
 
 export const confirmedSponsors: Sponsor[] = [
   { name: "NVIDIA", status: "confirmed", url: "https://www.nvidia.com" },
-  { name: "Novo Nordisk", status: "confirmed", url: "https://www.novonordisk.com" },
+  { name: "Novo Nordisk", role: "contributor", status: "confirmed", url: "https://www.novonordisk.com" },
   {
     name: "Bioyond Robotics",
     status: "confirmed",

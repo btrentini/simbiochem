@@ -35,7 +35,8 @@ export function SponsorTile({ sponsor }: { sponsor: Sponsor }) {
       <figcaption className="inline-flex items-center gap-1.5 text-[0.68rem] font-medium text-slate-2">
         {sponsor.status === "confirmed" ? (
           <>
-            <span className="size-1.5 rounded-full bg-accent-500" /> Confirmed sponsor
+            <span className="size-1.5 rounded-full bg-accent-500" />
+            {sponsor.role === "contributor" ? "Contributor" : "Confirmed sponsor"}
           </>
         ) : (
           "In conversation"

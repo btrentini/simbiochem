@@ -78,7 +78,7 @@ export const defaultAgenda: Agenda = {
     { id: "keynote-1", start: "09:00", end: "09:30", title: "Keynote — Frank Noé", detail: "MSR AI for Science · FU Berlin", status: "confirmed", kind: "keynote", speaker: "Frank Noé" },
     { id: "spotlight-1", start: "09:30", end: "10:00", title: "Spotlight Talks from Accepted Papers", detail: "Three 10-minute talks chosen by the programme committee", status: "confirmed", kind: "spotlight", speaker: "" },
     { id: "invited-1", start: "10:00", end: "10:15", title: "Invited Talk — Yu-Shan Lin", detail: "Tufts University", status: "confirmed", kind: "invited", speaker: "Yu-Shan Lin" },
-    { id: "invited-2", start: "10:15", end: "10:30", title: "Invited Talk — Heather J. Kulik", detail: "MIT", status: "confirmed", kind: "invited", speaker: "Heather J. Kulik" },
+    { id: "invited-2", start: "10:15", end: "10:30", title: "Invited Talk — To be Announced", detail: "", status: "tentative", kind: "invited", speaker: "" },
     { id: "break-1", start: "10:30", end: "10:45", title: "Coffee Break + Poster Setup", detail: "Catering provided by sponsors", status: "confirmed", kind: "break", speaker: "" },
     { id: "poster-1", start: "10:45", end: "12:45", title: "Poster Session I + Lunch", detail: "Catering provided by sponsors", status: "confirmed", kind: "poster", speaker: "" },
     { id: "invited-3", start: "12:45", end: "13:00", title: "Invited Talk — Ai Niitsu", detail: "RIKEN IMS", status: "confirmed", kind: "invited", speaker: "Ai Niitsu" },

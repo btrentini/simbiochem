@@ -1,4 +1,4 @@
-import { deadlines, site, themes } from "@/content/site";
+import { site, themes } from "@/content/site";
 
 /**
  * schema.org graph for the workshop, emitted once from the root layout.
@@ -45,7 +45,7 @@ export function structuredData(siteUrl: string) {
         alternateName: "SIMBIOCHEM II",
         url: `${base}/`,
         description:
-          `A NeurIPS 2026 workshop on machine learning for molecular simulation in biology and chemistry, held on ${site.dateDisplay} in rooms ${site.roomNames}. Topics include learned potentials, differentiable and enhanced molecular dynamics, molecular foundation models, calibrated uncertainty and agentic, tool-calling scientific systems. The 2026 call received 79 submissions, with acceptance decisions on ${deadlines.decisions} AoE. The workshop is non-archival.`,
+          `A NeurIPS 2026 workshop on machine learning for molecular simulation in biology and chemistry, held on ${site.dateDisplay} in rooms ${site.roomNames}. Topics include learned potentials, differentiable and enhanced molecular dynamics, molecular foundation models, calibrated uncertainty and agentic, tool-calling scientific systems. The 2026 call received 79 submissions, with 53 papers accepted. Decisions are available in OpenReview. The workshop is non-archival.`,
         image: `${base}/opengraph-image`,
         startDate: "2026-12-11",
         endDate: "2026-12-11",

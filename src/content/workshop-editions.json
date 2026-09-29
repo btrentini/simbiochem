@@ -1,0 +1,26 @@
+{
+  "previous": {
+    "year": 2025,
+    "submissions": 37,
+    "submissionsProvisional": false,
+    "accepted": 29,
+    "spotlights": 8,
+    "bestPaperAwards": 2,
+    "countsSource": "Organiser-confirmed on 2026-09-29; public OpenReview tally could not be independently verified.",
+    "openReviewUrl": "https://openreview.net/group?id=EurIPS.cc/2025/Workshop/SIMBIOCHEM"
+  },
+  "current": {
+    "year": 2026,
+    "submissions": 79,
+    "submissionsProvisional": false,
+    "reviewed": 78,
+    "preReviewDeskRejected": 1,
+    "postReviewDeskRejected": 6,
+    "ranked": 72,
+    "accepted": 53,
+    "rejected": 19,
+    "reviewers": 91,
+    "spotlights": 6,
+    "bestPaperAwards": 1
+  }
+}

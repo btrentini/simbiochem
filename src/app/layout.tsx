@@ -4,7 +4,7 @@ import Script from "next/script";
 
 import "./globals.css";
 import { MotionProvider } from "@/components/motion-provider";
-import { deadlines, site } from "@/content/site";
+import { site } from "@/content/site";
 import { structuredData } from "@/content/structured-data";
 
 /**
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     template: "%s · SIMBIOCHEM II @ NeurIPS 2026",
   },
   description:
-    `The 2nd SIMBIOCHEM Workshop at NeurIPS 2026 in Sydney — machine learning for molecular simulation in biology and chemistry. We received 79 submissions; acceptance decisions are due ${deadlines.decisions} AoE.`,
+    `The 2nd SIMBIOCHEM Workshop at NeurIPS 2026 in Sydney — machine learning for molecular simulation in biology and chemistry. We received 79 submissions; decisions are now available in OpenReview.`,
   applicationName: "SIMBIOCHEM",
   authors: [{ name: "SIMBIOCHEM organisers", url: SITE_URL }],
   creator: "SIMBIOCHEM organisers",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     // Kept short enough to survive the tightest unfurl (Slack/X) intact.
     title: "SIMBIOCHEM II · NeurIPS 2026 Workshop · Sydney",
     description:
-      `Machine learning for simulations in biology and chemistry. 79 submissions received; acceptance decisions ${deadlines.decisions} AoE.`,
+      `Machine learning for simulations in biology and chemistry. 79 submissions received; decisions now available in OpenReview.`,
     url: SITE_URL,
     siteName: "SIMBIOCHEM",
     locale: "en_AU",

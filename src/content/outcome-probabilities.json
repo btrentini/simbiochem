@@ -1,0 +1,344 @@
+{
+  "prior": {
+    "family": "Beta",
+    "alpha": 0.5,
+    "beta": 0.5
+  },
+  "credibleMass": 0.95,
+  "editions": [
+    {
+      "year": 2025,
+      "submissions": 37,
+      "submissionsProvisional": false,
+      "accepted": 29,
+      "spotlights": 8,
+      "bestPaperAwards": 2,
+      "countsSource": "Organiser-confirmed on 2026-09-29; public OpenReview tally could not be independently verified.",
+      "openReviewUrl": "https://openreview.net/group?id=EurIPS.cc/2025/Workshop/SIMBIOCHEM"
+    },
+    {
+      "year": 2026,
+      "submissions": 79,
+      "submissionsProvisional": false,
+      "reviewed": 78,
+      "preReviewDeskRejected": 1,
+      "postReviewDeskRejected": 6,
+      "ranked": 72,
+      "accepted": 53,
+      "rejected": 19,
+      "reviewers": 91,
+      "spotlights": 6,
+      "bestPaperAwards": 1
+    }
+  ],
+  "submissions": 116,
+  "accepted": 82,
+  "spotlights": 14,
+  "awards": 3,
+  "parameters": {
+    "acceptance": {
+      "alpha": 82.5,
+      "beta": 34.5,
+      "mean": 0.7051282051282052,
+      "interval": [
+        0.619734031884133,
+        0.7838805512542588
+      ]
+    },
+    "spotlightGivenAcceptance": {
+      "alpha": 14.5,
+      "beta": 68.5,
+      "mean": 0.1746987951807229,
+      "interval": [
+        0.10136231161874279,
+        0.2628527762143242
+      ]
+    },
+    "awardGivenAcceptance": {
+      "alpha": 3.5,
+      "beta": 79.5,
+      "mean": 0.04216867469879518,
+      "interval": [
+        0.01040991766579481,
+        0.0944113074339145
+      ]
+    }
+  },
+  "outcomes": [
+    {
+      "id": "accepted",
+      "label": "Acceptance",
+      "count": 82,
+      "mean": 0.7051282051282052,
+      "interval": [
+        0.619734031884133,
+        0.7838805512542588
+      ]
+    },
+    {
+      "id": "rejected",
+      "label": "Rejection",
+      "count": 34,
+      "mean": 0.2948717948717948,
+      "interval": [
+        0.21611944874574118,
+        0.380265968115867
+      ]
+    },
+    {
+      "id": "spotlight",
+      "label": "Spotlight / oral",
+      "count": 14,
+      "mean": 0.12318504788384307,
+      "interval": [
+        0.07043775140858458,
+        0.18803410993414202
+      ]
+    },
+    {
+      "id": "best-paper",
+      "label": "Best-paper award",
+      "count": 3,
+      "mean": 0.029734321902996602,
+      "interval": [
+        0.007291334803190686,
+        0.06700309935215036
+      ]
+    }
+  ],
+  "editionModels": [
+    {
+      "year": 2025,
+      "submissions": 37,
+      "accepted": 29,
+      "spotlights": 8,
+      "awards": 2,
+      "parameters": {
+        "acceptance": {
+          "alpha": 29.5,
+          "beta": 8.5,
+          "mean": 0.7763157894736842,
+          "interval": [
+            0.6330588083239246,
+            0.8920997092873285
+          ]
+        },
+        "spotlightGivenAcceptance": {
+          "alpha": 8.5,
+          "beta": 21.5,
+          "mean": 0.2833333333333333,
+          "interval": [
+            0.13995761541110183,
+            0.45402983837000643
+          ]
+        },
+        "awardGivenAcceptance": {
+          "alpha": 2.5,
+          "beta": 27.5,
+          "mean": 0.08333333333333333,
+          "interval": [
+            0.014608469346427837,
+            0.20331862045188037
+          ]
+        }
+      },
+      "outcomes": [
+        {
+          "id": "accepted",
+          "label": "Acceptance",
+          "count": 29,
+          "mean": 0.7763157894736842,
+          "interval": [
+            0.6330588083239246,
+            0.8920997092873285
+          ]
+        },
+        {
+          "id": "rejected",
+          "label": "Rejection",
+          "count": 8,
+          "mean": 0.22368421052631582,
+          "interval": [
+            0.10790029071267149,
+            0.3669411916760754
+          ]
+        },
+        {
+          "id": "spotlight",
+          "label": "Spotlight / oral",
+          "count": 8,
+          "mean": 0.21995614035087718,
+          "interval": [
+            0.10589892970812921,
+            0.3614748950260978
+          ]
+        },
+        {
+          "id": "best-paper",
+          "label": "Best-paper award",
+          "count": 2,
+          "mean": 0.06469298245614034,
+          "interval": [
+            0.011201205306687983,
+            0.15972434211898984
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2026,
+      "submissions": 79,
+      "accepted": 53,
+      "spotlights": 6,
+      "awards": 1,
+      "parameters": {
+        "acceptance": {
+          "alpha": 53.5,
+          "beta": 26.5,
+          "mean": 0.66875,
+          "interval": [
+            0.5625891314426121,
+            0.7669183296938191
+          ]
+        },
+        "spotlightGivenAcceptance": {
+          "alpha": 6.5,
+          "beta": 47.5,
+          "mean": 0.12037037037037036,
+          "interval": [
+            0.04865988969201803,
+            0.21852370530995083
+          ]
+        },
+        "awardGivenAcceptance": {
+          "alpha": 1.5,
+          "beta": 52.5,
+          "mean": 0.027777777777777776,
+          "interval": [
+            0.0020434022600415254,
+            0.08480234463117826
+          ]
+        }
+      },
+      "outcomes": [
+        {
+          "id": "accepted",
+          "label": "Acceptance",
+          "count": 53,
+          "mean": 0.66875,
+          "interval": [
+            0.5625891314426121,
+            0.7669183296938191
+          ]
+        },
+        {
+          "id": "rejected",
+          "label": "Rejection",
+          "count": 26,
+          "mean": 0.33125000000000004,
+          "interval": [
+            0.23308167030618088,
+            0.43741086855738787
+          ]
+        },
+        {
+          "id": "spotlight",
+          "label": "Spotlight / oral",
+          "count": 6,
+          "mean": 0.08049768518518517,
+          "interval": [
+            0.032009189199558835,
+            0.14851540274494046
+          ]
+        },
+        {
+          "id": "best-paper",
+          "label": "Best-paper award",
+          "count": 1,
+          "mean": 0.018576388888888885,
+          "interval": [
+            0.001356237208786101,
+            0.05710650543605129
+          ]
+        }
+      ]
+    }
+  ],
+  "sensitivityUniformPrior": {
+    "submissions": 116,
+    "accepted": 82,
+    "spotlights": 14,
+    "awards": 3,
+    "parameters": {
+      "acceptance": {
+        "alpha": 83.0,
+        "beta": 35.0,
+        "mean": 0.7033898305084746,
+        "interval": [
+          0.6182551050169554,
+          0.7819947494255702
+        ]
+      },
+      "spotlightGivenAcceptance": {
+        "alpha": 15.0,
+        "beta": 69.0,
+        "mean": 0.17857142857142858,
+        "interval": [
+          0.10482769671525727,
+          0.2667839358450507
+        ]
+      },
+      "awardGivenAcceptance": {
+        "alpha": 4.0,
+        "beta": 80.0,
+        "mean": 0.047619047619047616,
+        "interval": [
+          0.013285078078384752,
+          0.10201488233576192
+        ]
+      }
+    },
+    "outcomes": [
+      {
+        "id": "accepted",
+        "label": "Acceptance",
+        "count": 82,
+        "mean": 0.7033898305084746,
+        "interval": [
+          0.6182551050169554,
+          0.7819947494255702
+        ]
+      },
+      {
+        "id": "rejected",
+        "label": "Rejection",
+        "count": 34,
+        "mean": 0.2966101694915254,
+        "interval": [
+          0.21800525057442977,
+          0.38174489498304465
+        ]
+      },
+      {
+        "id": "spotlight",
+        "label": "Spotlight / oral",
+        "count": 14,
+        "mean": 0.12560532687651332,
+        "interval": [
+          0.072646159609876,
+          0.19042700385995243
+        ]
+      },
+      {
+        "id": "best-paper",
+        "label": "Best-paper award",
+        "count": 3,
+        "mean": 0.03349475383373688,
+        "interval": [
+          0.009277723645801027,
+          0.07225640823668787
+        ]
+      }
+    ]
+  }
+}

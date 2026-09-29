@@ -17,12 +17,12 @@ import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { organizers } from "@/content/people";
-import { deadlines, importantDates, site, submissionEthos } from "@/content/site";
+import { importantDates, site, submissionEthos } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Call for Papers",
   description:
-    `The SIMBIOCHEM II call for papers is closed. We received 79 submissions; acceptance decisions will be announced on ${deadlines.decisions} AoE.`,
+    `The SIMBIOCHEM II call for papers is closed. We received 79 submissions; decisions are now available in OpenReview.`,
   alternates: { canonical: "/call-for-papers" },
 };
 
@@ -103,14 +103,13 @@ export default function CallForPapersPage() {
             <h1 className="display mt-6 text-4xl font-bold sm:text-6xl">Call for Papers</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
               We received <strong className="text-white">79 submissions</strong> this year. We are
-              delighted by the response and excited to see the community grow. Reviews are now
-              under way.
+              delighted by the response and excited to see the community grow. Decisions are now
+              available in OpenReview.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-4">
               <OpenReviewButton light />
               <p className="text-sm text-slate-300">
-                Acceptance decisions{" "}
-                <strong className="text-white">{deadlines.decisions} (AoE)</strong>
+                <strong className="text-white">Decisions available in OpenReview</strong>
               </p>
             </div>
             <nav className="mt-8 flex flex-wrap gap-2" aria-label="Sections">
@@ -600,9 +599,8 @@ export default function CallForPapersPage() {
           <div className="mx-auto max-w-4xl px-5 py-16 lg:px-8">
             <StepHeading n={4} title="Call for papers closed" onDark />
             <p className="mt-5 max-w-2xl text-slate-200">
-              Thank you to everyone who submitted. We received 79 papers this year. Reviews are now
-              under way, and acceptance decisions will be announced on{" "}
-              <strong className="text-white">{deadlines.decisions} (AoE)</strong>.
+              Thank you to everyone who submitted. We received 79 papers this year, with 53 accepted
+              for the workshop. Decisions are now available in OpenReview.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <OpenReviewButton light />

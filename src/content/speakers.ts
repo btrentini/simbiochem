@@ -38,12 +38,11 @@ export const speakers: Speaker[] = [
       "Yu-Shan Lin is a computational chemist at Tufts University, where she is Professor of Chemistry and Dean of Academic Affairs for the School of Arts and Sciences. Her group combines molecular dynamics with machine learning to study cyclic peptides, and how modified amino acids shape protein folding. They developed StrEAMM, which predicts the structural ensembles of cyclic peptides from simulation data. That work fits our themes of conformational ensembles and enhanced molecular dynamics.",
   },
   {
-    name: "Heather J. Kulik",
-    affiliation: "MIT",
+    name: "To be Announced",
+    affiliation: "Speaker announcement to follow",
     role: "Invited Speaker",
-    status: "confirmed",
-    blurb:
-      "Heather J. Kulik is the Lammot du Pont Professor of Chemical Engineering and Professor of Chemistry at MIT. Her group combines multi-scale modelling, electronic structure calculations and machine learning to discover new molecules and mechanisms, from metal-organic frameworks to enzymes. The group also builds open-source tools such as molSimplify, and uncertainty metrics that flag when a prediction falls outside a model's training data. That speaks to our themes of calibrated uncertainty and active learning.",
+    status: "tentative",
+    placeholder: true,
   },
   {
     name: "Ai Niitsu",

@@ -214,6 +214,8 @@ export function HeroPhysics({ onFirstFrame }: { onFirstFrame?: () => void } = {}
     let w = 0;
     let h = 0;
     let bodies: Body[] = [];
+    // Reduced-motion resize can draw immediately, before the animation loop.
+    let announced = false;
 
     // pointer / drag state
     let mx = -9999;
@@ -842,7 +844,6 @@ export function HeroPhysics({ onFirstFrame }: { onFirstFrame?: () => void } = {}
       return { alpha: Math.min(1, t * 2.5), scale: back };
     }
 
-    let announced = false;
     function announceFirstFrame() {
       if (announced) return;
       announced = true;

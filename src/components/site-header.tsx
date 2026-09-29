@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
 
-import { deadlines, navLinks } from "@/content/site";
+import { site, navLinks } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 import logo from "../../public/simbiochemLogo.png";
@@ -49,11 +49,12 @@ export function SiteHeader() {
       )}
     >
       <Link
-        href="/call-for-papers"
+        href={site.openReviewUrl}
         className="block border-b border-accent-600/30 bg-accent-500 px-5 py-2 text-brand-950 transition hover:bg-accent-400"
       >
         <span className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-xs font-medium sm:text-sm">
-          <strong>Acceptance decisions: {deadlines.decisions} (AoE)</strong>
+          <strong>Decisions available in OpenReview</strong>
+          <ArrowRight className="size-4" aria-hidden="true" />
         </span>
       </Link>
       <nav
