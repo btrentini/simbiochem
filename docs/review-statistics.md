@@ -77,3 +77,7 @@ The public venue metadata endpoint returned the first-edition venue `EurIPS.cc/2
 ## Mean lines and anonymous observations
 
 Dashed vertical lines show the observed arithmetic mean of paper-average scores for each category, not the fitted normal location. Each anonymous dot is one scored paper at its exact recorded x-coordinate. Equal scores are stacked vertically, with each category's dots below its own fitted curve; dot height has no density interpretation. Dot titles contain only the score, with no paper name, identifier, author or link. Capped horizontal bars mark the observed minimum and maximum. Each category label lists its mean, minimum, maximum and sample size. The PDF uses the same categorical layout, observations and means.
+
+## Homepage layout
+
+The review-process Sankey and score distributions sit side by side on desktop. The submission comparison, growth and review metrics run horizontally below both figures. These groups stack in the same order on smaller screens.

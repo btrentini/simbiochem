@@ -52,8 +52,8 @@ function ribbon(from: NodeKey, to: NodeKey, count: number, offset: number) {
 
 function SubmissionFlow() {
   return (
-    <figure className="min-w-0 border-t border-mist pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8" aria-labelledby="review-flow-heading">
-      <h4 id="review-flow-heading" className="text-sm font-semibold text-ink">2026 review process</h4>
+    <figure className="min-w-0" aria-labelledby="review-flow-heading">
+      <h3 id="review-flow-heading" className="text-sm font-semibold text-ink">2026 review process</h3>
       <svg viewBox="0 0 870 550" role="img" aria-labelledby="review-flow-title review-flow-description" className="mt-2 hidden w-full sm:block">
         <title id="review-flow-title">2026 submission and review flow</title>
         <desc id="review-flow-description">
@@ -161,12 +161,19 @@ export function WorkshopStats() {
   return (
     <section id="workshop-stats" aria-labelledby="workshop-stats-heading" className="scroll-mt-28 border-b border-mist bg-white">
       <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-16">
-      <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 id="workshop-stats-heading" className="display text-xl font-semibold text-ink">Submissions and review outcomes</h2>
-        <Link href={site.openReviewUrl} className="text-xs text-slate-2 underline decoration-mist underline-offset-4 transition hover:text-brand">Decisions in OpenReview</Link>
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,1fr)]" data-review-charts="true">
+        <SubmissionFlow />
+        <div className="min-w-0 border-t border-mist pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+          <ReviewScoreDistribution />
+        </div>
       </div>
-      <div className="mt-7 grid gap-7 lg:grid-cols-[minmax(15rem,0.85fr)_minmax(0,2fr)] lg:gap-8">
-        <div className="min-w-0">
+      <div className="mt-8 border-t border-mist pt-7" data-review-metrics="true">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 id="workshop-stats-heading" className="display text-xl font-semibold text-ink">Submissions and review outcomes</h2>
+          <Link href={site.openReviewUrl} className="text-xs text-slate-2 underline decoration-mist underline-offset-4 transition hover:text-brand">Decisions in OpenReview</Link>
+        </div>
+        <div className="mt-6 grid gap-6 lg:grid-cols-3 lg:gap-8" data-metrics-row="true">
+          <div className="min-w-0">
           <table className="w-full text-left text-sm tabular-nums">
             <caption className="sr-only">Submission and acceptance counts by workshop edition</caption>
             <thead className="border-b border-mist text-xs font-medium text-slate-2">
@@ -182,32 +189,31 @@ export function WorkshopStats() {
               ))}
             </tbody>
           </table>
-          <h4 className="mt-6 text-xs font-medium text-slate-2">Growth from the previous edition</h4>
-          <dl className="mt-3 space-y-2 text-sm tabular-nums">
-            {comparisons.map(({ label, before, after, provisional }) => (
-              <div key={label} className="flex justify-between gap-4"><dt className="text-slate-1">{label}</dt><dd className="font-medium text-ink">{provisional ? "≈ " : ""}{yoyGrowth(after, before)}</dd></div>
-            ))}
-          </dl>
-          <dl className="mt-6 space-y-2 border-t border-mist pt-5 text-sm tabular-nums">
-            {[
-              { label: "Papers reviewed", value: current.reviewed },
-              { label: "Reviewers", value: current.reviewers },
-              { label: "Acceptance rate", value: `${(current.accepted / current.submissions * 100).toFixed(1)}%` },
-            ].map(({ label, value }) => (
-              <div key={label} className="flex justify-between gap-4"><dt className="text-slate-1">{label}</dt><dd className="font-medium text-ink">{value}</dd></div>
-            ))}
-          </dl>
-          <p className="mt-2 text-xs leading-5 text-slate-2">Acceptance rate is based on all {current.submissions} submissions.</p>
+          </div>
+          <div className="min-w-0 border-t border-mist pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+            <h3 className="text-xs font-medium text-slate-2">Growth from the previous edition</h3>
+            <dl className="mt-4 space-y-3 text-sm tabular-nums">
+              {comparisons.map(({ label, before, after, provisional }) => (
+                <div key={label} className="flex justify-between gap-4"><dt className="text-slate-1">{label}</dt><dd className="font-medium text-ink">{provisional ? "≈ " : ""}{yoyGrowth(after, before)}</dd></div>
+              ))}
+            </dl>
+          </div>
+          <div className="min-w-0 border-t border-mist pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+            <dl className="space-y-3 text-sm tabular-nums">
+              {[
+                { label: "Papers reviewed", value: current.reviewed },
+                { label: "Reviewers", value: current.reviewers },
+                { label: "Acceptance rate", value: `${(current.accepted / current.submissions * 100).toFixed(1)}%` },
+              ].map(({ label, value }) => (
+                <div key={label} className="flex justify-between gap-4"><dt className="text-slate-1">{label}</dt><dd className="font-medium text-ink">{value}</dd></div>
+              ))}
+            </dl>
+            <p className="mt-3 text-xs leading-5 text-slate-2">Acceptance rate is based on all {current.submissions} submissions.</p>
+          </div>
         </div>
-        <SubmissionFlow />
-      </div>
-      <p className="mt-6 text-xs leading-5 text-slate-2">
-        Organiser-confirmed 2025 counts: <Link href="/previous-editions/copenhagen" className="underline decoration-mist underline-offset-4 hover:text-brand">29 accepted papers</Link> from 37 submissions (78.4% acceptance).
-      </p>
-      <div className="mt-8 border-t border-mist pt-8">
-        <div className="mx-auto max-w-3xl">
-          <ReviewScoreDistribution />
-        </div>
+        <p className="mt-6 text-xs leading-5 text-slate-2">
+          Organiser-confirmed 2025 counts: <Link href="/previous-editions/copenhagen" className="underline decoration-mist underline-offset-4 hover:text-brand">29 accepted papers</Link> from 37 submissions (78.4% acceptance).
+        </p>
       </div>
       </div>
     </section>
